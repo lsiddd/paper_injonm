@@ -131,7 +131,8 @@ def build(bld):
         'model/component-carrier.cc',
         'helper/cc-helper.cc',
         'model/component-carrier-ue.cc',
-        'model/component-carrier-enb.cc'
+        'model/component-carrier-enb.cc',
+        'model/ahp-handover-algorithm.cc'
         ]
 
     module_test = bld.create_ns3_module_test_library('lte')
