@@ -63,7 +63,7 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 50;
+const int node_ue = 1;
 uint16_t n_cbr = 0;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 0; // 56;
@@ -571,10 +571,13 @@ int main(int argc, char* argv[])
     NS_ASSERT_MSG(enb_HPN + low_power + hot_spot <= 77, "Too many towers.");
 
     // Logs
+    
+    /*
     LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
     LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_DEBUG);
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
+    */
 
     //-------------Parâmetros da simulação
     uint16_t node_remote = 1; // HOST_REMOTO
@@ -784,6 +787,12 @@ int main(int argc, char* argv[])
             }
         }
     }
+
+    MobilityHelper remoteHostMobility;
+    remoteHostMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+    remoteHostMobility.Install(remoteHost);
+    remoteHostMobility.Install(pgw);
+
     /*-----------------MONILIDADE DAS TORRES (PARADA)--------------*/
 
     MobilityHelper mobilityEnb;

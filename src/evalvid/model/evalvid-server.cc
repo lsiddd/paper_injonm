@@ -270,10 +270,10 @@ EvalvidServer::Send ()
             }
         }
     }
-  else
-    {
-      NS_FATAL_ERROR(">> EvalvidServer: Frame does not exist!");
-    }
+  //else
+  //  {
+  //    NS_FATAL_ERROR(">> EvalvidServer: Frame does not exist!");
+  //  }
 }
 
 void
