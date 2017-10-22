@@ -290,6 +290,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }*/
         if (bestNeighbourCellId != 0 && soma_res >= 1.5) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
+            NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId);
         }
     } // end of else of if (it1 == m_neighbourCellMeasures.end ())
 

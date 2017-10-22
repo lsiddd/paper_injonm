@@ -65,7 +65,7 @@ double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
 const int node_ue = 1;
 uint16_t n_cbr = 0;
-uint16_t enb_HPN = 7; // 7;
+uint16_t enb_HPN = 3; // 7;
 uint16_t low_power = 0; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
@@ -156,6 +156,106 @@ void NotifyHandoverEndOkEnb(std::string context,
         << " " << context << " eNB CellId " << cellid
         << ": completed handover of UE with IMSI " << imsi << " RNTI "
         << rnti);
+}
+
+void ArrayPositionAllocator (Ptr<ListPositionAllocator> HpnPosition){
+    if (enb_HPN == 7) {
+        HpnPosition->Add(Vector(2000, 2000, 25));
+        HpnPosition->Add(Vector(1000, 2000, 25));
+        HpnPosition->Add(Vector(3000, 2000, 25));
+        HpnPosition->Add(Vector(2500, 2866, 25));
+        HpnPosition->Add(Vector(1500, 2866, 25));
+        HpnPosition->Add(Vector(2500, 1135, 25));
+        HpnPosition->Add(Vector(1500, 1135, 25));
+
+        HpnPosition->Add(Vector(2000 - 105 - 10, 2000, 10));
+        HpnPosition->Add(Vector(1000 - 105 - 10, 2000, 10));
+        HpnPosition->Add(Vector(3000 - 105 - 10, 2000, 10));
+        HpnPosition->Add(Vector(2500 - 105 - 10, 2866, 10));
+        HpnPosition->Add(Vector(1500 - 105 - 10, 2866, 10));
+        HpnPosition->Add(Vector(2500 - 105 - 10, 1135, 10));
+        HpnPosition->Add(Vector(1500 - 105 - 10, 1135, 10));
+
+        HpnPosition->Add(Vector(2000 + 105 - 10, 2000, 10));
+        HpnPosition->Add(Vector(1000 + 105 - 10, 2000, 10));
+        HpnPosition->Add(Vector(3000 + 105 - 10, 2000, 10));
+        HpnPosition->Add(Vector(2500 + 105 - 10, 2866, 10));
+        HpnPosition->Add(Vector(1500 + 105 - 10, 2866, 10));
+        HpnPosition->Add(Vector(2500 + 105 - 10, 1135, 10));
+        HpnPosition->Add(Vector(1500 + 105 - 10, 1135, 10));
+
+        HpnPosition->Add(Vector(2000 - 105 + 10, 2000, 10));
+        HpnPosition->Add(Vector(1000 - 105 + 10, 2000, 10));
+        HpnPosition->Add(Vector(3000 - 105 + 10, 2000, 10));
+        HpnPosition->Add(Vector(2500 - 105 + 10, 2866, 10));
+        HpnPosition->Add(Vector(1500 - 105 + 10, 2866, 10));
+        HpnPosition->Add(Vector(2500 - 105 + 10, 1135, 10));
+        HpnPosition->Add(Vector(1500 - 105 + 10, 1135, 10));
+
+        HpnPosition->Add(Vector(2000 + 105 + 10, 2000, 10));
+        HpnPosition->Add(Vector(1000 + 105 + 10, 2000, 10));
+        HpnPosition->Add(Vector(3000 + 105 + 10, 2000, 10));
+        HpnPosition->Add(Vector(2500 + 105 + 10, 2866, 10));
+        HpnPosition->Add(Vector(1500 + 105 + 10, 2866, 10));
+        HpnPosition->Add(Vector(2500 + 105 + 10, 1135, 10));
+        HpnPosition->Add(Vector(1500 + 105 + 10, 1135, 10));
+
+        HpnPosition->Add(Vector(2000 - 105, 2000 - 10, 10));
+        HpnPosition->Add(Vector(1000 - 105, 2000 - 10, 10));
+        HpnPosition->Add(Vector(3000 - 105, 2000 - 10, 10));
+        HpnPosition->Add(Vector(2500 - 105, 2866 - 10, 10));
+        HpnPosition->Add(Vector(1500 - 105, 2866 - 10, 10));
+        HpnPosition->Add(Vector(2500 - 105, 1135 - 10, 10));
+        HpnPosition->Add(Vector(1500 - 105, 1135 - 10, 10));
+
+        HpnPosition->Add(Vector(2000 + 105, 2000 - 10, 10));
+        HpnPosition->Add(Vector(1000 + 105, 2000 - 10, 10));
+        HpnPosition->Add(Vector(3000 + 105, 2000 - 10, 10));
+        HpnPosition->Add(Vector(2500 + 105, 2866 - 10, 10));
+        HpnPosition->Add(Vector(1500 + 105, 2866 - 10, 10));
+        HpnPosition->Add(Vector(2500 + 105, 1135 - 10, 10));
+        HpnPosition->Add(Vector(1500 + 105, 1135 - 10, 10));
+
+        HpnPosition->Add(Vector(2000 - 105, 2000 + 10, 10));
+        HpnPosition->Add(Vector(1000 - 105, 2000 + 10, 10));
+        HpnPosition->Add(Vector(3000 - 105, 2000 + 10, 10));
+        HpnPosition->Add(Vector(2500 - 105, 2866 + 10, 10));
+        HpnPosition->Add(Vector(1500 - 105, 2866 + 10, 10));
+        HpnPosition->Add(Vector(2500 - 105, 1135 + 10, 10));
+        HpnPosition->Add(Vector(1500 - 105, 1135 + 10, 10));
+
+        HpnPosition->Add(Vector(2000 + 105, 2000 + 10, 10));
+        HpnPosition->Add(Vector(1000 + 105, 2000 + 10, 10));
+        HpnPosition->Add(Vector(3000 + 105, 2000 + 10, 10));
+        HpnPosition->Add(Vector(2500 + 105, 2866 + 10, 10));
+        HpnPosition->Add(Vector(1500 + 105, 2866 + 10, 10));
+        HpnPosition->Add(Vector(2500 + 105, 1135 + 10, 10));
+        HpnPosition->Add(Vector(1500 + 105, 1135 + 10, 10));
+
+        HpnPosition->Add(Vector(2000 - 105, 2000, 10));
+        HpnPosition->Add(Vector(1000 - 105, 2000, 10));
+        HpnPosition->Add(Vector(3000 - 105, 2000, 10));
+        HpnPosition->Add(Vector(2500 - 105, 2866, 10));
+        HpnPosition->Add(Vector(1500 - 105, 2866, 10));
+        HpnPosition->Add(Vector(2500 - 105, 1135, 10));
+        HpnPosition->Add(Vector(1500 - 105, 1135, 10));
+
+        HpnPosition->Add(Vector(2000 + 105, 2000, 10));
+        HpnPosition->Add(Vector(1000 + 105, 2000, 10));
+        HpnPosition->Add(Vector(3000 + 105, 2000, 10));
+        HpnPosition->Add(Vector(2500 + 105, 2866, 10));
+        HpnPosition->Add(Vector(1500 + 105, 2866, 10));
+        HpnPosition->Add(Vector(2500 + 105, 1135, 10));
+        HpnPosition->Add(Vector(1500 + 105, 1135, 10));
+    }
+    else {
+        for (uint16_t i = 0; i <= 3; i++) {
+            for (uint16_t j = 0; j <= 3; j++) {
+                HpnPosition->Add(Vector(500 + 1000 * i, 500 + 1000 * j,
+                    0)); // DISTANCIA ENTRE RSUs [m]
+            }
+        }
+    }
 }
 
 /*------------------------- CÁLCULO DE MÉTRICAS ----------------------*/
@@ -290,6 +390,17 @@ void ImprimeMetricas(FlowMonitorHelper* fmhelper, Ptr<FlowMonitor> monitor)
     Simulator::Schedule(Seconds(1), &ImprimeMetricas, fmhelper, monitor);
 }
 
+static Vector GetPosition (Ptr<Node> node){
+    Ptr<MobilityModel> mobility = node->GetObject<MobilityModel> ();
+    return mobility->GetPosition ();
+}
+
+static Vector GetVelocity (Ptr<Node> node){
+    Ptr<MobilityModel> mobility = node->GetObject<MobilityModel> ();
+    NS_LOG_DEBUG ("NODE " << node->GetId() << " AT SPEED " << mobility->GetVelocity());
+    return mobility->GetVelocity ();
+}
+
 void VideoTraceParse(std::string m_videoTraceFileName)
 {
     std::ifstream VideoTraceFile(m_videoTraceFileName.c_str(), ios::in);
@@ -422,7 +533,7 @@ void WriteMetrics()
                             ++BTotal;
 
                         if (receivedFrames[u][j]) {
-                            if (frameTypeGlobal[j].find("I") != std::string::npos)
+                            if (frameTypeGlobal[j].find("I") != std::string::npos || frameTypeGlobal[j].find("H") != std::string::npos)
                                 ++IReceived;
                             else if (frameTypeGlobal[j].find("P") != std::string::npos)
                                 ++PReceived;
@@ -431,8 +542,8 @@ void WriteMetrics()
                         }
                     }
                     ILoss = ITotal != 0 ? ((double)ITotal - (double)IReceived) * 100 / (double)ITotal : 0;
-                    PLoss = PTotal != 0? ((double)PTotal - (double)PReceived) * 100 / (double)PTotal : 0;
-                    BLoss = BTotal != 0? ((double)BTotal - (double)BReceived) * 100 / (double)BTotal : 0;
+                    PLoss = PTotal != 0 ? ((double)PTotal - (double)PReceived) * 100 / (double)PTotal : 0;
+                    BLoss = BTotal != 0 ? ((double)BTotal - (double)BReceived) * 100 / (double)BTotal : 0;
 
                     std::stringstream cmd;
                     std::stringstream qoeFileName;
@@ -460,7 +571,8 @@ void WriteMetrics()
     return;
 }
 
-void requestStream (Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostAddr, double simTime, double start){
+void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostAddr, double simTime, double start)
+{
     for (uint32_t i = 0; i < ueNodes.GetN(); ++i) {
         string video_trans = "st_highway_cif.st";
 
@@ -495,7 +607,9 @@ void requestStream (Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address rem
         Ipv4Address addri = iaddr.GetLocal();
     }
 }
-void resend (Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostAddr, double simTime, double start){
+
+void resend(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostAddr, double simTime, double start)
+{
     for (uint32_t i = 0; i < ueNodes.GetN(); ++i) {
         std::stringstream filename;
         filename << "sd_a01_" << (int)i;
@@ -539,10 +653,10 @@ void resend (Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHost
 int main(int argc, char* argv[])
 {
     for (int u = 0; u < node_ue; ++u) {
-        for (int i = 0; i < 614; ++i)
+        for (int i = 0; i < numberOfPackets; ++i)
             receivedPackets[u][i] = false;
 
-        for (int i = 0; i < 300; ++i)
+        for (int i = 0; i < numberOfFrames; ++i)
             receivedFrames[u][i] = false;
     }
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
@@ -551,11 +665,9 @@ int main(int argc, char* argv[])
     VideoTraceParse("st_highway_cif.st");
 
     // void WriteMetrics();
-    for (double t = 0; t < 80; t += 1)
-        Simulator::Schedule(Seconds(t), &WriteMetrics);
 
     /*--------------------- COMMAND LINE PARSING -------------------*/
-    std::string entradaSumo = "mobil/novoMobilityGrid.tcl"; // Mobilidade usada
+    std::string entradaSumo = "mobil/reta2km.tcl"; // Mobilidade usada
 
     CommandLine cmm;
     cmm.AddValue("entradaSumo", "arquivo de entrada de mobilidade", entradaSumo);
@@ -571,17 +683,21 @@ int main(int argc, char* argv[])
     NS_ASSERT_MSG(enb_HPN + low_power + hot_spot <= 77, "Too many towers.");
 
     // Logs
+
     
-    /*
-    LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
-    LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);
+    /*LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
+    LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);*/
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_DEBUG);
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
-    */
-
+    LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
+    LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
+    LogComponentEnable("A2A4RsrqHandoverAlgorithm", LOG_LEVEL_LOGIC);
+    
     //-------------Parâmetros da simulação
     uint16_t node_remote = 1; // HOST_REMOTO
     double simTime = 120.0; // TEMPO_SIMULAÇÃO
+    for (double t = 0; t < simTime; t += 1)
+        Simulator::Schedule(Seconds(t), &WriteMetrics);
     /*----------------------------------------------------------------------*/
 
     //*********** CONFIGURAÇÃO LTE ***************//
@@ -616,7 +732,7 @@ int main(int argc, char* argv[])
 
     /**----------------ALGORITMO DE
 *HANDOVER---------------------------------------*/
-    lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
+    //lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
 
     // lteHelper->SetHandoverAlgorithmType ("ns3::NoOpHandoverAlgorithm");
 
@@ -625,11 +741,11 @@ int main(int argc, char* argv[])
     // lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
     // TimeValue(MilliSeconds(256)));
 
-    //lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
-    //lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
-    //                                         UintegerValue(30));
-    //lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
-    //                                         UintegerValue(1));
+    lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
+    lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
+                                             UintegerValue(30));
+    lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
+                                             UintegerValue(1));
 
     ConfigStore inputConfig;
     inputConfig.ConfigureDefaults();
@@ -690,103 +806,7 @@ int main(int argc, char* argv[])
 
     /*-----------------POSIÇÃO DAS TORRES----------------------------------*/
     Ptr<ListPositionAllocator> HpnPosition = CreateObject<ListPositionAllocator>();
-    if (enb_HPN == 7) {
-        HpnPosition->Add(Vector(2000, 2000, 25));
-        HpnPosition->Add(Vector(1000, 2000, 25));
-        HpnPosition->Add(Vector(3000, 2000, 25));
-        HpnPosition->Add(Vector(2500, 2866, 25));
-        HpnPosition->Add(Vector(1500, 2866, 25));
-        HpnPosition->Add(Vector(2500, 1135, 25));
-        HpnPosition->Add(Vector(1500, 1135, 25));
-
-        HpnPosition->Add(Vector(2000 - 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(1000 - 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(3000 - 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(2500 - 105 - 10, 2866, 10));
-        HpnPosition->Add(Vector(1500 - 105 - 10, 2866, 10));
-        HpnPosition->Add(Vector(2500 - 105 - 10, 1135, 10));
-        HpnPosition->Add(Vector(1500 - 105 - 10, 1135, 10));
-
-        HpnPosition->Add(Vector(2000 + 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(1000 + 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(3000 + 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(2500 + 105 - 10, 2866, 10));
-        HpnPosition->Add(Vector(1500 + 105 - 10, 2866, 10));
-        HpnPosition->Add(Vector(2500 + 105 - 10, 1135, 10));
-        HpnPosition->Add(Vector(1500 + 105 - 10, 1135, 10));
-
-        HpnPosition->Add(Vector(2000 - 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(1000 - 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(3000 - 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(2500 - 105 + 10, 2866, 10));
-        HpnPosition->Add(Vector(1500 - 105 + 10, 2866, 10));
-        HpnPosition->Add(Vector(2500 - 105 + 10, 1135, 10));
-        HpnPosition->Add(Vector(1500 - 105 + 10, 1135, 10));
-
-        HpnPosition->Add(Vector(2000 + 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(1000 + 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(3000 + 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(2500 + 105 + 10, 2866, 10));
-        HpnPosition->Add(Vector(1500 + 105 + 10, 2866, 10));
-        HpnPosition->Add(Vector(2500 + 105 + 10, 1135, 10));
-        HpnPosition->Add(Vector(1500 + 105 + 10, 1135, 10));
-
-        HpnPosition->Add(Vector(2000 - 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(1000 - 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(3000 - 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(2500 - 105, 2866 - 10, 10));
-        HpnPosition->Add(Vector(1500 - 105, 2866 - 10, 10));
-        HpnPosition->Add(Vector(2500 - 105, 1135 - 10, 10));
-        HpnPosition->Add(Vector(1500 - 105, 1135 - 10, 10));
-
-        HpnPosition->Add(Vector(2000 + 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(1000 + 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(3000 + 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(2500 + 105, 2866 - 10, 10));
-        HpnPosition->Add(Vector(1500 + 105, 2866 - 10, 10));
-        HpnPosition->Add(Vector(2500 + 105, 1135 - 10, 10));
-        HpnPosition->Add(Vector(1500 + 105, 1135 - 10, 10));
-
-        HpnPosition->Add(Vector(2000 - 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(1000 - 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(3000 - 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(2500 - 105, 2866 + 10, 10));
-        HpnPosition->Add(Vector(1500 - 105, 2866 + 10, 10));
-        HpnPosition->Add(Vector(2500 - 105, 1135 + 10, 10));
-        HpnPosition->Add(Vector(1500 - 105, 1135 + 10, 10));
-
-        HpnPosition->Add(Vector(2000 + 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(1000 + 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(3000 + 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(2500 + 105, 2866 + 10, 10));
-        HpnPosition->Add(Vector(1500 + 105, 2866 + 10, 10));
-        HpnPosition->Add(Vector(2500 + 105, 1135 + 10, 10));
-        HpnPosition->Add(Vector(1500 + 105, 1135 + 10, 10));
-
-        HpnPosition->Add(Vector(2000 - 105, 2000, 10));
-        HpnPosition->Add(Vector(1000 - 105, 2000, 10));
-        HpnPosition->Add(Vector(3000 - 105, 2000, 10));
-        HpnPosition->Add(Vector(2500 - 105, 2866, 10));
-        HpnPosition->Add(Vector(1500 - 105, 2866, 10));
-        HpnPosition->Add(Vector(2500 - 105, 1135, 10));
-        HpnPosition->Add(Vector(1500 - 105, 1135, 10));
-
-        HpnPosition->Add(Vector(2000 + 105, 2000, 10));
-        HpnPosition->Add(Vector(1000 + 105, 2000, 10));
-        HpnPosition->Add(Vector(3000 + 105, 2000, 10));
-        HpnPosition->Add(Vector(2500 + 105, 2866, 10));
-        HpnPosition->Add(Vector(1500 + 105, 2866, 10));
-        HpnPosition->Add(Vector(2500 + 105, 1135, 10));
-        HpnPosition->Add(Vector(1500 + 105, 1135, 10));
-    }
-    else {
-        for (uint16_t i = 0; i <= 3; i++) {
-            for (uint16_t j = 0; j <= 3; j++) {
-                HpnPosition->Add(Vector(500 + 1000 * i, 500 + 1000 * j,
-                    0)); // DISTANCIA ENTRE RSUs [m]
-            }
-        }
-    }
+    ArrayPositionAllocator(HpnPosition);
 
     MobilityHelper remoteHostMobility;
     remoteHostMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
@@ -902,44 +922,8 @@ int main(int argc, char* argv[])
     // Início Transmissão de Vídeo
     //Rodar aplicação EvalVid
     requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, 2);
-    for (int i = 5; i < simTime; i += 1)
-        resend (remoteHost, ueNodes, remoteHostAddr, simTime, i);
-    //Simulator::Schedule(Seconds(0.9), &requestStream, remoteHost, &ueNodes, remoteHostAddr, simTime);
-    /*for (uint32_t i = 0; i < ueNodes.GetN(); i++) {
-        // Gera SD e RD para cada Veículo
-        string video_trans = "st_highway_cif.st";
-
-        std::stringstream sdTrace;
-        std::stringstream rdTrace;
-        std::stringstream rdWindow;
-        sdTrace << "sd_a01_" << (int)i;
-        rdTrace << "rd_a01_" << (int)i;
-
-        double start = 15.0;
-        double stop = simTime;
-        uint16_t port = 2000;
-        uint16_t m_port = 2000 * i + 2000; // Para alcançar o nó ZERO quando i = 0
-
-        // Servidor de vídeo
-        EvalvidServerHelper server(m_port);
-        server.SetAttribute("SenderTraceFilename", StringValue(video_trans));
-        server.SetAttribute("SenderDumpFilename", StringValue(sdTrace.str()));
-        server.SetAttribute("PacketPayload", UintegerValue(1014));
-        ApplicationContainer apps = server.Install(remoteHost);
-        apps.Start(Seconds(start));
-        apps.Stop(Seconds(stop));
-
-        // Clientes do vídeo
-        EvalvidClientHelper client(remoteHostAddr, m_port);
-        client.SetAttribute("ReceiverDumpFilename", StringValue(rdTrace.str()));
-        apps = client.Install(ueNodes.Get(i));
-        apps.Start(Seconds(start));
-        apps.Stop(Seconds(stop));
-
-        Ptr<Ipv4> ipv4 = ueNodes.Get(i)->GetObject<Ipv4>();
-        Ipv4InterfaceAddress iaddr = ipv4->GetAddress(1, 0);
-        Ipv4Address addri = iaddr.GetLocal();
-    } //Fim Transmissão de Vídeo*/
+    for (int i = 5; i < simTime; i += 5)
+        resend(remoteHost, ueNodes, remoteHostAddr, simTime, i);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");
@@ -959,76 +943,6 @@ int main(int argc, char* argv[])
     Ptr<FlowMonitor> monitor;
     FlowMonitorHelper fmhelper;
     monitor = fmhelper.InstallAll();
-
-    // Throughput
-    string vazao = tipo + "FlowVSThroughput";
-    string graphicsFileName = vazao + ".png";
-    string plotFileName = vazao + ".plt";
-    string plotTitle = "Flow vs Throughput";
-    string dataTitle = "Throughput";
-
-    Gnuplot gnuplot(graphicsFileName);
-    gnuplot.SetTitle(plotTitle);
-    gnuplot.SetTerminal("png");
-    gnuplot.SetLegend("Flow", "Throughput");
-
-    Gnuplot2dDataset dataset;
-    dataset.SetTitle(dataTitle);
-    dataset.SetStyle(Gnuplot2dDataset::LINES_POINTS);
-
-    // Delay
-    string delay = tipo + "FlowVSDelay";
-    string graphicsFileName1 = delay + ".png";
-    string plotFileName1 = delay + ".plt";
-    string plotTitle1 = "Flow vs Delay";
-    string dataTitle1 = "Delay";
-
-    Gnuplot gnuplot1(graphicsFileName1);
-    gnuplot1.SetTitle(plotTitle1);
-    gnuplot1.SetTerminal("png");
-    gnuplot1.SetLegend("Flow", "Delay");
-
-    Gnuplot2dDataset dataset1;
-    dataset1.SetTitle(dataTitle1);
-    dataset1.SetStyle(Gnuplot2dDataset::LINES_POINTS);
-
-    // LostPackets
-    string lost = tipo + "FlowVSLostPackets";
-    string graphicsFileName2 = lost + ".png";
-    string plotFileName2 = lost + ".plt";
-    string plotTitle2 = "Flow vs LostPackets";
-    string dataTitle2 = "LostPackets";
-
-    Gnuplot gnuplot2(graphicsFileName2);
-    gnuplot2.SetTitle(plotTitle2);
-    gnuplot2.SetTerminal("png");
-    gnuplot2.SetLegend("Flow", "LostPackets");
-
-    Gnuplot2dDataset dataset2;
-    dataset2.SetTitle(dataTitle2);
-    dataset2.SetStyle(Gnuplot2dDataset::LINES_POINTS);
-
-    // Jitter
-    string jitter = tipo + "FlowVSJitter";
-    string graphicsFileName3 = jitter + ".png";
-    string plotFileName3 = jitter + ".plt";
-    string plotTitle3 = "Flow vs Jitter";
-    string dataTitle3 = "Jitter";
-
-    Gnuplot gnuplot3(graphicsFileName3);
-    gnuplot3.SetTitle(plotTitle3);
-    gnuplot3.SetTerminal("png");
-    gnuplot3.SetLegend("Flow", "Jitter");
-
-    Gnuplot2dDataset dataset3;
-    dataset3.SetTitle(dataTitle3);
-    dataset3.SetStyle(Gnuplot2dDataset::LINES_POINTS);
-
-    // Chama classe de captura do fluxo
-    ThroughputMonitor(&fmhelper, monitor, dataset);
-    DelayMonitor(&fmhelper, monitor, dataset1);
-    LostPacketsMonitor(&fmhelper, monitor, dataset2);
-    JitterMonitor(&fmhelper, monitor, dataset3);
 
     /*--------------NOTIFICAÇÕES DE HANDOVER E SINAL-------------------------*/
     // Config::Connect("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
@@ -1055,32 +969,11 @@ int main(int argc, char* argv[])
     /*--------------------------- Simulation Run ---------------------------*/
     Simulator::Run(); // Executa
 
-    // //Throughput
-    // gnuplot.AddDataset(dataset);
-    // std::ofstream plotFile(plotFileName.c_str()); // Abre o arquivo.
-    // gnuplot.GenerateOutput(plotFile); //Escreve no arquivo.
-    // plotFile.close(); // fecha o arquivo.
-    // //Delay
-    // gnuplot1.AddDataset(dataset1);
-    // std::ofstream plotFile1(plotFileName1.c_str()); // Abre o arquivo.
-    // gnuplot1.GenerateOutput(plotFile1); //Escreve no arquivo.
-    // plotFile1.close(); // fecha o arquivo.
-    // //LostPackets
-    // gnuplot2.AddDataset(dataset2);
-    // std::ofstream plotFile2(plotFileName2.c_str()); // Abre o arquivo.
-    // gnuplot2.GenerateOutput(plotFile2); //Escreve no arquivo.
-    // plotFile2.close(); // fecha o arquivo.
-    // //Jitter
-    // gnuplot3.AddDataset(dataset3);
-    // std::ofstream plotFile3(plotFileName3.c_str()); // Abre o arquivo.
-    // gnuplot3.GenerateOutput(plotFile3); //Escreve no arquivo.
-    // plotFile3.close(); // fecha o arquivo.
-
     monitor->SerializeToXmlFile("V2X/LTE01_flow.xml", true, true);
 
     Simulator::Destroy();
 
-    ImprimeMetricas(&fmhelper, monitor);
+    //ImprimeMetricas(&fmhelper, monitor);
 
     NS_LOG_INFO("realizados " << handNumber << " handovers");
     return EXIT_SUCCESS;

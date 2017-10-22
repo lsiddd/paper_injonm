@@ -313,10 +313,10 @@ EvalvidServer::HandleRead (Ptr<Socket> socket)
                                                  &EvalvidServer::Send, this);
             }
         }
-      else
-        {
-          NS_FATAL_ERROR(">> EvalvidServer: Frame does not exist!");
-        }
+      //else
+      //  {
+      //    NS_FATAL_ERROR(">> EvalvidServer: Frame does not exist!");
+      //  }
     }
 }
 
