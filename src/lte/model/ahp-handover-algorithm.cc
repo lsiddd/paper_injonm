@@ -168,7 +168,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         std::ifstream servingCellId (rntiPath.str());
 
         if (servingCellId.fail()) {
-        NS_FATAL_ERROR(">> EvalvidServer: Error while opening video trace file: "
+        NS_LOG_WARN(">> EvalvidServer: Error while opening video trace file: "
             << rntiPath.str());
             return;
         }
