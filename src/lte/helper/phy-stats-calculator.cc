@@ -164,7 +164,7 @@ PhyStatsCalculator::ReportUeSinr (uint16_t cellId, uint64_t imsi, uint16_t rnti,
           return;
         }
       m_UeSinrFirstWrite = false;
-      outFile << "% time\tcellId\tIMSI\tRNTI\tsinrLinear\tcomponentCarrierId";
+      outFile << "% time\tcellId\tIMSI\tRNTI\tsinrdb\tcomponentCarrierId";
       outFile << std::endl;
     }
   else
@@ -181,7 +181,7 @@ PhyStatsCalculator::ReportUeSinr (uint16_t cellId, uint64_t imsi, uint16_t rnti,
   outFile << cellId << "\t";
   outFile << imsi << "\t";
   outFile << rnti << "\t";
-  outFile << sinrLinear << "\t";
+  outFile << 10*log10(sinrLinear) << "\t";
   outFile << (uint32_t)componentCarrierId << std::endl;
   outFile.close ();
 }

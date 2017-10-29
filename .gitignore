@@ -37,3 +37,8 @@ build-dir/
 build/
 /.cproject
 /.project
+rd*
+sd*
+rnti/*
+Dl*
+Ul*

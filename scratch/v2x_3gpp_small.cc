@@ -63,10 +63,10 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 1;
+const int node_ue = 50;
 uint16_t n_cbr = 0;
-uint16_t enb_HPN = 3; // 7;
-uint16_t low_power = 0; // 56;
+uint16_t enb_HPN = 7; // 7;
+uint16_t low_power = 56; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 
@@ -94,7 +94,17 @@ void NotifyConnectionEstablishedUe(std::string context,
     NS_LOG_DEBUG(Simulator::Now().GetSeconds()
         << " " << context << " UE IMSI " << imsi
         << ": connected to CellId " << cellid << " with RNTI " << rnti);
+    
+    //feed connection files
+    std::stringstream strrnti;
+    strrnti << rnti;
+    std::ofstream ofs ("rnti/" + strrnti.str() + ".txt", ios::out);
+    ofs << imsi << "\t" << cellid << "\n";
+    ofs.close();
+
+    //feed connection matrix
     cell_ue[cellid - 1][imsi - 1] = rnti;
+    
 }
 
 void NotifyHandoverStartUe(std::string context,
@@ -107,6 +117,13 @@ void NotifyHandoverStartUe(std::string context,
         << " " << context << " UE IMSI " << imsi
         << ": previously connected to CellId " << cellid << " with RNTI "
         << rnti << ", doing handover to CellId " << targetCellId);
+
+    std::stringstream strrnti;
+    strrnti << rnti;
+    std::ofstream ofs ("rnti/" + strrnti.str() + ".txt", ios::out);
+    ofs << imsi << "\t" << cellid << "\n";
+    ofs.close();
+
     cell_ue[cellid - 1][imsi - 1] = 0;
 
     ++handNumber;
@@ -251,7 +268,7 @@ void ArrayPositionAllocator (Ptr<ListPositionAllocator> HpnPosition){
     else {
         for (uint16_t i = 0; i <= 3; i++) {
             for (uint16_t j = 0; j <= 3; j++) {
-                HpnPosition->Add(Vector(500 + 1000 * i, 500 + 1000 * j,
+                HpnPosition->Add(Vector(500 + 1000 * j,1000 * i,
                     0)); // DISTANCIA ENTRE RSUs [m]
             }
         }
@@ -562,12 +579,15 @@ void WriteMetrics()
                         << " 20";
 
                     qoeOutFile << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2;
-
-                    std::ifstream qoeFile(qoeFileName.str());
+                    
+                    NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2);
+                    
+                    /*std::ifstream qoeFile(qoeFileName.str());
                     while (qoeFile >> qoeResult)
-                        NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeResult);
+                        NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeResult);*/
                 }
             }
+    NS_LOG_INFO("\n\n\n\n");
     return;
 }
 
@@ -667,7 +687,8 @@ int main(int argc, char* argv[])
     // void WriteMetrics();
 
     /*--------------------- COMMAND LINE PARSING -------------------*/
-    std::string entradaSumo = "mobil/reta2km.tcl"; // Mobilidade usada
+    //std::string entradaSumo = "mobil/reta2km.tcl"; // Mobilidade usada
+    std::string entradaSumo = "mobil/3gppMobility.tcl"; // Mobilidade usada
 
     CommandLine cmm;
     cmm.AddValue("entradaSumo", "arquivo de entrada de mobilidade", entradaSumo);
@@ -685,17 +706,17 @@ int main(int argc, char* argv[])
     // Logs
 
     
-    /*LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
-    LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);*/
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_DEBUG);
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
-    LogComponentEnable("A2A4RsrqHandoverAlgorithm", LOG_LEVEL_LOGIC);
+    /*LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
+    LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);
+    LogComponentEnable("A2A4RsrqHandoverAlgorithm", LOG_LEVEL_LOGIC);*/
     
     //-------------Parâmetros da simulação
     uint16_t node_remote = 1; // HOST_REMOTO
-    double simTime = 120.0; // TEMPO_SIMULAÇÃO
+    double simTime = 200.0; // TEMPO_SIMULAÇÃO
     for (double t = 0; t < simTime; t += 1)
         Simulator::Schedule(Seconds(t), &WriteMetrics);
     /*----------------------------------------------------------------------*/
@@ -732,7 +753,7 @@ int main(int argc, char* argv[])
 
     /**----------------ALGORITMO DE
 *HANDOVER---------------------------------------*/
-    //lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
+    lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
 
     // lteHelper->SetHandoverAlgorithmType ("ns3::NoOpHandoverAlgorithm");
 
@@ -741,11 +762,11 @@ int main(int argc, char* argv[])
     // lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
     // TimeValue(MilliSeconds(256)));
 
-    lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
+    /*lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
     lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
                                              UintegerValue(30));
     lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
-                                             UintegerValue(1));
+                                             UintegerValue(1));*/
 
     ConfigStore inputConfig;
     inputConfig.ConfigureDefaults();
@@ -921,9 +942,9 @@ int main(int argc, char* argv[])
 
     // Início Transmissão de Vídeo
     //Rodar aplicação EvalVid
-    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, 2);
-    for (int i = 5; i < simTime; i += 5)
-        resend(remoteHost, ueNodes, remoteHostAddr, simTime, i);
+    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, 80);
+    //for (int i = 5; i < simTime; i += 5)
+    //    resend(remoteHost, ueNodes, remoteHostAddr, simTime, i);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");

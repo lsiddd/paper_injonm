@@ -1,0 +1,341 @@
+Waf: Entering directory `/home/lucas/git/ns/build'
+[1487/1838] Compiling src/lte/helper/phy-rx-stats-calculator.cc
+[1817/1838] Linking build/libns3-dev-lte-debug.so
+[1818/1838] Linking build/libns3-dev-test-debug.so
+[1819/1838] Linking build/libns3-dev-netanim-debug.so
+[1822/1838] Linking build/scratch/basico_ze
+[1823/1838] Linking build/scratch/v2x_3gpp
+[1824/1838] Linking build/scratch/v2x_wifi_modified
+[1823/1838] Linking build/utils/ns3-dev-test-runner-debug
+[1824/1838] Linking build/scratch/scratch-simulator
+[1825/1838] Linking build/scratch/subdir/subdir
+[1826/1838] Linking build/scratch/v2x_3gpp_small
+[1827/1838] Linking build/utils/ns3-dev-print-introspected-doxygen-debug
+Waf: Leaving directory `/home/lucas/git/ns/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (9.491s)
+Create Applications.
+0 Segundos...
+
+
+
+
+
+0.260214 /NodeList/2/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 1: connected to CellId 1 with RNTI 1
+0.260214 /NodeList/3/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 2: connected to CellId 1 with RNTI 4
+0.260214 /NodeList/5/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 4: connected to CellId 1 with RNTI 3
+0.260214 /NodeList/6/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 5: connected to CellId 1 with RNTI 2
+0.265214 /NodeList/4/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 3: connected to CellId 1 with RNTI 6
+1 Segundos...
+Taxa de recebimento, node 1 :1
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+2 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+3 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+4 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+5 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+6 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+7 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+8 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+9 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+10 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+11 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+12 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+13 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+14 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+15 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+16 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+17 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+18 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+19 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+20 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+21 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+22 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+23 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+24 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+25 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 4 :1
+NODE 4 QOE ESTIMADO 4.36931
+
+
+
+
+
+26 Segundos...
+Taxa de recebimento, node 1 :1.01667
+NODE 1 QOE ESTIMADO 4.36931
+Taxa de recebimento, node 2 :1
+NODE 2 QOE ESTIMADO Interrupted 
+Traceback (most recent call last):
+  File "ia.py", line 24, in <module>
+    print (calc(I, P, B, 20))
+  File "ia.py", line 21, in calc
+    clf = pickle.load(arquivo_pkl)
+  File "/usr/lib64/python2.7/copy_reg.py", line 46, in _reconstructor
+    def _reconstructor(cls, base, state):
+KeyboardInterrupt: (None, <function _reconstructor at 0x7f18b70e7b18>, (<class 'sklearn.tree.tree.ExtraTreeRegressor'>, <type 'object'>, None))

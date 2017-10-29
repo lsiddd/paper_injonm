@@ -152,6 +152,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 {
     NS_LOG_FUNCTION(this << rnti << (uint16_t)servingCellRsrq);
 
+
     MeasurementTable_t::iterator it1;
     it1 = m_neighbourCellMeasures.find(rnti);
 
@@ -160,6 +161,22 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     }
     else {
         MeasurementRow_t::iterator it2;
+
+        std::stringstream rntiPath;
+        rntiPath << "rnti/" << rnti << ".txt";
+
+        std::ifstream servingCellId (rntiPath.str());
+
+        if (servingCellId.fail()) {
+        NS_FATAL_ERROR(">> EvalvidServer: Error while opening video trace file: "
+            << rntiPath.str());
+            return;
+        }
+
+        int a, b;
+        while (servingCellId >> a >> b){
+        }
+
         uint16_t bestNeighbourCellId = 0;
 //        uint8_t bestcell = 0;
 
@@ -217,11 +234,38 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
             ++i;
         }
+//--------------------------------------------------------------------------//
+        std::stringstream qoeFileName;
+        std::stringstream qosFileName;
+        std::string qoeResult;
+        std::string qosResult;
+
+        qoeFileName << "qoeTorre" << b;
+        qosFileName << "qosTorre" << b;
+
+        std::ifstream qosFile(qosFileName.str());
+        std::ifstream qoeFile(qoeFileName.str());
 
         cell[i][0] = (uint16_t)servingCellRsrq;
-        cell[i][1] = 1.5;
-        cell[i][2] = 0.8;
-        cell[i][3] = 0;
+
+        if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
+                cell[i][1] = 1;
+            else
+                while (qoeFile >> qoeResult)
+                    cell[i][1] = stod(qoeResult);
+        if (cell[i][1] >=4)
+            return;
+
+            if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
+                cell[i][2] = 0;
+            else
+                while (qosFile >> qosResult)
+                    cell[i][2] = stod(qosResult);
+        if (cell[i][2] >= 0.9)
+            return;
+
+//----------------------------------------------------------------------------//
+//----------------------------------------------------------------------------//
 
         double prioridades[n_p][n_p]; // matriz de prioridades
         double prioridades_aux[n_p][n_p]; // matriz ao quadrado
@@ -273,7 +317,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }
         /*-----------------------RESULTADO NÃO NORMALIZADO-------------------*/
         for (int i = 0; i < n_c; ++i)
-            for (int j = 0; j < n_p; ++j)
+            for (int j = 0; j < n_p + 1; ++j)
                 soma[i] += cell[i][j] * eigenvector[j];
 
         for (int i = 0; i < n_c; ++i) {
@@ -288,7 +332,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
                std::cout << cell[i][u] << "\t";
            std::cout << std::endl;
         }*/
-        if (bestNeighbourCellId != 0 && soma_res >= 1.5) {
+        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1.5) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId);
         }
