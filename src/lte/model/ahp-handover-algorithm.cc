@@ -31,7 +31,6 @@
 #include <ns3/log.h>
 #include <ns3/uinteger.h>
 #include "ns3/core-module.h"
-
 namespace ns3 {
 
 NS_LOG_COMPONENT_DEFINE("AhpHandoverAlgorithm");
@@ -129,7 +128,8 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 {
     NS_LOG_FUNCTION(this << rnti << (uint16_t)measResults.measId);
 
-    EvaluateHandover(rnti, measResults.rsrqResult, (uint16_t)measResults.measId);
+
+    EvaluateHandover(rnti, measResults.rsrqResult, (uint16_t)measResults.measId, (uint16_t) measResults.cellIdentity);
     if (measResults.haveMeasResultNeighCells
         && !measResults.measResultListEutra.empty()) {
         for (std::list<LteRrcSap::MeasResultEutra>::iterator it = measResults.measResultListEutra.begin();
@@ -147,19 +147,21 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 } // end of DoReportUeMeas
 
 void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
-    uint8_t servingCellRsrq, uint16_t measId)
-{
+    uint8_t servingCellRsrq, uint16_t measId, uint16_t cellIdd)
+{   
     NS_LOG_FUNCTION(this << rnti << (uint16_t)servingCellRsrq);
 
+    /*------------FIND MEASURES FOR GIVEN RNTI------------*/
     MeasurementTable_t::iterator it1;
     it1 = m_neighbourCellMeasures.find(rnti);
 
     if (it1 == m_neighbourCellMeasures.end()) {
-        NS_LOG_WARN("Skipping handover evaluation for RNTI " << rnti << " because neighbour cells information is not found");
+        //NS_LOG_WARN("Skipping handover evaluation for RNTI " << rnti << " because neighbour cells information is not found");
     }
     else {
         MeasurementRow_t::iterator it2;
 
+        /*------------ASSOCIATE RNTI WITH CELLID------------*/
         std::stringstream rntiPath;
         rntiPath << "rnti/" << rnti << ".txt";
 
@@ -169,10 +171,11 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             return;
         }
 
-        int a, b;
+        int a, b;//aux variables
         while (servingCellId >> a >> b) {
         }
 
+        /*-----------------DEFINE PARAMETERS-----------------*/
         uint16_t bestNeighbourCellId = 0;
         //        uint8_t bestcell = 0;
 
@@ -199,6 +202,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         double soma_res = 0;
         //        double res[n_c];
 
+
+        /*----------------neighbor cell values----------------*/
         for (it2 = it1->second.begin(); it2 != it1->second.end(); ++it2) {
             std::stringstream qoeFileName;
             std::stringstream qosFileName;
@@ -214,13 +219,13 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             cell[i][0] = (uint16_t)it2->second->m_rsrq;
 
             if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][1] = 1;
+                cell[i][1] = 5;//prioritize cells not used
             else
                 while (qoeFile >> qoeResult)
                     cell[i][1] = stod(qoeResult);
 
             if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][2] = 0;
+                cell[i][2] = 1;
             else
                 while (qosFile >> qosResult)
                     cell[i][2] = stod(qosResult);
@@ -229,7 +234,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
             ++i;
         }
-        //--------------------------------------------------------------------------//
+        /*-----------------current cell values-----------------*/
         std::stringstream qoeFileName;
         std::stringstream qosFileName;
         std::string qoeResult;
@@ -260,7 +265,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             return;
 
         //----------------------------------------------------------------------------//
-        //----------------------------------------------------------------------------//
+        /*-----------------------------MATRIX CALCULATION-----------------------------*/
 
         double prioridades[n_p][n_p]; // matriz de prioridades
         double prioridades_aux[n_p][n_p]; // matriz ao quadrado
@@ -327,6 +332,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
                std::cout << cell[i][u] << "\t";
            std::cout << std::endl;
         }*/
+
+        /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
         if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1.5) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId);

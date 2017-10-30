@@ -677,6 +677,7 @@ public:
     std::list<MeasResultEutra> measResultListEutra; ///< measure result list eutra
     bool haveScellsMeas; ///< has SCells measure
     MeasResultServFreqList measScellResultList; ///< measure SCell result list
+    uint32_t cellIdentity; ///< cell identity
   };
 
   // Messages

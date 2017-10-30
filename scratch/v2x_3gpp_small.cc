@@ -19,6 +19,9 @@
  *
  */
 
+ /* This is a testing version.
+  */
+
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
 #include "ns3/internet-module.h"
@@ -66,10 +69,10 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 1;
+const int node_ue = 5;
 uint16_t n_cbr = 0;
-uint16_t enb_HPN = 1; // 7;
-uint16_t low_power = 0; // 56;
+uint16_t enb_HPN = 7; // 7;
+uint16_t low_power = 56; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 
@@ -77,8 +80,8 @@ int cell_ue[77][57]; // matriz de conexões
 unsigned int handNumber = 0;
 
 // variaveis do vídeo
-const int numberOfFrames = 2000;
-const int numberOfPackets = 2106;
+const int numberOfFrames = 300;
+const int numberOfPackets = 614;
 
 int framePct[numberOfFrames + 1];
 std::string frameTypeGlobal[numberOfFrames];
@@ -101,7 +104,7 @@ void NotifyConnectionEstablishedUe(std::string context,
     //feed connection files
     std::stringstream strrnti;
     strrnti << rnti;
-    std::ofstream ofs("rnti/" + strrnti.str() + ".txt", ios::out);
+    std::ofstream ofs("rnti/" + strrnti.str() + ".txt");//, ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
 
@@ -599,7 +602,7 @@ void WriteMetrics()
 void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostAddr, double simTime, double start)
 {
     for (uint32_t i = 0; i < ueNodes.GetN(); ++i) {
-        string video_trans = "st_highway_cif.st";
+        string video_trans = "st_container_cif_h264_300_20.st";
 
         std::stringstream sdTrace;
         std::stringstream rdTrace;
@@ -644,7 +647,7 @@ void resend(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostA
             in.seekg(0, ios::end);
             size_t size = in.tellg();
             if (size == 0) {
-                string video_trans = "st_highway_cif.st";
+                string video_trans = "st_container_cif_h264_300_20.st";
 
                 std::stringstream sdTrace;
                 std::stringstream rdTrace;
@@ -693,7 +696,7 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
     double interPacketInterval = 0.1;
 
-    VideoTraceParse("st_highway_cif.st");
+    VideoTraceParse("st_container_cif_h264_300_20.st");
 
     // void WriteMetrics();
 
@@ -720,8 +723,9 @@ int main(int argc, char* argv[])
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
-    //LogComponentEnable("LteEnbNetDevice", LOG_LEVEL_FUNCTION);
-    /*LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
+    LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
+    LogComponentEnable("LteAnr", LOG_LEVEL_FUNCTION);
+    /*LogComponentEnable("LteEnbNetDevice", LOG_LEVEL_FUNCTION);
     LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);
     LogComponentEnable("A2A4RsrqHandoverAlgorithm", LOG_LEVEL_LOGIC);*/
 
