@@ -100,7 +100,7 @@ main (int argc, char *argv[])
 
   NodeContainer ueNodes;
   NodeContainer enbNodes;
-  enbNodes.Create(3);
+  enbNodes.Create(1);
   ueNodes.Create(numberOfNodes);
 
   // Install Mobility Model
@@ -110,8 +110,6 @@ main (int argc, char *argv[])
   for (uint16_t i = 0; i < numberOfNodes; i++)
     {
       positionAlloc->Add (Vector(0, 0, 0));
-      positionAlloc->Add (Vector(distance * 2, 0, 0));
-      positionAlloc->Add (Vector(distance * 3, 0, 0));
       nodeAlloc->Add (Vector(distance, 0, 0));
     }
   MobilityHelper mobility;

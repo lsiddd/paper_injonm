@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <FlowMonitor>
   <FlowStats>
-    <Flow flowId="1" timeFirstTxPacket="+82100000000.0ns" timeFirstRxPacket="+0.0ns" timeLastTxPacket="+82100000000.0ns" timeLastRxPacket="+0.0ns" delaySum="+0.0ns" jitterSum="+0.0ns" lastDelay="+0.0ns" txBytes="40" rxBytes="0" txPackets="1" rxPackets="0" lostPackets="1" timesForwarded="0">
+    <Flow flowId="1" timeFirstTxPacket="+2100000000.0ns" timeFirstRxPacket="+0.0ns" timeLastTxPacket="+2100000000.0ns" timeLastRxPacket="+0.0ns" delaySum="+0.0ns" jitterSum="+0.0ns" lastDelay="+0.0ns" txBytes="40" rxBytes="0" txPackets="1" rxPackets="0" lostPackets="1" timesForwarded="0">
       <delayHistogram nBins="0" >
       </delayHistogram>
       <jitterHistogram nBins="0" >
@@ -37,14 +37,6 @@
     <FlowProbe index="6">
     </FlowProbe>
     <FlowProbe index="7">
-    </FlowProbe>
-    <FlowProbe index="8">
-    </FlowProbe>
-    <FlowProbe index="9">
-    </FlowProbe>
-    <FlowProbe index="10">
-    </FlowProbe>
-    <FlowProbe index="11">
     </FlowProbe>
   </FlowProbes>
 </FlowMonitor>

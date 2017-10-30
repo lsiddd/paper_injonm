@@ -68,8 +68,8 @@ double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
 const int node_ue = 1;
 uint16_t n_cbr = 0;
-uint16_t enb_HPN = 1; // 7;
-uint16_t low_power = 0; // 56;
+uint16_t enb_HPN = 7; // 7;
+uint16_t low_power = 56; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 
@@ -97,16 +97,17 @@ void NotifyConnectionEstablishedUe(std::string context,
     NS_LOG_DEBUG(Simulator::Now().GetSeconds()
         << " " << context << " UE IMSI " << imsi
         << ": connected to CellId " << cellid << " with RNTI " << rnti);
-
+    
     //feed connection files
     std::stringstream strrnti;
     strrnti << rnti;
-    std::ofstream ofs("rnti/" + strrnti.str() + ".txt", ios::out);
+    std::ofstream ofs ("rnti/" + strrnti.str() + ".txt", ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
 
     //feed connection matrix
     cell_ue[cellid - 1][imsi - 1] = rnti;
+    
 }
 
 void NotifyHandoverStartUe(std::string context,
@@ -122,7 +123,7 @@ void NotifyHandoverStartUe(std::string context,
 
     std::stringstream strrnti;
     strrnti << rnti;
-    std::ofstream ofs("rnti/" + strrnti.str() + ".txt", ios::out);
+    std::ofstream ofs ("rnti/" + strrnti.str() + ".txt", ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
 
@@ -177,8 +178,7 @@ void NotifyHandoverEndOkEnb(std::string context,
         << rnti);
 }
 
-void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition)
-{
+void ArrayPositionAllocator (Ptr<ListPositionAllocator> HpnPosition){
     if (enb_HPN == 7) {
         HpnPosition->Add(Vector(2000, 2000, 25));
         HpnPosition->Add(Vector(1000, 2000, 25));
@@ -271,7 +271,7 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition)
     else {
         for (uint16_t i = 0; i <= 3; i++) {
             for (uint16_t j = 0; j <= 3; j++) {
-                HpnPosition->Add(Vector(500 + 1000 * j, 1000 * i,
+                HpnPosition->Add(Vector(500 + 1000 * j,1000 * i,
                     0)); // DISTANCIA ENTRE RSUs [m]
             }
         }
@@ -410,17 +410,15 @@ void ImprimeMetricas(FlowMonitorHelper* fmhelper, Ptr<FlowMonitor> monitor)
     Simulator::Schedule(Seconds(1), &ImprimeMetricas, fmhelper, monitor);
 }
 
-static Vector GetPosition(Ptr<Node> node)
-{
-    Ptr<MobilityModel> mobility = node->GetObject<MobilityModel>();
-    return mobility->GetPosition();
+static Vector GetPosition (Ptr<Node> node){
+    Ptr<MobilityModel> mobility = node->GetObject<MobilityModel> ();
+    return mobility->GetPosition ();
 }
 
-static Vector GetVelocity(Ptr<Node> node)
-{
-    Ptr<MobilityModel> mobility = node->GetObject<MobilityModel>();
-    NS_LOG_DEBUG("NODE " << node->GetId() << " AT SPEED " << mobility->GetVelocity());
-    return mobility->GetVelocity();
+static Vector GetVelocity (Ptr<Node> node){
+    Ptr<MobilityModel> mobility = node->GetObject<MobilityModel> ();
+    NS_LOG_DEBUG ("NODE " << node->GetId() << " AT SPEED " << mobility->GetVelocity());
+    return mobility->GetVelocity ();
 }
 
 void VideoTraceParse(std::string m_videoTraceFileName)
@@ -584,9 +582,9 @@ void WriteMetrics()
                         << " 20";
 
                     qoeOutFile << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2;
-
+                    
                     NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2);
-
+                    
                     /*std::ifstream qoeFile(qoeFileName.str());
                     while (qoeFile >> qoeResult)
                         NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeResult);*/
@@ -674,12 +672,6 @@ void resend(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostA
         }
     }
 }
-uint16_t cnt = 0;
-void ReceivePacket(std::string context, Ptr<const Packet> packet)
-{
-    cnt++;
-    NS_LOG_INFO("CG Rx from Enb ok " << cnt << " times, and packet size is: " << packet->GetSize() << std::endl);
-}
 /*--------------------------MAIN FUNCTION-------------------------*/
 int main(int argc, char* argv[])
 {
@@ -716,18 +708,18 @@ int main(int argc, char* argv[])
 
     // Logs
 
+    
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_DEBUG);
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
-    //LogComponentEnable("LteEnbNetDevice", LOG_LEVEL_FUNCTION);
     /*LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
     LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);
     LogComponentEnable("A2A4RsrqHandoverAlgorithm", LOG_LEVEL_LOGIC);*/
-
+    
     //-------------Parâmetros da simulação
     uint16_t node_remote = 1; // HOST_REMOTO
-    double simTime = 20.0; // TEMPO_SIMULAÇÃO
+    double simTime = 200.0; // TEMPO_SIMULAÇÃO
     for (double t = 0; t < simTime; t += 1)
         Simulator::Schedule(Seconds(t), &WriteMetrics);
     /*----------------------------------------------------------------------*/
@@ -779,10 +771,9 @@ int main(int argc, char* argv[])
     lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
                                              UintegerValue(1));*/
 
+
     ConfigStore inputConfig;
     inputConfig.ConfigureDefaults();
-
-    Config::SetDefault("ns3::LteHelper::UseIdealRrc", BooleanValue(true));
 
     //-------------Parâmetros da Antena
     lteHelper->SetEnbAntennaModelType("ns3::CosineAntennaModel");
@@ -848,8 +839,8 @@ int main(int argc, char* argv[])
     remoteHostMobility.Install(pgw);
 
     /*-----------------MONILIDADE DAS TORRES (PARADA)--------------*/
-
     MobilityHelper mobilityEnb;
+
     mobilityEnb.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     mobilityEnb.SetPositionAllocator(HpnPosition);
     mobilityEnb.Install(enbNodes);
@@ -884,6 +875,8 @@ int main(int argc, char* argv[])
     NetDeviceContainer cbrLteDevs;
     cbrLteDevs = lteHelper->InstallUeDevice(cbr_nodes);
 
+  Ptr<LteHexGridEnbTopologyHelper> lteHexGridEnbTopologyHelper = CreateObject<LteHexGridEnbTopologyHelper> ();
+  lteHexGridEnbTopologyHelper->SetLteHelper (lteHelper);
     /*----------------------------------------------------------------------*/
 
     Ipv4InterfaceContainer ueIpIface;
@@ -932,7 +925,7 @@ int main(int argc, char* argv[])
 
     /*-----------------POTENCIA DE TRASMISSAO-----------------*/
     Ptr<LteEnbPhy> enb0Phy;
-
+/*
     for (int i = 0; i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
@@ -944,28 +937,28 @@ int main(int argc, char* argv[])
         else {
             enb0Phy->SetTxPower(15);
         }
-    }
+    }*/
 
     //-------------Anexa as UEs na eNodeB
     lteHelper->Attach(ueLteDevs);
-    lteHelper->AttachToClosestEnb(cbrLteDevs, enbLteDevs);
-    lteHelper->AddX2Interface(enbNodes);
+    //lteHelper->AttachToClosestEnb(cbrLteDevs, enbLteDevs);
+    //lteHelper->AddX2Interface(enbNodes);
 
     NS_LOG_INFO("Create Applications.");
 
     // Início Transmissão de Vídeo
     //Rodar aplicação EvalVid
-    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, 0);
+    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, 80);
     //for (int i = 5; i < simTime; i += 5)
     //    resend(remoteHost, ueNodes, remoteHostAddr, simTime, i);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");
     // Cor e Descrição para eNb
-    for (uint32_t i = 0; i < enbNodes.GetN(); ++i) {
+    /*for (uint32_t i = 0; i < enbNodes.GetN(); ++i) {
         anim.UpdateNodeDescription(enbNodes.Get(i), "eNb");
         anim.UpdateNodeColor(enbNodes.Get(i), 0, 255, 0);
-    }
+    }*/
 
     /*---------------------- Simulation Stopping Time ----------------------*/
     Simulator::Stop(SIMULATION_TIME_FORMAT(simTime));
@@ -992,11 +985,6 @@ int main(int argc, char* argv[])
     Config::Connect("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
         MakeCallback(&NotifyHandoverEndOkUe));
 
-    Config::Connect("/NodeList/*/DeviceList/*/$ns3::LteNetDevice/$ns3::LteEnbNetDevice/LteEnbPhy/UlSpectrumPhy/RxEndOk", MakeCallback(&ReceivePacket));
-    Config::Connect("/NodeList/*/DeviceList/*/$ns3::LteNetDevice/$ns3::LteEnbNetDevice/LteEnbPhy/DlSpectrumPhy/RxEndOk", MakeCallback(&ReceivePacket));
-    Config::Connect("/NodeList/*/DeviceList/*/$ns3::LteNetDevice/$ns3::LteEnbNetDevice/ComponentCarrierMap/*/LteEnbPhy/UlSpectrumPhy/RxEndOk", MakeCallback(&ReceivePacket));
-    Config::Connect("/NodeList/*/DeviceList/*/$ns3::LteNetDevice/$ns3::LteEnbNetDevice/ComponentCarrierMap/*/LteEnbPhy/UlSpectrumPhy/TxEndOk", MakeCallback(&ReceivePacket));
-
     /*----------------PHY TRACES ------------------------------------*/
     lteHelper->EnablePhyTraces();
     lteHelper->EnableUlPhyTraces();
@@ -1015,7 +1003,5 @@ int main(int argc, char* argv[])
     //ImprimeMetricas(&fmhelper, monitor);
 
     NS_LOG_INFO("realizados " << handNumber << " handovers");
-
-    Simulator::Run();
     return EXIT_SUCCESS;
 }

@@ -116,7 +116,6 @@ void AhpHandoverAlgorithm::DoInitialize()
     reportConfig.reportInterval = LteRrcSap::ReportConfigEutra::MS480;
     m_a4MeasId = m_handoverManagementSapUser->AddUeMeasReportConfigForHandover(reportConfig);
     LteHandoverAlgorithm::DoInitialize();
-
 }
 
 void AhpHandoverAlgorithm::DoDispose()
@@ -152,7 +151,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 {
     NS_LOG_FUNCTION(this << rnti << (uint16_t)servingCellRsrq);
 
-
     MeasurementTable_t::iterator it1;
     it1 = m_neighbourCellMeasures.find(rnti);
 
@@ -165,18 +163,18 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         std::stringstream rntiPath;
         rntiPath << "rnti/" << rnti << ".txt";
 
-        std::ifstream servingCellId (rntiPath.str());
+        std::ifstream servingCellId(rntiPath.str());
 
         if (servingCellId.fail()) {
             return;
         }
 
         int a, b;
-        while (servingCellId >> a >> b){
+        while (servingCellId >> a >> b) {
         }
 
         uint16_t bestNeighbourCellId = 0;
-//        uint8_t bestcell = 0;
+        //        uint8_t bestcell = 0;
 
         int i = 0;
 
@@ -196,10 +194,10 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         //características das células
         double cell[it1->second.size() + 1][4];
-//        double soma_rsrq;
+        //        double soma_rsrq;
         double soma[n_c];
         double soma_res = 0;
-//        double res[n_c];
+        //        double res[n_c];
 
         for (it2 = it1->second.begin(); it2 != it1->second.end(); ++it2) {
             std::stringstream qoeFileName;
@@ -212,7 +210,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
             std::ifstream qosFile(qosFileName.str());
             std::ifstream qoeFile(qoeFileName.str());
-
 
             cell[i][0] = (uint16_t)it2->second->m_rsrq;
 
@@ -232,7 +229,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
             ++i;
         }
-//--------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------//
         std::stringstream qoeFileName;
         std::stringstream qosFileName;
         std::string qoeResult;
@@ -247,23 +244,23 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         cell[i][0] = (uint16_t)servingCellRsrq;
 
         if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][1] = 1;
-            else
-                while (qoeFile >> qoeResult)
-                    cell[i][1] = stod(qoeResult);
-        if (cell[i][1] >=4)
+            cell[i][1] = 1;
+        else
+            while (qoeFile >> qoeResult)
+                cell[i][1] = stod(qoeResult);
+        if (cell[i][1] >= 4)
             return;
 
-            if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][2] = 0;
-            else
-                while (qosFile >> qosResult)
-                    cell[i][2] = stod(qosResult);
+        if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
+            cell[i][2] = 0;
+        else
+            while (qosFile >> qosResult)
+                cell[i][2] = stod(qosResult);
         if (cell[i][2] >= 0.9)
             return;
 
-//----------------------------------------------------------------------------//
-//----------------------------------------------------------------------------//
+        //----------------------------------------------------------------------------//
+        //----------------------------------------------------------------------------//
 
         double prioridades[n_p][n_p]; // matriz de prioridades
         double prioridades_aux[n_p][n_p]; // matriz ao quadrado
@@ -300,18 +297,18 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         int aux2 = 0;
         int aux3 = 0;
 
-        for (int i = 0; i < n_c; ++i){
-          aux1 += cell[i][0];
-          aux2 += cell[i][1];
-          aux3 += cell[i][2];
+        for (int i = 0; i < n_c; ++i) {
+            aux1 += cell[i][0];
+            aux2 += cell[i][1];
+            aux3 += cell[i][2];
         }
 
-        for (int i = 0; i < n_c; ++i){
-          cell[i][0] /= aux1;
-          if (aux2)
-            cell[i][1] /= aux2;
-          if (aux3)
-            cell[i][2] /= aux3;
+        for (int i = 0; i < n_c; ++i) {
+            cell[i][0] /= aux1;
+            if (aux2)
+                cell[i][1] /= aux2;
+            if (aux3)
+                cell[i][2] /= aux3;
         }
         /*-----------------------RESULTADO NÃO NORMALIZADO-------------------*/
         for (int i = 0; i < n_c; ++i)
