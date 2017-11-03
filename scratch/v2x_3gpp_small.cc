@@ -69,12 +69,15 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 5;
+const int node_ue = 50;
 uint16_t n_cbr = 0;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 56; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
+int txpower = 15; //  Lte Ue Tx Power
+
+double simTime = 5.0; // TEMPO_SIMULAÇÃO
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -627,7 +630,7 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
         EvalvidClientHelper client(remoteHostAddr, m_port);
         client.SetAttribute("ReceiverDumpFilename", StringValue(rdTrace.str()));
         apps = client.Install(ueNodes.Get(i));
-        apps.Start(Seconds(start + 2));
+        apps.Start(Seconds(start + 1));
         apps.Stop(Seconds(stop));
 
         Ptr<Ipv4> ipv4 = ueNodes.Get(i)->GetObject<Ipv4>();
@@ -681,6 +684,7 @@ uint16_t cnt = 0;
 void ReceivePacket(std::string context, Ptr<const Packet> packet)
 {
     cnt++;
+    std::ostringstream stream;
     NS_LOG_INFO("CG Rx from Enb ok " << cnt << " times, and packet size is: " << packet->GetSize() << std::endl);
 }
 /*--------------------------MAIN FUNCTION-------------------------*/
@@ -710,6 +714,7 @@ int main(int argc, char* argv[])
     cmm.AddValue("node_hpn", "torrer high power", enb_HPN);
     cmm.AddValue("node_low_power", "torres low power", low_power);
     cmm.AddValue("node_hot_spot", "hot spots", hot_spot);
+    cmm.AddValue("txpower", "txpower", txpower);
     cmm.Parse(argc, argv);
 
     // asssertions
@@ -724,14 +729,13 @@ int main(int argc, char* argv[])
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
     LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
-    LogComponentEnable("LteAnr", LOG_LEVEL_FUNCTION);
+    //LogComponentEnable("LteAnr", LOG_LEVEL_FUNCTION);
     /*LogComponentEnable("LteEnbNetDevice", LOG_LEVEL_FUNCTION);
     LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);
     LogComponentEnable("A2A4RsrqHandoverAlgorithm", LOG_LEVEL_LOGIC);*/
 
     //-------------Parâmetros da simulação
     uint16_t node_remote = 1; // HOST_REMOTO
-    double simTime = 20.0; // TEMPO_SIMULAÇÃO
     for (double t = 0; t < simTime; t += 1)
         Simulator::Schedule(Seconds(t), &WriteMetrics);
     /*----------------------------------------------------------------------*/
@@ -764,7 +768,7 @@ int main(int argc, char* argv[])
     lteHelper->SetEpcHelper(epcHelper);
     // lteHelper->SetSchedulerType("ns3::PfFfMacScheduler");
     lteHelper->SetAttribute("PathlossModel",
-        StringValue("ns3::FriisPropagationLossModel"));
+        StringValue("ns3::NakagamiPropagationLossModel"));
 
     /**----------------ALGORITMO DE
 *HANDOVER---------------------------------------*/
@@ -948,6 +952,15 @@ int main(int argc, char* argv[])
         else {
             enb0Phy->SetTxPower(15);
         }
+    }
+
+
+    //LogComponentEnable("LteUePhy", LOG_LEVEL_INFO);
+    Ptr<LteUePhy> ue0Phy;
+    for (int i = 0; i < ueLteDevs.GetN(); i++) {
+        ue0Phy = ueLteDevs.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
+        enb0Phy->SetTxPower(txpower);
+        NS_LOG_INFO("Node" << i << "transmitting at " << enb0Phy->GetTxPower() << "dbm");
     }
 
     //-------------Anexa as UEs na eNodeB
