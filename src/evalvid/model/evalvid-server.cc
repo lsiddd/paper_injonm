@@ -285,6 +285,8 @@ EvalvidServer::HandleRead (Ptr<Socket> socket)
   Address from;
   m_socket = socket;
 
+  if (Simulator::Now() > Seconds(125))
+    return;
 
   while ((packet = socket->RecvFrom (from)))
     {

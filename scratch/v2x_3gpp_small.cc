@@ -77,7 +77,7 @@ uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 
-double simTime = 5.0; // TEMPO_SIMULAÇÃO
+double simTime = 150.0; // TEMPO_SIMULAÇÃO
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -621,7 +621,7 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
         EvalvidServerHelper server(m_port);
         server.SetAttribute("SenderTraceFilename", StringValue(video_trans));
         server.SetAttribute("SenderDumpFilename", StringValue(sdTrace.str()));
-        server.SetAttribute("PacketPayload", UintegerValue(1014));
+        server.SetAttribute("PacketPayload", UintegerValue(512));
         ApplicationContainer apps = server.Install(remoteHost);
         apps.Start(Seconds(start));
         apps.Stop(Seconds(stop));
@@ -665,7 +665,7 @@ void resend(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostA
                 EvalvidServerHelper server(m_port);
                 server.SetAttribute("SenderTraceFilename", StringValue(video_trans));
                 server.SetAttribute("SenderDumpFilename", StringValue(sdTrace.str()));
-                server.SetAttribute("PacketPayload", UintegerValue(1014));
+                server.SetAttribute("PacketPayload", UintegerValue(512));
                 ApplicationContainer apps = server.Install(remoteHost);
                 apps.Start(Seconds(start));
                 apps.Stop(Seconds(stop));
@@ -956,12 +956,14 @@ int main(int argc, char* argv[])
 
 
     //LogComponentEnable("LteUePhy", LOG_LEVEL_INFO);
+    /*
     Ptr<LteUePhy> ue0Phy;
     for (int i = 0; i < ueLteDevs.GetN(); i++) {
         ue0Phy = ueLteDevs.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
         enb0Phy->SetTxPower(txpower);
-        NS_LOG_INFO("Node" << i << "transmitting at " << enb0Phy->GetTxPower() << "dbm");
+        NS_LOG_INFO("Node " << i << " transmitting at " << enb0Phy->GetTxPower() << " dbm");
     }
+    */
 
     //-------------Anexa as UEs na eNodeB
     lteHelper->Attach(ueLteDevs);
@@ -972,7 +974,7 @@ int main(int argc, char* argv[])
 
     // Início Transmissão de Vídeo
     //Rodar aplicação EvalVid
-    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, 0);
+    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, 23);
     //for (int i = 5; i < simTime; i += 5)
     //    resend(remoteHost, ueNodes, remoteHostAddr, simTime, i);
 
