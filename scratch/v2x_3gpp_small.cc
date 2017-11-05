@@ -731,7 +731,7 @@ int main(int argc, char* argv[])
 
     // Logs
 
-    /*LogComponentEnable("v2x_3gpp", LOG_LEVEL_DEBUG);
+    LogComponentEnable("v2x_3gpp", LOG_LEVEL_DEBUG);
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
