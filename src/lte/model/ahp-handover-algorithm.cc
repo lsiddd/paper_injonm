@@ -129,7 +129,7 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
     NS_LOG_FUNCTION(this << rnti << (uint16_t)measResults.measId);
 
 
-    EvaluateHandover(rnti, measResults.rsrqResult, (uint16_t)measResults.measId, (uint16_t) measResults.cellIdentity);
+    EvaluateHandover(rnti, measResults.rsrqResult, (uint16_t)measResults.measId);
     if (measResults.haveMeasResultNeighCells
         && !measResults.measResultListEutra.empty()) {
         for (std::list<LteRrcSap::MeasResultEutra>::iterator it = measResults.measResultListEutra.begin();
@@ -147,7 +147,7 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 } // end of DoReportUeMeas
 
 void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
-    uint8_t servingCellRsrq, uint16_t measId, uint16_t cellIdd)
+    uint8_t servingCellRsrq, uint16_t measId)
 {   
     NS_LOG_FUNCTION(this << rnti << (uint16_t)servingCellRsrq);
 
@@ -249,7 +249,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         cell[i][0] = (uint16_t)servingCellRsrq;
 
         if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-            cell[i][1] = 1;
+            cell[i][1] = 5;
         else
             while (qoeFile >> qoeResult)
                 cell[i][1] = stod(qoeResult);
@@ -257,7 +257,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             return;
 
         if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
-            cell[i][2] = 0;
+            cell[i][2] = 1;
         else
             while (qosFile >> qosResult)
                 cell[i][2] = stod(qosResult);
@@ -334,7 +334,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }*/
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
-        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1.5) {
+        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 0.5) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId);
         }

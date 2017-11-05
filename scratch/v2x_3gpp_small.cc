@@ -70,14 +70,15 @@ using namespace std;
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
 const int node_ue = 50;
-uint16_t n_cbr = 0;
+uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 56; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 
-double simTime = 150.0; // TEMPO_SIMULAÇÃO
+double simTime = 80.0; // TEMPO_SIMULAÇÃO
+int transmissionStart = 23;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -500,7 +501,8 @@ void WriteMetrics()
                 }
                 if (lastPacket >= 60) {
                     NS_LOG_INFO("Taxa de recebimento, node " << u << " :"
-                                                             << (float)nReceived / 60);
+                                                             << ((float)nReceived - 1) / 60);
+                    //NS_LOG_INFO ("Recebidos " << nReceived << " pacotes.");
                     stringstream qosFilename;
                     double valorAtualQos = 0;
                     qosFilename << "qosTorre" << i + 1;
@@ -509,7 +511,7 @@ void WriteMetrics()
                     }
                     ofstream qosOutFile(qosFilename.str(),
                         std::ofstream::out | std::ofstream::trunc);
-                    qosOutFile << ((float)nReceived / 60 + valorAtualQos) / 2;
+                    qosOutFile << (((float)nReceived - 1) / 60 + valorAtualQos) / 2;
                 }
 
                 /*--------------------------------------------------------*/
@@ -590,6 +592,8 @@ void WriteMetrics()
                         << " 20";
 
                     qoeOutFile << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2;
+
+                    NS_LOG_DEBUG(cmd.str());
 
                     NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2);
 
@@ -724,7 +728,7 @@ int main(int argc, char* argv[])
 
     // Logs
 
-    LogComponentEnable("v2x_3gpp", LOG_LEVEL_DEBUG);
+    /*LogComponentEnable("v2x_3gpp", LOG_LEVEL_DEBUG);
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
@@ -974,9 +978,9 @@ int main(int argc, char* argv[])
 
     // Início Transmissão de Vídeo
     //Rodar aplicação EvalVid
-    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, 23);
-    //for (int i = 5; i < simTime; i += 5)
-    //    resend(remoteHost, ueNodes, remoteHostAddr, simTime, i);
+    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, transmissionStart);
+    for (int i = 1; i < simTime - 10; i += 1)
+        resend(remoteHost, ueNodes, remoteHostAddr, simTime, i);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");
