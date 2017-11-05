@@ -19,7 +19,7 @@
  *
  */
 
- /* This is a testing version.
+/* This is a testing version.
   */
 
 #include "ns3/core-module.h"
@@ -108,7 +108,7 @@ void NotifyConnectionEstablishedUe(std::string context,
     //feed connection files
     std::stringstream strrnti;
     strrnti << rnti;
-    std::ofstream ofs("rnti/" + strrnti.str() + ".txt");//, ios::out);
+    std::ofstream ofs("rnti/" + strrnti.str() + ".txt"); //, ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
 
@@ -704,6 +704,8 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
     double interPacketInterval = 0.1;
 
+    std::string handoverAlg = "ahp";
+
     VideoTraceParse("st_container_cif_h264_300_20.st");
 
     // void WriteMetrics();
@@ -719,6 +721,7 @@ int main(int argc, char* argv[])
     cmm.AddValue("node_low_power", "torres low power", low_power);
     cmm.AddValue("node_hot_spot", "hot spots", hot_spot);
     cmm.AddValue("txpower", "txpower", txpower);
+    cmm.AddValue("handoverAlg", "Handover algorith in use", handoverAlg);
     cmm.Parse(argc, argv);
 
     // asssertions
@@ -776,20 +779,26 @@ int main(int argc, char* argv[])
 
     /**----------------ALGORITMO DE
 *HANDOVER---------------------------------------*/
-    lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
+    if (handoverAlg == "ahp")
+        lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
 
-    // lteHelper->SetHandoverAlgorithmType ("ns3::NoOpHandoverAlgorithm");
+    if (handoverAlg == "noop")
+        lteHelper->SetHandoverAlgorithmType("ns3::NoOpHandoverAlgorithm");
 
-    // lteHelper->SetHandoverAlgorithmType("ns3::A3RsrpHandoverAlgorithm");
-    // lteHelper->SetHandoverAlgorithmAttribute("Hysteresis", DoubleValue(3.0));
-    // lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
-    // TimeValue(MilliSeconds(256)));
+    if (handoverAlg == "a2a4") {
+        lteHelper->SetHandoverAlgorithmType("ns3::A3RsrpHandoverAlgorithm");
+        lteHelper->SetHandoverAlgorithmAttribute("Hysteresis", DoubleValue(3.0));
+        lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
+            TimeValue(MilliSeconds(256)));
+    }
 
-    /*lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
-    lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
-                                             UintegerValue(30));
-    lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
-                                             UintegerValue(1));*/
+    if (handoverAlg == "a3") {
+        lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
+        lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
+            UintegerValue(30));
+        lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
+            UintegerValue(1));
+    }
 
     ConfigStore inputConfig;
     inputConfig.ConfigureDefaults();
@@ -957,7 +966,6 @@ int main(int argc, char* argv[])
             enb0Phy->SetTxPower(15);
         }
     }
-
 
     //LogComponentEnable("LteUePhy", LOG_LEVEL_INFO);
     /*
