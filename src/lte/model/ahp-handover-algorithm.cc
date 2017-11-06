@@ -127,6 +127,7 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
     LteRrcSap::MeasResults measResults)
 {
     NS_LOG_FUNCTION(this << rnti << (uint16_t)measResults.measId);
+    std::cout << (uint16_t) measResults.physCellId << std::endl;
 
 
     EvaluateHandover(rnti, measResults.rsrqResult, (uint16_t)measResults.measId);
@@ -334,7 +335,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }*/
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
-        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 0.5) {
+        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId);
         }

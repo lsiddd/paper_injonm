@@ -69,7 +69,7 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 50;
+const int node_ue = 10;
 uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 56; // 56;
@@ -77,8 +77,8 @@ uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 
-double simTime = 80.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 23;
+double simTime = 30.0; // TEMPO_SIMULAÇÃO
+int transmissionStart = 0;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -712,7 +712,7 @@ int main(int argc, char* argv[])
 
     /*--------------------- COMMAND LINE PARSING -------------------*/
     //std::string entradaSumo = "mobil/reta2km.tcl"; // Mobilidade usada
-    std::string entradaSumo = "mobil/3gppMobility.tcl"; // Mobilidade usada
+    std::string entradaSumo = "mobil/novoMobilityGrid.tcl"; // Mobilidade usada
 
     CommandLine cmm;
     cmm.AddValue("entradaSumo", "arquivo de entrada de mobilidade", entradaSumo);
@@ -939,7 +939,7 @@ int main(int argc, char* argv[])
             "ns3::UdpSocketFactory",
             InetSocketAddress(Ipv4Address::GetAny(), otherPort));
         serverApps.Add(packetSinkHelper.Install(cbr_nodes.Get(u)));
-        serverApps.Start(Seconds(15));
+        serverApps.Start(Seconds(transmissionStart));
 
         UdpClientHelper client(addri, otherPort);
         client.SetAttribute("Interval",
@@ -948,7 +948,7 @@ int main(int argc, char* argv[])
 
         clientApps.Add(client.Install(remoteHost));
 
-        clientApps.Start(Seconds(15));
+        clientApps.Start(Seconds(transmissionStart));
     }
 
     /*-----------------POTENCIA DE TRASMISSAO-----------------*/
