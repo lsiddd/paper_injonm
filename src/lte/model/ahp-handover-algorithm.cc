@@ -332,7 +332,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
            std::cout << std::endl;
         }*/
 
-        std::cout << soma_res << "\n";
+        //std::cout << soma_res << "\n";
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
         if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1) {
