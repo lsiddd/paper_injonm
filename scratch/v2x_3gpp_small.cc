@@ -69,7 +69,7 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 10;
+const int node_ue = 5;
 uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 56; // 56;
@@ -78,7 +78,7 @@ int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 
 double simTime = 30.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 0;
+int transmissionStart = 1;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -471,6 +471,7 @@ std::string exec(const char* cmd)
 void WriteMetrics()
 {
     NS_LOG_DEBUG(Simulator::Now().GetSeconds() << " Segundos...");
+    NS_LOG_DEBUG("Realizados " << handNumber << " Handover");
     for (int i = 0; i < 77; ++i)
         for (int u = 0; u < node_ue; ++u)
             if (cell_ue[i][u]) {

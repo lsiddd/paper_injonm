@@ -127,8 +127,6 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
     LteRrcSap::MeasResults measResults)
 {
     NS_LOG_FUNCTION(this << rnti << (uint16_t)measResults.measId);
-    std::cout << (uint16_t) measResults.physCellId << std::endl;
-
 
     EvaluateHandover(rnti, measResults.rsrqResult, (uint16_t)measResults.measId);
     if (measResults.haveMeasResultNeighCells
@@ -168,9 +166,9 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         std::ifstream servingCellId(rntiPath.str());
 
-        if (servingCellId.fail()) {
+        /*if (servingCellId.fail()) {
             return;
-        }
+        }*/
 
         int a, b;//aux variables
         while (servingCellId >> a >> b) {
@@ -250,20 +248,20 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         cell[i][0] = (uint16_t)servingCellRsrq;
 
         if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-            cell[i][1] = 5;
+            cell[i][1] = 1;
         else
             while (qoeFile >> qoeResult)
                 cell[i][1] = stod(qoeResult);
-        if (cell[i][1] >= 4)
-            return;
+        //if (cell[i][1] >= 4)
+        //    return;
 
         if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
-            cell[i][2] = 1;
+            cell[i][2] = 0;
         else
             while (qosFile >> qosResult)
                 cell[i][2] = stod(qosResult);
-        if (cell[i][2] >= 0.9)
-            return;
+        //if (cell[i][2] >= 0.9)
+        //    return;
 
         //----------------------------------------------------------------------------//
         /*-----------------------------MATRIX CALCULATION-----------------------------*/
@@ -333,6 +331,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
                std::cout << cell[i][u] << "\t";
            std::cout << std::endl;
         }*/
+
+        std::cout << soma_res << "\n";
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
         if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1) {

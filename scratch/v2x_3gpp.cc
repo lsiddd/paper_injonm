@@ -58,11 +58,11 @@ using namespace std;
 
 double TxRate = 0;  // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 50;
+const int node_ue = 5;
 uint16_t n_cbr = 7;
-uint16_t enb_HPN = 7;     // 7;
-uint16_t low_power = 56;  // 56;
-uint16_t hot_spot = 14;   // 14;
+uint16_t enb_HPN = 1;     // 7;
+uint16_t low_power = 0;  // 56;
+uint16_t hot_spot = 0;   // 14;
 int cell_ue[77][57];      // matriz de conexões
 
 //número de handovers realizados
@@ -478,7 +478,7 @@ int main(int argc, char* argv[]) {
     Simulator::Schedule(Seconds(t), &WriteMetrics);
 
   /*--------------------- COMMAND LINE PARSING -------------------*/
-  std::string entradaSumo = "novoMobilityGrid.tcl";  // Mobilidade usada
+  std::string entradaSumo = "mobil/novoMobilityGrid.tcl";  // Mobilidade usada
 
   CommandLine cmm;
   cmm.AddValue("entradaSumo", "arquivo de entrada de mobilidade", entradaSumo);
@@ -540,17 +540,17 @@ int main(int argc, char* argv[]) {
 
   // lteHelper->SetHandoverAlgorithmType ("ns3::NoOpHandoverAlgorithm");
 
-  // lteHelper->SetHandoverAlgorithmType("ns3::A3RsrpHandoverAlgorithm");
-  // lteHelper->SetHandoverAlgorithmAttribute("Hysteresis", DoubleValue(3.0));
-  // lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
-  //                                         TimeValue(MilliSeconds(256)));
-
+   lteHelper->SetHandoverAlgorithmType("ns3::A3RsrpHandoverAlgorithm");
+   lteHelper->SetHandoverAlgorithmAttribute("Hysteresis", DoubleValue(3.0));
+   lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
+                                           TimeValue(MilliSeconds(256)));
+/*
    lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
    lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
      UintegerValue(30));
    lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
    UintegerValue(1));
-
+*/
   ConfigStore inputConfig;
   inputConfig.ConfigureDefaults();
 
