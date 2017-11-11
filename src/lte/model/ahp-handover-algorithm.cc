@@ -78,6 +78,16 @@ AhpHandoverAlgorithm::GetTypeId()
                                 "range of [0..34] as per Section 9.1.7 of 3GPP TS 36.133.",
                                 UintegerValue(1),
                                 MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
+                                MakeUintegerChecker<uint8_t>())
+                            .AddAttribute("StartTime",
+                                "start time",
+                                UintegerValue(1),
+                                MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
+                                MakeUintegerChecker<uint8_t>())
+                            .AddAttribute("StopTime",
+                                "stop time",
+                                UintegerValue(150),
+                                MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
                                 MakeUintegerChecker<uint8_t>());
     return tid;
 }

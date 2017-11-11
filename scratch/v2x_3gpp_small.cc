@@ -69,7 +69,7 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 5;
+const int node_ue = 30;
 uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 56; // 56;
@@ -77,8 +77,8 @@ uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 
-double simTime = 30.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 1;
+double simTime = 150.0; // TEMPO_SIMULAÇÃO
+int transmissionStart = 25;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -780,8 +780,11 @@ int main(int argc, char* argv[])
 
     /**----------------ALGORITMO DE
 *HANDOVER---------------------------------------*/
-    if (handoverAlg == "ahp")
+    if (handoverAlg == "ahp"){
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
+        lteHelper->SetHandoverAlgorithmAttribute("StartTime", UintegerValue(transmissionStart));
+        lteHelper->SetHandoverAlgorithmAttribute("StopTime", UintegerValue(transmissionStart + 60));
+    }
 
     if (handoverAlg == "noop")
         lteHelper->SetHandoverAlgorithmType("ns3::NoOpHandoverAlgorithm");
