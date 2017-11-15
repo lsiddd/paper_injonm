@@ -62,6 +62,10 @@
 #include <memory>
 #include <typeinfo>
 
+//we'll use that for cell allocation
+#include <math.h>
+#define PI 3.14159265
+
 #define SIMULATION_TIME_FORMAT(s) Seconds(s)
 
 using namespace ns3;
@@ -69,10 +73,10 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 30;
+const int node_ue = 3;
 uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
-uint16_t low_power = 56; // 56;
+uint16_t low_power = 0; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
@@ -184,104 +188,24 @@ void NotifyHandoverEndOkEnb(std::string context,
         << rnti);
 }
 
-void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition)
+void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance)
 {
-    if (enb_HPN == 7) {
-        HpnPosition->Add(Vector(2000, 2000, 25));
-        HpnPosition->Add(Vector(1000, 2000, 25));
-        HpnPosition->Add(Vector(3000, 2000, 25));
-        HpnPosition->Add(Vector(2500, 2866, 25));
-        HpnPosition->Add(Vector(1500, 2866, 25));
-        HpnPosition->Add(Vector(2500, 1135, 25));
-        HpnPosition->Add(Vector(1500, 1135, 25));
+    int x_start = 2000;
+    int y_start = 2000;
 
-        HpnPosition->Add(Vector(2000 - 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(1000 - 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(3000 - 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(2500 - 105 - 10, 2866, 10));
-        HpnPosition->Add(Vector(1500 - 105 - 10, 2866, 10));
-        HpnPosition->Add(Vector(2500 - 105 - 10, 1135, 10));
-        HpnPosition->Add(Vector(1500 - 105 - 10, 1135, 10));
+    srand(1);
 
-        HpnPosition->Add(Vector(2000 + 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(1000 + 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(3000 + 105 - 10, 2000, 10));
-        HpnPosition->Add(Vector(2500 + 105 - 10, 2866, 10));
-        HpnPosition->Add(Vector(1500 + 105 - 10, 2866, 10));
-        HpnPosition->Add(Vector(2500 + 105 - 10, 1135, 10));
-        HpnPosition->Add(Vector(1500 + 105 - 10, 1135, 10));
+    HpnPosition->Add(Vector(x_start, y_start, 25));
 
-        HpnPosition->Add(Vector(2000 - 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(1000 - 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(3000 - 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(2500 - 105 + 10, 2866, 10));
-        HpnPosition->Add(Vector(1500 - 105 + 10, 2866, 10));
-        HpnPosition->Add(Vector(2500 - 105 + 10, 1135, 10));
-        HpnPosition->Add(Vector(1500 - 105 + 10, 1135, 10));
-
-        HpnPosition->Add(Vector(2000 + 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(1000 + 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(3000 + 105 + 10, 2000, 10));
-        HpnPosition->Add(Vector(2500 + 105 + 10, 2866, 10));
-        HpnPosition->Add(Vector(1500 + 105 + 10, 2866, 10));
-        HpnPosition->Add(Vector(2500 + 105 + 10, 1135, 10));
-        HpnPosition->Add(Vector(1500 + 105 + 10, 1135, 10));
-
-        HpnPosition->Add(Vector(2000 - 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(1000 - 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(3000 - 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(2500 - 105, 2866 - 10, 10));
-        HpnPosition->Add(Vector(1500 - 105, 2866 - 10, 10));
-        HpnPosition->Add(Vector(2500 - 105, 1135 - 10, 10));
-        HpnPosition->Add(Vector(1500 - 105, 1135 - 10, 10));
-
-        HpnPosition->Add(Vector(2000 + 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(1000 + 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(3000 + 105, 2000 - 10, 10));
-        HpnPosition->Add(Vector(2500 + 105, 2866 - 10, 10));
-        HpnPosition->Add(Vector(1500 + 105, 2866 - 10, 10));
-        HpnPosition->Add(Vector(2500 + 105, 1135 - 10, 10));
-        HpnPosition->Add(Vector(1500 + 105, 1135 - 10, 10));
-
-        HpnPosition->Add(Vector(2000 - 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(1000 - 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(3000 - 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(2500 - 105, 2866 + 10, 10));
-        HpnPosition->Add(Vector(1500 - 105, 2866 + 10, 10));
-        HpnPosition->Add(Vector(2500 - 105, 1135 + 10, 10));
-        HpnPosition->Add(Vector(1500 - 105, 1135 + 10, 10));
-
-        HpnPosition->Add(Vector(2000 + 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(1000 + 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(3000 + 105, 2000 + 10, 10));
-        HpnPosition->Add(Vector(2500 + 105, 2866 + 10, 10));
-        HpnPosition->Add(Vector(1500 + 105, 2866 + 10, 10));
-        HpnPosition->Add(Vector(2500 + 105, 1135 + 10, 10));
-        HpnPosition->Add(Vector(1500 + 105, 1135 + 10, 10));
-
-        HpnPosition->Add(Vector(2000 - 105, 2000, 10));
-        HpnPosition->Add(Vector(1000 - 105, 2000, 10));
-        HpnPosition->Add(Vector(3000 - 105, 2000, 10));
-        HpnPosition->Add(Vector(2500 - 105, 2866, 10));
-        HpnPosition->Add(Vector(1500 - 105, 2866, 10));
-        HpnPosition->Add(Vector(2500 - 105, 1135, 10));
-        HpnPosition->Add(Vector(1500 - 105, 1135, 10));
-
-        HpnPosition->Add(Vector(2000 + 105, 2000, 10));
-        HpnPosition->Add(Vector(1000 + 105, 2000, 10));
-        HpnPosition->Add(Vector(3000 + 105, 2000, 10));
-        HpnPosition->Add(Vector(2500 + 105, 2866, 10));
-        HpnPosition->Add(Vector(1500 + 105, 2866, 10));
-        HpnPosition->Add(Vector(2500 + 105, 1135, 10));
-        HpnPosition->Add(Vector(1500 + 105, 1135, 10));
+    for (double i = 0; i < 2 * PI; i += PI / 3) {
+        HpnPosition->Add(Vector(x_start + distance * cos(i), y_start + distance * sin(i), 25));
     }
-    else {
-        for (uint16_t i = 0; i <= 3; i++) {
-            for (uint16_t j = 0; j <= 3; j++) {
-                HpnPosition->Add(Vector(500 + 1000 * j, 1000 * i,
-                    0)); // DISTANCIA ENTRE RSUs [m]
-            }
-        }
+
+    for (double i = 0; i < 2 * PI; i += PI / 3) {
+        HpnPosition->Add(Vector(x_start + distance * cos(i) + rand() % 100 + 10, y_start + distance * sin(i) + rand() % 100 + 10, 10));
+        HpnPosition->Add(Vector(x_start + distance * cos(i) + rand() % 100 + 10, y_start + distance * sin(i) - rand() % 100 + 10, 10));
+        HpnPosition->Add(Vector(x_start + distance * cos(i) + rand() % 100 - 10, y_start + distance * sin(i) + rand() % 100 + 10, 10));
+        HpnPosition->Add(Vector(x_start + distance * cos(i) + rand() % 100 - 10, y_start + distance * sin(i) - rand() % 100 + 10, 10));
     }
 }
 
@@ -644,54 +568,6 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
     }
 }
 
-void resend(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostAddr, double simTime, double start)
-{
-    for (uint32_t i = 0; i < ueNodes.GetN(); ++i) {
-        std::stringstream filename;
-        filename << "sd_a01_" << (int)i;
-
-        ifstream in(filename.str());
-        if (in.is_open()) {
-            in.seekg(0, ios::end);
-            size_t size = in.tellg();
-            if (size == 0) {
-                string video_trans = "st_container_cif_h264_300_20.st";
-
-                std::stringstream sdTrace;
-                std::stringstream rdTrace;
-                std::stringstream rdWindow;
-                sdTrace << "sd_a01_" << (int)i;
-                rdTrace << "rd_a01_" << (int)i;
-
-                double stop = simTime;
-                uint16_t m_port = 2000 * i + 2000; // Para alcançar o nó ZERO quando i = 0
-
-                // Servidor de vídeo
-                EvalvidServerHelper server(m_port);
-                server.SetAttribute("SenderTraceFilename", StringValue(video_trans));
-                server.SetAttribute("SenderDumpFilename", StringValue(sdTrace.str()));
-                server.SetAttribute("PacketPayload", UintegerValue(512));
-                ApplicationContainer apps = server.Install(remoteHost);
-                apps.Start(Seconds(start));
-                apps.Stop(Seconds(stop));
-
-                // Clientes do vídeo
-                EvalvidClientHelper client(remoteHostAddr, m_port);
-                client.SetAttribute("ReceiverDumpFilename", StringValue(rdTrace.str()));
-                apps = client.Install(ueNodes.Get(i));
-                apps.Start(Seconds(start + 2));
-                apps.Stop(Seconds(stop));
-            }
-        }
-    }
-}
-uint16_t cnt = 0;
-void ReceivePacket(std::string context, Ptr<const Packet> packet)
-{
-    cnt++;
-    std::ostringstream stream;
-    NS_LOG_INFO("CG Rx from Enb ok " << cnt << " times, and packet size is: " << packet->GetSize() << std::endl);
-}
 /*--------------------------MAIN FUNCTION-------------------------*/
 int main(int argc, char* argv[])
 {
@@ -780,23 +656,23 @@ int main(int argc, char* argv[])
 
     /**----------------ALGORITMO DE
 *HANDOVER---------------------------------------*/
-    if (handoverAlg == "ahp"){
+    if (handoverAlg == "ahp") {
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
-        lteHelper->SetHandoverAlgorithmAttribute("StartTime", UintegerValue(transmissionStart));
+        lteHelper->SetHandoverAlgorithmAttribute("StartTime", UintegerValue(transmissionStart - 5));
         lteHelper->SetHandoverAlgorithmAttribute("StopTime", UintegerValue(transmissionStart + 60));
     }
 
     if (handoverAlg == "noop")
         lteHelper->SetHandoverAlgorithmType("ns3::NoOpHandoverAlgorithm");
 
-    if (handoverAlg == "a2a4") {
+    if (handoverAlg == "a3") {
         lteHelper->SetHandoverAlgorithmType("ns3::A3RsrpHandoverAlgorithm");
         lteHelper->SetHandoverAlgorithmAttribute("Hysteresis", DoubleValue(3.0));
         lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
             TimeValue(MilliSeconds(256)));
     }
 
-    if (handoverAlg == "a3") {
+    if (handoverAlg == "a2a4") {
         lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
         lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
             UintegerValue(30));
@@ -865,7 +741,7 @@ int main(int argc, char* argv[])
 
     /*-----------------POSIÇÃO DAS TORRES----------------------------------*/
     Ptr<ListPositionAllocator> HpnPosition = CreateObject<ListPositionAllocator>();
-    ArrayPositionAllocator(HpnPosition);
+    ArrayPositionAllocator(HpnPosition, 1500);
 
     MobilityHelper remoteHostMobility;
     remoteHostMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
@@ -991,8 +867,6 @@ int main(int argc, char* argv[])
     // Início Transmissão de Vídeo
     //Rodar aplicação EvalVid
     requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, transmissionStart);
-    for (int i = 1; i < simTime - 10; i += 1)
-        resend(remoteHost, ueNodes, remoteHostAddr, simTime, i);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");
@@ -1026,11 +900,6 @@ int main(int argc, char* argv[])
     //                MakeCallback(&NotifyHandoverEndOkEnb));
     Config::Connect("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
         MakeCallback(&NotifyHandoverEndOkUe));
-
-    Config::Connect("/NodeList/*/DeviceList/*/$ns3::LteNetDevice/$ns3::LteEnbNetDevice/LteEnbPhy/UlSpectrumPhy/RxEndOk", MakeCallback(&ReceivePacket));
-    Config::Connect("/NodeList/*/DeviceList/*/$ns3::LteNetDevice/$ns3::LteEnbNetDevice/LteEnbPhy/DlSpectrumPhy/RxEndOk", MakeCallback(&ReceivePacket));
-    Config::Connect("/NodeList/*/DeviceList/*/$ns3::LteNetDevice/$ns3::LteEnbNetDevice/ComponentCarrierMap/*/LteEnbPhy/UlSpectrumPhy/RxEndOk", MakeCallback(&ReceivePacket));
-    Config::Connect("/NodeList/*/DeviceList/*/$ns3::LteNetDevice/$ns3::LteEnbNetDevice/ComponentCarrierMap/*/LteEnbPhy/UlSpectrumPhy/TxEndOk", MakeCallback(&ReceivePacket));
 
     /*----------------PHY TRACES ------------------------------------*/
     lteHelper->EnablePhyTraces();

@@ -158,6 +158,8 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     uint8_t servingCellRsrq, uint16_t measId)
 {   
+    if (Simulator::Now().GetSeconds() < StartTime || Simulator::Now().GetSeconds() > StopTime)
+        return;
     NS_LOG_FUNCTION(this << rnti << (uint16_t)servingCellRsrq);
 
     /*------------FIND MEASURES FOR GIVEN RNTI------------*/
