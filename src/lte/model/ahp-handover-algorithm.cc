@@ -81,7 +81,7 @@ AhpHandoverAlgorithm::GetTypeId()
                                 MakeUintegerChecker<uint8_t>())
                             .AddAttribute("StartTime",
                                 "start time",
-                                UintegerValue(1),
+                                UintegerValue(0),
                                 MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
                                 MakeUintegerChecker<uint8_t>())
                             .AddAttribute("StopTime",
@@ -158,8 +158,15 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     uint8_t servingCellRsrq, uint16_t measId)
 {   
-    if (Simulator::Now().GetSeconds() < StartTime || Simulator::Now().GetSeconds() > StopTime)
-        return;
+    /*if (Simulator::Now().GetSeconds() < Seconds(StartTime)){
+	   std::cout << "skip\n";
+       return;
+    }
+    if (Simulator::Now().GetSeconds() > Seconds(StopTime)){
+       std::cout << "skip\n";
+       return;
+    }*/
+
     NS_LOG_FUNCTION(this << rnti << (uint16_t)servingCellRsrq);
 
     /*------------FIND MEASURES FOR GIVEN RNTI------------*/
@@ -341,13 +348,14 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         /*for (int i = 0; i < n_c; ++i){
            for (int u = 0; u < 4; ++u)
                std::cout << cell[i][u] << "\t";
+           std::cout << soma[i];
            std::cout << std::endl;
         }*/
 
-        //std::cout << soma_res << "\n";
+        std::cout << soma_res << "\n";
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
-        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1) {
+        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1.0) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId);
         }

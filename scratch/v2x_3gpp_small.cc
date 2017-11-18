@@ -73,16 +73,16 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 3;
+const int node_ue = 10;
 uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
-uint16_t low_power = 0; // 56;
+uint16_t low_power = 56; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 
 double simTime = 150.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 25;
+int transmissionStart = 1;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -509,25 +509,24 @@ int main(int argc, char* argv[])
     lteHelper->SetAttribute("PathlossModel",
         StringValue("ns3::NakagamiPropagationLossModel"));
 
-    /**----------------ALGORITMO DE
-*HANDOVER---------------------------------------*/
+    /*----------------------ALGORITMO DE HANDOVER----------------------*/
     if (handoverAlg == "ahp") {
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
-        lteHelper->SetHandoverAlgorithmAttribute("StartTime", UintegerValue(transmissionStart - 5));
+        lteHelper->SetHandoverAlgorithmAttribute("StartTime", UintegerValue(transmissionStart));
         lteHelper->SetHandoverAlgorithmAttribute("StopTime", UintegerValue(transmissionStart + 60));
     }
 
-    if (handoverAlg == "noop")
+    else if (handoverAlg == "noop")
         lteHelper->SetHandoverAlgorithmType("ns3::NoOpHandoverAlgorithm");
 
-    if (handoverAlg == "a3") {
+    else if (handoverAlg == "a3") {
         lteHelper->SetHandoverAlgorithmType("ns3::A3RsrpHandoverAlgorithm");
         lteHelper->SetHandoverAlgorithmAttribute("Hysteresis", DoubleValue(3.0));
         lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
             TimeValue(MilliSeconds(256)));
     }
 
-    if (handoverAlg == "a2a4") {
+    else if (handoverAlg == "a2a4") {
         lteHelper->SetHandoverAlgorithmType("ns3::A2A4RsrqHandoverAlgorithm");
         lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
             UintegerValue(30));
@@ -734,13 +733,6 @@ int main(int argc, char* argv[])
     /*---------------------- Simulation Stopping Time ----------------------*/
     Simulator::Stop(SIMULATION_TIME_FORMAT(simTime));
 
-    /*---------------------GERAÇÃO DE PLOTS---------------------------------*/
-
-    string tipo = "graficos/LTE_";
-
-    Ptr<FlowMonitor> monitor;
-    FlowMonitorHelper fmhelper;
-    monitor = fmhelper.InstallAll();
 
     /*--------------NOTIFICAÇÕES DE HANDOVER E SINAL-------------------------*/
     // Config::Connect("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
@@ -763,15 +755,10 @@ int main(int argc, char* argv[])
     lteHelper->EnableRlcTraces();
     lteHelper->EnablePdcpTraces();
 
-    // gera o arquivo de métrica
     /*--------------------------- Simulation Run ---------------------------*/
     Simulator::Run(); // Executa
 
-    monitor->SerializeToXmlFile("V2X/LTE01_flow.xml", true, true);
-
     Simulator::Destroy();
-
-    //ImprimeMetricas(&fmhelper, monitor);
 
     NS_LOG_INFO("realizados " << handNumber << " handovers");
 
