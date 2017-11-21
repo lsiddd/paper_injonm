@@ -80,8 +80,9 @@ uint16_t low_power = 56; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
+int distancia = 500;
 
-double simTime = 150.0; // TEMPO_SIMULAÇÃO
+double simTime = 30.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 1;
 
 // número de handovers realizados
@@ -595,7 +596,7 @@ int main(int argc, char* argv[])
 
     /*-----------------POSIÇÃO DAS TORRES----------------------------------*/
     Ptr<ListPositionAllocator> HpnPosition = CreateObject<ListPositionAllocator>();
-    ArrayPositionAllocator(HpnPosition, 1500);
+    ArrayPositionAllocator(HpnPosition, distancia);
 
     MobilityHelper remoteHostMobility;
     remoteHostMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");

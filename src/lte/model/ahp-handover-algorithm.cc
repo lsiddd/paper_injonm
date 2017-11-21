@@ -271,16 +271,16 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         else
             while (qoeFile >> qoeResult)
                 cell[i][1] = stod(qoeResult);
-        //if (cell[i][1] >= 4)
-        //    return;
+        if (cell[i][1] >= 4)
+            return;
 
         if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
             cell[i][2] = 0;
         else
             while (qosFile >> qosResult)
                 cell[i][2] = stod(qosResult);
-        //if (cell[i][2] >= 0.9)
-        //    return;
+        if (cell[i][2] >= 0.9)
+            return;
 
         //----------------------------------------------------------------------------//
         /*-----------------------------MATRIX CALCULATION-----------------------------*/
@@ -355,7 +355,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         std::cout << soma_res << "\n";
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
-        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 1.0) {
+       if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= 0.7) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId);
         }
