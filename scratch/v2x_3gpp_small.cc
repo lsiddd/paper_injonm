@@ -73,17 +73,17 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 10;
+const int node_ue = 20;
 uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 56; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
-int distancia = 500;
+int distancia = 500; //distância entre torres HPN (mínima)
 
 double simTime = 30.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 1;
+int transmissionStart = 5;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -189,12 +189,12 @@ void NotifyHandoverEndOkEnb(std::string context,
         << rnti);
 }
 
-void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance)
+void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance, int seedValue)
 {
     int x_start = 2000;
     int y_start = 2000;
 
-    srand(1);
+    srand(seedValue);
 
     HpnPosition->Add(Vector(x_start, y_start, 25));
 
@@ -435,6 +435,8 @@ int main(int argc, char* argv[])
             receivedFrames[u][i] = false;
     }
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
+
+    int seedValue = 0;
     double interPacketInterval = 0.1;
 
     std::string handoverAlg = "ahp";
@@ -442,12 +444,15 @@ int main(int argc, char* argv[])
     VideoTraceParse("st_container_cif_h264_300_20.st");
 
     // void WriteMetrics();
+    
+   
 
     /*--------------------- COMMAND LINE PARSING -------------------*/
     //std::string entradaSumo = "mobil/reta2km.tcl"; // Mobilidade usada
     std::string entradaSumo = "mobil/novoMobilityGrid.tcl"; // Mobilidade usada
 
     CommandLine cmm;
+    cmm.AddValue("seedValue", "valor de seed para aleatoriedade", seedValue);
     cmm.AddValue("entradaSumo", "arquivo de entrada de mobilidade", entradaSumo);
     cmm.AddValue("node_cbr", "nós de cbr", n_cbr);
     cmm.AddValue("node_hpn", "torrer high power", enb_HPN);
@@ -456,6 +461,9 @@ int main(int argc, char* argv[])
     cmm.AddValue("txpower", "txpower", txpower);
     cmm.AddValue("handoverAlg", "Handover algorith in use", handoverAlg);
     cmm.Parse(argc, argv);
+
+
+    RngSeedManager::SetSeed (seedValue); //valor de seed para geração de números aleatórios
 
     // asssertions
     NS_ASSERT_MSG(node_ue < 51, "exceeded number of nodes.");
@@ -596,7 +604,7 @@ int main(int argc, char* argv[])
 
     /*-----------------POSIÇÃO DAS TORRES----------------------------------*/
     Ptr<ListPositionAllocator> HpnPosition = CreateObject<ListPositionAllocator>();
-    ArrayPositionAllocator(HpnPosition, distancia);
+    ArrayPositionAllocator(HpnPosition, distancia, seedValue);
 
     MobilityHelper remoteHostMobility;
     remoteHostMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
