@@ -14,13 +14,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * Author: Joahannes Costa <joahannes@gmail.com>
- * Modified by: Lucas Pacheco <lucassidpacheco@gmail.com>
- *
+ * Author: Lucas Pacheco <lucassidpacheco@gmail.com>
+ * Author: Iago Lins de Medeiros <iagolmedeiros@gmail.com>
  */
-
-/* This is a testing version.
-  */
 
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
@@ -220,7 +216,7 @@ void VideoTraceParse(std::string m_videoTraceFileName)
     }
 
     uint32_t frameId;
-    string frameType;
+    std::string frameType;
     uint32_t frameSize;
     uint16_t numOfUdpPackets;
     double sendTime;
@@ -281,8 +277,8 @@ void WriteMetrics()
                         ++nReceived;
                 }
                 if (lastPacket >= 60) {
-                    NS_LOG_INFO("Taxa de recebimento, node " << u << " :"
-                                                             << ((float)nReceived - 1) / 60);
+                    /*NS_LOG_INFO("Taxa de recebimento, node " << u << " :"
+                                                             << ((float)nReceived - 1) / 60);*/
                     //NS_LOG_INFO ("Recebidos " << nReceived << " pacotes.");
                     stringstream qosFilename;
                     double valorAtualQos = 0;
@@ -292,7 +288,10 @@ void WriteMetrics()
                     }
                     ofstream qosOutFile(qosFilename.str(),
                         std::ofstream::out | std::ofstream::trunc);
-                    qosOutFile << (((float)nReceived - 1) / 60 + valorAtualQos) / 2;
+                    if (valorAtualQos)
+                        qosOutFile << (((float)nReceived - 1) / 60 + valorAtualQos) / 2;
+                    else
+                        qosOutFile << ((float)nReceived - 1) / 60;
                 }
 
                 /*--------------------------------------------------------*/
@@ -331,7 +330,7 @@ void WriteMetrics()
                 int BTotal = 0;
                 double BLoss = 0;
 
-                for (int j = 0; j < LastReceivedFrame[u] / 20; ++j)
+                for (int j = 0; j < LastReceivedFrame[u] / 20; j++)
                     ++lastGop;
 
                 if (lastGop != 0) {
@@ -369,18 +368,29 @@ void WriteMetrics()
                     ofstream qoeOutFile(qoeFileName.str(),
                         std::ofstream::out | std::ofstream::trunc);
 
+                    
+
                     cmd << "python2.7 ia.py " << ILoss << " " << PLoss << " " << BLoss
                         << " 20";
+                    if (valorAtualQoe)
+                        qoeOutFile << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2;
+                    else
+                        qoeOutFile << stod(exec(cmd.str().c_str()));
 
-                    qoeOutFile << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2;
+                    std::stringstream rntiFileName;
+                    rntiFileName << "rnti/" << cell_ue[i][u] << "-qoe.txt";
+
+                    ofstream rntiFile;
+                    rntiFile.open(rntiFileName.str());
+                    rntiFile << stod(exec(cmd.str().c_str()));
 
                     NS_LOG_DEBUG(cmd.str());
 
                     NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2);
 
-                    /*std::ifstream qoeFile(qoeFileName.str());
+                    std::ifstream qoeFile(qoeFileName.str());
                     while (qoeFile >> qoeResult)
-                        NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeResult);*/
+                        NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeResult);
                 }
             }
     NS_LOG_INFO("\n\n\n\n");
@@ -436,7 +446,7 @@ int main(int argc, char* argv[])
     }
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
-    int seedValue = 0;
+    int seedValue = 1;
     double interPacketInterval = 0.1;
 
     std::string handoverAlg = "ahp";
