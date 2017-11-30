@@ -69,7 +69,7 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 20;
+const int node_ue = 5;
 uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 56; // 56;
@@ -79,10 +79,15 @@ int txpower = 15; //  Lte Ue Tx Power
 int distancia = 500; //distância entre torres HPN (mínima)
 
 double simTime = 30.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 5;
+int transmissionStart = 1;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
+
+//coeficiente da média exponencial
+unsigned int exp_mean_window = 3;
+double qosLastValue = 0;
+double qoeLastValue = 0;
 
 // variaveis do vídeo
 const int numberOfFrames = 300;
@@ -245,7 +250,7 @@ std::string exec(const char* cmd)
 
 /*------------------------- CRIAÇÃO ARQUIVO COM QOS'S ----------------------*/
 void WriteMetrics()
-{
+{   
     NS_LOG_DEBUG(Simulator::Now().GetSeconds() << " Segundos...");
     NS_LOG_DEBUG("Realizados " << handNumber << " Handover");
     for (int i = 0; i < 77; ++i)
@@ -288,10 +293,16 @@ void WriteMetrics()
                     }
                     ofstream qosOutFile(qosFilename.str(),
                         std::ofstream::out | std::ofstream::trunc);
+
+                    //CÁLCULO DA MÉDIA EXPONENCIAL
+                    qosOutFile << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos;
+                    
+                    /* CALCULO DE QOS POR MÉDIA SIMPLES
                     if (valorAtualQos)
                         qosOutFile << (((float)nReceived - 1) / 60 + valorAtualQos) / 2;
                     else
-                        qosOutFile << ((float)nReceived - 1) / 60;
+                        qosOutFile << ((float)nReceived - 1) / 60;*/
+
                 }
 
                 /*--------------------------------------------------------*/
@@ -372,10 +383,16 @@ void WriteMetrics()
 
                     cmd << "python2.7 ia.py " << ILoss << " " << PLoss << " " << BLoss
                         << " 20";
+
+                    //CÁLCULO DA MÉDIA EXPONENCIAL
+                    qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
+                    
+                    /* CÁLCULO POR MÉDIA SIMPLES
                     if (valorAtualQoe)
                         qoeOutFile << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2;
                     else
                         qoeOutFile << stod(exec(cmd.str().c_str()));
+                    */
 
                     std::stringstream rntiFileName;
                     rntiFileName << "rnti/" << cell_ue[i][u] << "-qoe.txt";
