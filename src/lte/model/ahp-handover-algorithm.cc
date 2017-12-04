@@ -178,7 +178,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     }
     else {
         MeasurementRow_t::iterator it2;
-        double threshold = 0.7;
+        double threshold = 0.5;
 
         /*------------ASSOCIATE RNTI WITH CELLID------------*/
         std::stringstream rntiPath;
@@ -235,13 +235,18 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             std::ifstream qosFile(qosFileName.str());
             std::ifstream qoeFile(qoeFileName.str());
 
+
             cell[i][0] = (uint16_t)it2->second->m_rsrq;
 
-            if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
+
+            if((uint16_t) it2->first <= 7) //do not prioritize large cells(test)
+                cell[i][1] = 1;
+            else if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
                 cell[i][1] = 5;//prioritize cells not used
             else
                 while (qoeFile >> qoeResult)
                     cell[i][1] = stod(qoeResult);
+
 
             if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
                 cell[i][2] = 1;
@@ -360,9 +365,9 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             while(qoeRntiFile >> qoeAtual){}
             //std::cout << qoeAtual << "\n";
             if (qoeAtual < 2)
-                threshold = 0.5;
+                threshold = 0;
 
-            else if (qoeAtual > 3)
+            else if (qoeAtual > 3.5)
                 return;
         }
         /*for (int i = 0; i < n_c; ++i){

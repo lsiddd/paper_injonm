@@ -69,7 +69,7 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 5;
+const int node_ue = 20;
 uint16_t n_cbr = 7;
 uint16_t enb_HPN = 7; // 7;
 uint16_t low_power = 56; // 56;
@@ -78,8 +78,8 @@ int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 500; //distância entre torres HPN (mínima)
 
-double simTime = 30.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 1;
+double simTime = 80.0; // TEMPO_SIMULAÇÃO
+int transmissionStart = 5;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -494,7 +494,6 @@ int main(int argc, char* argv[])
 
     // asssertions
     NS_ASSERT_MSG(node_ue < 51, "exceeded number of nodes.");
-    NS_ASSERT_MSG(n_cbr <= 7, "exceeded number of cbr nodes.");
     NS_ASSERT_MSG(enb_HPN + low_power + hot_spot <= 77, "Too many towers.");
 
     // Logs

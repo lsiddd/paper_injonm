@@ -8,6 +8,7 @@ import numpy as np
 I = sys.argv[1]
 P = sys.argv[2]
 B = sys.argv[3]
+G = sys.argv[4]
 
 def calc (i, p, b, g):
 
@@ -21,4 +22,4 @@ def calc (i, p, b, g):
     clf = pickle.load(arquivo_pkl)
     m = clf.predict(vec)[0]
     return m
-print (calc(I, P, B, 20))
+print (calc(I, P, B, G))
