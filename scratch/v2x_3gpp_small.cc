@@ -69,20 +69,23 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 20;
-uint16_t n_cbr = 7;
-uint16_t enb_HPN = 7; // 7;
-uint16_t low_power = 56; // 56;
+const int node_ue = 10;
+uint16_t n_cbr = 3;
+uint16_t enb_HPN = 3; // 7;
+uint16_t low_power = 8; // 56;
 uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 500; //distância entre torres HPN (mínima)
 
-double simTime = 80.0; // TEMPO_SIMULAÇÃO
+double simTime = 30.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 5;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
+
+//scenario
+bool luca = true;
 
 //coeficiente da média exponencial
 unsigned int exp_mean_window = 3;
@@ -192,10 +195,20 @@ void NotifyHandoverEndOkEnb(std::string context,
 
 void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance, int seedValue)
 {
-    int x_start = 2000;
-    int y_start = 2000;
 
     srand(seedValue);
+
+    if (luca){
+	int x_start = 500;
+	int y_start = 1500;
+        for (int i = x_start; i <= 1500; i += 500)
+            HpnPosition->Add(Vector(i, y_start, 25));
+	for (int i = 0; i <= 8; i ++)
+	    HpnPosition->Add(Vector(rand() % 3000, rand() % 3000, 10));
+	return;
+    }
+    int x_start = 2000;
+    int y_start = 2000;
 
     HpnPosition->Add(Vector(x_start, y_start, 25));
 
@@ -295,13 +308,13 @@ void WriteMetrics()
                         std::ofstream::out | std::ofstream::trunc);
 
                     //CÁLCULO DA MÉDIA EXPONENCIAL
-                    qosOutFile << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos;
+                    //qosOutFile << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos;
                     
-                    /* CALCULO DE QOS POR MÉDIA SIMPLES
+                    //CALCULO DE QOS POR MÉDIA SIMPLES
                     if (valorAtualQos)
                         qosOutFile << (((float)nReceived - 1) / 60 + valorAtualQos) / 2;
                     else
-                        qosOutFile << ((float)nReceived - 1) / 60;*/
+                        qosOutFile << ((float)nReceived - 1) / 60;
 
                 }
 
@@ -385,14 +398,13 @@ void WriteMetrics()
                         << " 20";
 
                     //CÁLCULO DA MÉDIA EXPONENCIAL
-                    qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
+                    //qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
                     
-                    /* CÁLCULO POR MÉDIA SIMPLES
+                    //CÁLCULO POR MÉDIA SIMPLES
                     if (valorAtualQoe)
                         qoeOutFile << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2;
                     else
                         qoeOutFile << stod(exec(cmd.str().c_str()));
-                    */
 
                     std::stringstream rntiFileName;
                     rntiFileName << "rnti/" << cell_ue[i][u] << "-qoe.txt";
@@ -476,7 +488,7 @@ int main(int argc, char* argv[])
 
     /*--------------------- COMMAND LINE PARSING -------------------*/
     //std::string entradaSumo = "mobil/reta2km.tcl"; // Mobilidade usada
-    std::string entradaSumo = "mobil/novoMobilityGrid.tcl"; // Mobilidade usada
+    std::string entradaSumo = "mobil/rapido.tcl"; // Mobilidade usada
 
     CommandLine cmm;
     cmm.AddValue("seedValue", "valor de seed para aleatoriedade", seedValue);
@@ -493,8 +505,12 @@ int main(int argc, char* argv[])
     RngSeedManager::SetSeed (seedValue); //valor de seed para geração de números aleatórios
 
     // asssertions
-    NS_ASSERT_MSG(node_ue < 51, "exceeded number of nodes.");
+    //NS_ASSERT_MSG(node_ue < 51, "exceeded number of nodes.");
     NS_ASSERT_MSG(enb_HPN + low_power + hot_spot <= 77, "Too many towers.");
+    if (luca){
+	NS_ASSERT_MSG(enb_HPN == 3, "this scenario should only have 3 HPNs");
+	NS_ASSERT_MSG(low_power == 8, "this scenario should only have 8 LPNs");
+    }
 
     // Logs
 
@@ -729,7 +745,7 @@ int main(int argc, char* argv[])
             enb0Phy->SetTxPower(46);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(30);
+            enb0Phy->SetTxPower(26);
         }
         else {
             enb0Phy->SetTxPower(15);

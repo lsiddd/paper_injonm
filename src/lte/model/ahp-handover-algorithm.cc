@@ -178,7 +178,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     }
     else {
         MeasurementRow_t::iterator it2;
-        double threshold = 0.5;
+        double threshold = 0.7;
 
         /*------------ASSOCIATE RNTI WITH CELLID------------*/
         std::stringstream rntiPath;
