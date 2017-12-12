@@ -69,7 +69,12 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int node_ue = 10;
+const int pedestres = 0;
+const int carros = 0;
+const int trens = 0;
+
+const int node_ue = pedestres + carros + trens;
+
 uint16_t n_cbr = 3;
 uint16_t enb_HPN = 3; // 7;
 uint16_t low_power = 8; // 56;
@@ -630,8 +635,15 @@ int main(int argc, char* argv[])
 
     /*------------------- Criacao de UEs-Enb--------------------------*/
     // UE - Veículos
-    NodeContainer ueNodes;
-    ueNodes.Create(node_ue);
+    NodeContainer pedestres_nc;
+    pedestres_nc.Create(pedestres);
+
+    NodeContainer carros_nc;
+    carros_nc.Create(carros);
+
+    NodeContainer trens_nc;
+    trens_nc.Create(trens);
+
 
     NodeContainer cbr_nodes;
     cbr_nodes.Create(n_cbr);
@@ -641,7 +653,9 @@ int main(int argc, char* argv[])
     enbNodes.Create(enb_HPN + low_power + hot_spot);
 
     // Instala pilha de Internet em UE e EnodeB
-    internet.Install(ueNodes);
+    internet.Install(pedestres_nc);
+    internet.Install(carros_nc);
+    internet.Install(trens_nc);
     internet.Install(cbr_nodes);
 
     /*-----------------POSIÇÃO DAS TORRES----------------------------------*/
@@ -668,38 +682,54 @@ int main(int argc, char* argv[])
     // LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
 
     /*---------------MONILIDADE DOS CARROS------------------------------*/
-    Ns2MobilityHelper mobility = Ns2MobilityHelper(entradaSumo);
+    Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/lucaPedestre.tcl");
+    Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/lucaCarro.tcl");
+    Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/lucaTrem.tcl");
 
-    // open log file for output
-    std::ofstream os;
-    os.open("gri50ns2-mobility-trace.log");
-
-    mobility.Install(ueNodes.Begin(), ueNodes.End()); // configure movements for
-    // each node, while reading
-    // trace file
-
-    os.close(); // close log file
-
+    //mobility.Install(ueNodes.Begin(), ueNodes.End()); 
+    mobil_ped.Install(pedestres_nc.Begin(), pedestres_nc.End());
+    mobil_carro.Install(carros_nc.Begin(), carros_nc.End());
+    mobil_trem.Install(trens_nc.Begin(), trens_nc.End());
     /*----------------------------------------------------------------------*/
 
     //-------------Instala LTE Devices para cada grupo de nós
     NetDeviceContainer enbLteDevs;
     enbLteDevs = lteHelper->InstallEnbDevice(enbNodes);
-    NetDeviceContainer ueLteDevs;
-    ueLteDevs = lteHelper->InstallUeDevice(ueNodes);
+    NetDeviceContainer pedLteDevs;
+    pedLteDevs = lteHelper->InstallUeDevice(pedestres_nc);
+    NetDeviceContainer carLteDevs;
+    carLteDevs = lteHelper->InstallUeDevice(carros_nc);
+    NetDeviceContainer tremLteDevs;
+    tremLteDevs = lteHelper->InstallUeDevice(trens_nc);
     NetDeviceContainer cbrLteDevs;
     cbrLteDevs = lteHelper->InstallUeDevice(cbr_nodes);
 
     /*----------------------------------------------------------------------*/
 
-    Ipv4InterfaceContainer ueIpIface;
-    ueIpIface = epcHelper->AssignUeIpv4Address(NetDeviceContainer(ueLteDevs));
+    Ipv4InterfaceContainer pedIpIface;
+    pedIpIface = epcHelper->AssignUeIpv4Address(NetDeviceContainer(pedLteDevs));
+    Ipv4InterfaceContainer carIpIface;
+    carIpIface = epcHelper->AssignUeIpv4Address(NetDeviceContainer(carLteDevs));
+    Ipv4InterfaceContainer tremIpIface;
+    tremIpIface = epcHelper->AssignUeIpv4Address(NetDeviceContainer(tremLteDevs));
     Ipv4InterfaceContainer cbrIpFace;
     cbrIpFace = epcHelper->AssignUeIpv4Address(NetDeviceContainer(cbrLteDevs));
 
     //-------------Definir endereços IPs e instala aplicação
-    for (uint32_t u = 0; u < ueNodes.GetN(); ++u) {
-        Ptr<Node> ueNode = ueNodes.Get(u);
+    for (uint32_t u = 0; u < pedestres_nc.GetN(); ++u) {
+        Ptr<Node> ueNode = pedestres_nc.Get(u);
+        Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
+        ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
+            1);
+    }
+    for (uint32_t u = 0; u < carros_nc.GetN(); ++u) {
+        Ptr<Node> ueNode = carros_nc.Get(u);
+        Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
+        ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
+            1);
+    }
+    for (uint32_t u = 0; u < trens_nc.GetN(); ++u) {
+        Ptr<Node> ueNode = trens_nc.Get(u);
         Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
         ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
             1);
@@ -763,7 +793,9 @@ int main(int argc, char* argv[])
     */
 
     //-------------Anexa as UEs na eNodeB
-    lteHelper->Attach(ueLteDevs);
+    lteHelper->Attach(pedLteDevs);
+    lteHelper->Attach(carLteDevs);
+    lteHelper->Attach(tremLteDevs);
     lteHelper->AttachToClosestEnb(cbrLteDevs, enbLteDevs);
     lteHelper->AddX2Interface(enbNodes);
 
@@ -771,7 +803,9 @@ int main(int argc, char* argv[])
 
     // Início Transmissão de Vídeo
     //Rodar aplicação EvalVid
-    requestStream(remoteHost, ueNodes, remoteHostAddr, simTime, transmissionStart);
+    requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart);
+    requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart);
+    requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");
