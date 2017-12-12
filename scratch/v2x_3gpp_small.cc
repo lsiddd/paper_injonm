@@ -69,9 +69,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 0;
-const int carros = 0;
-const int trens = 0;
+const int pedestres = 3;
+const int carros = 3;
+const int trens = 4;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -96,6 +96,7 @@ bool luca = true;
 unsigned int exp_mean_window = 3;
 double qosLastValue = 0;
 double qoeLastValue = 0;
+int evalvidId = 0;
 
 // variaveis do vídeo
 const int numberOfFrames = 300;
@@ -439,12 +440,13 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
         std::stringstream sdTrace;
         std::stringstream rdTrace;
         std::stringstream rdWindow;
-        sdTrace << "sd_a01_" << (int)i;
-        rdTrace << "rd_a01_" << (int)i;
+        sdTrace << "sd_a01_" << evalvidId;
+        rdTrace << "rd_a01_" << evalvidId;
+        evalvidId++;
 
         double stop = simTime;
         uint16_t port = 2000;
-        uint16_t m_port = 2000 * i + 2000; // Para alcançar o nó ZERO quando i = 0
+        uint16_t m_port = 2000 * evalvidId + 2000; // Para alcançar o nó ZERO quando i = 0
 
         // Servidor de vídeo
         EvalvidServerHelper server(m_port);
@@ -775,7 +777,7 @@ int main(int argc, char* argv[])
             enb0Phy->SetTxPower(46);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(26);
+            enb0Phy->SetTxPower(23);
         }
         else {
             enb0Phy->SetTxPower(15);
