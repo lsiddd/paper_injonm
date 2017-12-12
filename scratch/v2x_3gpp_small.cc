@@ -207,7 +207,7 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     if (luca){
 	int x_start = 500;
 	int y_start = 1500;
-        for (int i = x_start; i <= 1500; i += 500)
+        for (int i = x_start; i <= 1500; i += 1000)
             HpnPosition->Add(Vector(i, y_start, 25));
 	for (int i = 0; i <= 8; i ++)
 	    HpnPosition->Add(Vector(rand() % 3000, rand() % 3000, 10));
