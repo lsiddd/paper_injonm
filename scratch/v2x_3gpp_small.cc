@@ -76,9 +76,9 @@ const int trens = 4;
 const int node_ue = pedestres + carros + trens;
 
 uint16_t n_cbr = 3;
-uint16_t enb_HPN = 3; // 7;
-uint16_t low_power = 8; // 56;
-uint16_t hot_spot = 0; // 14;
+const uint16_t enb_HPN = 3; // 7;
+const uint16_t low_power = 8; // 56;
+const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 500; //distância entre torres HPN (mínima)
@@ -97,6 +97,11 @@ unsigned int exp_mean_window = 3;
 double qosLastValue = 0;
 double qoeLastValue = 0;
 int evalvidId = 0;
+
+double qoeSum[enb_HPN + low_power];
+double qosSum[enb_HPN + low_power];
+int qosMetricsIterator[enb_HPN + low_power];
+int qoeMetricsIterator[enb_HPN + low_power];
 
 // variaveis do vídeo
 const int numberOfFrames = 300;
@@ -272,7 +277,7 @@ void WriteMetrics()
 {
     NS_LOG_DEBUG(Simulator::Now().GetSeconds() << " Segundos...");
     NS_LOG_DEBUG("Realizados " << handNumber << " Handover");
-    for (int i = 0; i < 77; ++i)
+    for (int i = 0; i < 77; ++i){
         for (int u = 0; u < node_ue; ++u)
             if (cell_ue[i][u]) {
                 std::stringstream rdTrace;
@@ -317,10 +322,10 @@ void WriteMetrics()
                     //qosOutFile << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos;
 
                     //CALCULO DE QOS POR MÉDIA SIMPLES
-                    if (valorAtualQos)
-                        qosOutFile << (((float)nReceived - 1) / 60 + valorAtualQos) / 2;
-                    else
-                        qosOutFile << ((float)nReceived - 1) / 60;
+                    qosSum[i] += ((float)nReceived - 1) / 60;
+                    qosMetricsIterator[i]++;
+                    qosOutFile << qosSum[i] / qosMetricsIterator[i];
+                    NS_LOG_DEBUG("NODE " << u << " QOS ESTIMADO " << qosSum[i] / qosMetricsIterator[i]);
 
                 }
 
@@ -407,10 +412,9 @@ void WriteMetrics()
                     //qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
 
                     //CÁLCULO POR MÉDIA SIMPLES
-                    if (valorAtualQoe)
-                        qoeOutFile << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2;
-                    else
-                        qoeOutFile << stod(exec(cmd.str().c_str()));
+                    qoeSum[i] += stod(exec(cmd.str().c_str()));
+                    qoeMetricsIterator[i]++;
+                    qoeOutFile << qoeSum[i] / qoeMetricsIterator[i];
 
                     std::stringstream rntiFileName;
                     rntiFileName << "rnti/" << cell_ue[i][u] << "-qoe.txt";
@@ -419,15 +423,11 @@ void WriteMetrics()
                     rntiFile.open(rntiFileName.str());
                     rntiFile << stod(exec(cmd.str().c_str()));
 
-                    NS_LOG_DEBUG(cmd.str());
 
-                    NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << (stod(exec(cmd.str().c_str())) + valorAtualQoe) / 2);
-
-                    std::ifstream qoeFile(qoeFileName.str());
-                    while (qoeFile >> qoeResult)
-                        NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeResult);
+                    NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeSum[i] / qoeMetricsIterator[i]);
                 }
             }
+        }
     NS_LOG_INFO("\n\n\n\n");
     return;
 }
@@ -499,12 +499,6 @@ int main(int argc, char* argv[])
 
     CommandLine cmm;
     cmm.AddValue("seedValue", "valor de seed para aleatoriedade", seedValue);
-    cmm.AddValue("entradaSumo", "arquivo de entrada de mobilidade", entradaSumo);
-    cmm.AddValue("node_cbr", "nós de cbr", n_cbr);
-    cmm.AddValue("node_hpn", "torrer high power", enb_HPN);
-    cmm.AddValue("node_low_power", "torres low power", low_power);
-    cmm.AddValue("node_hot_spot", "hot spots", hot_spot);
-    cmm.AddValue("txpower", "txpower", txpower);
     cmm.AddValue("handoverAlg", "Handover algorith in use", handoverAlg);
     cmm.Parse(argc, argv);
 
