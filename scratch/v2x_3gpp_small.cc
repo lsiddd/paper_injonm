@@ -301,8 +301,8 @@ void WriteMetrics()
 
                 /*----------------QOS METRIC CALCULATION----------------*/
                 int nReceived = 0;
-                for (int i = lastPacket - 60; i <= lastPacket; ++i) {
-                    if (receivedPackets[u][i])
+                for (int j = lastPacket - 60; j <= lastPacket; ++j) {
+                    if (receivedPackets[u][j])
                         ++nReceived;
                 }
                 if (lastPacket >= 60) {
