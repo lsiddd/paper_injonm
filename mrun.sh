@@ -1,12 +1,9 @@
-count='0'
-var='0'
-while [ $var  -ne '30' ]; do
+count=$1
+while [ $count -ne $(($2+$1)) ]; do
+    # bash mrun.sh NumeroSeedInicial NumeroDeRunsQueQueroRodar NomeDoAlgoritmo
     mkdir simul$count
-    NS_GLOBAL_VALUE="RngRun=$count" ./waf --run scratch/v2x_3gpp > run$count 2>&1
-    mv rd* sd* simul$count
+    ./waf --run "scratch/v2x_3gpp_small --handoverAlg='$3' --seedValue=$count" > run$count 2>&1
+    mv rd* sd* run* qo* simul$count
+    echo $count
     let 'count++'
-
-    if [ "$(ls -A simul$count)" ]; then
-        let 'var++'
-    fi
 done
