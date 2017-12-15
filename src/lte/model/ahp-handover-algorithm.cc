@@ -88,7 +88,15 @@ AhpHandoverAlgorithm::GetTypeId()
                                 "stop time",
                                 UintegerValue(150),
                                 MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
-                                MakeUintegerChecker<uint8_t>());
+                                MakeUintegerChecker<uint8_t>())
+                            .AddAttribute ("TimeToTrigger",
+                               "Time during which neighbour cell's RSRP "
+                               "must continuously higher than serving cell's RSRP "
+                               "in order to trigger a handover",
+                               TimeValue (MilliSeconds (256)), // 3GPP time-to-trigger median value as per Section 6.3.5 of 3GPP TS 36.331
+                               MakeTimeAccessor (&AhpHandoverAlgorithm::m_timeToTrigger),
+                               MakeTimeChecker ())
+                            ;
     return tid;
 }
 
@@ -122,6 +130,7 @@ void AhpHandoverAlgorithm::DoInitialize()
     reportConfig.threshold1.choice = LteRrcSap::ThresholdEutra::THRESHOLD_RSRQ;
     reportConfig.threshold1.range = 0; // THRESHOLD BAIXO FACILITA DETECÇÃO
     reportConfig.triggerQuantity = LteRrcSap::ReportConfigEutra::RSRQ;
+    reportConfig.timeToTrigger = m_timeToTrigger.GetMilliSeconds ();
     reportConfig.reportInterval = LteRrcSap::ReportConfigEutra::MS480;
     m_a4MeasId = m_handoverManagementSapUser->AddUeMeasReportConfigForHandover(reportConfig);
     LteHandoverAlgorithm::DoInitialize();
