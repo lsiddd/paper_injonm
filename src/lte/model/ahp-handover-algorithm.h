@@ -34,6 +34,7 @@
 #include <ns3/simple-ref-count.h>
 #include <ns3/ptr.h>
 #include <map>
+#include <ns3/nstime.h>
 
 namespace ns3 {
 
