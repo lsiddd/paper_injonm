@@ -277,7 +277,7 @@ void WriteMetrics()
 {
     NS_LOG_DEBUG(Simulator::Now().GetSeconds() << " Segundos...");
     NS_LOG_DEBUG("Realizados " << handNumber << " Handover");
-    for (int i = 0; i < 77; ++i){
+    for (int i = 0; i < 11; ++i){
         for (int u = 0; u < node_ue; ++u)
             if (cell_ue[i][u]) {
                 std::stringstream rdTrace;
@@ -319,13 +319,14 @@ void WriteMetrics()
                         std::ofstream::out | std::ofstream::trunc);
 
                     //CÁLCULO DA MÉDIA EXPONENCIAL
-                    //qosOutFile << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos;
+                    qosOutFile << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos;
+                    NS_LOG_DEBUG("NODE " << u << " QOS ESTIMADO " << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos);
 
                     //CALCULO DE QOS POR MÉDIA SIMPLES
-                    qosSum[i] += ((float)nReceived - 1) / 60;
-                    qosMetricsIterator[i]++;
-                    qosOutFile << qosSum[i] / qosMetricsIterator[i];
-                    NS_LOG_DEBUG("NODE " << u << " QOS ESTIMADO " << qosSum[i] / qosMetricsIterator[i]);
+                    //qosSum[i] += ((float)nReceived - 1) / 60;
+                    //qosMetricsIterator[i]++;
+                    //qosOutFile << qosSum[i] / qosMetricsIterator[i];
+                    //NS_LOG_DEBUG("NODE " << u << " QOS ESTIMADO " << qosSum[i] / qosMetricsIterator[i]);
 
                 }
 
@@ -409,12 +410,13 @@ void WriteMetrics()
                         << " 20";
 
                     //CÁLCULO DA MÉDIA EXPONENCIAL
-                    //qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
+                    qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
+                    NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe);
 
                     //CÁLCULO POR MÉDIA SIMPLES
-                    qoeSum[i] += stod(exec(cmd.str().c_str()));
-                    qoeMetricsIterator[i]++;
-                    qoeOutFile << qoeSum[i] / qoeMetricsIterator[i];
+                    //qoeSum[i] += stod(exec(cmd.str().c_str()));
+                    //qoeMetricsIterator[i]++;
+                    //qoeOutFile << qoeSum[i] / qoeMetricsIterator[i];
 
                     std::stringstream rntiFileName;
                     rntiFileName << "rnti/" << cell_ue[i][u] << "-qoe.txt";
@@ -424,7 +426,7 @@ void WriteMetrics()
                     rntiFile << stod(exec(cmd.str().c_str()));
 
 
-                    NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeSum[i] / qoeMetricsIterator[i]);
+                    //NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeSum[i] / qoeMetricsIterator[i]);
                 }
             }
         }
@@ -566,6 +568,8 @@ int main(int argc, char* argv[])
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
         lteHelper->SetHandoverAlgorithmAttribute("StartTime", UintegerValue(transmissionStart));
         lteHelper->SetHandoverAlgorithmAttribute("StopTime", UintegerValue(simTime));
+        lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
+            TimeValue(MilliSeconds(512)));
     }
 
     else if (handoverAlg == "noop")
