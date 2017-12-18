@@ -587,7 +587,7 @@ int main(int argc, char* argv[])
         lteHelper->SetHandoverAlgorithmAttribute("ServingCellThreshold",
             UintegerValue(30));
         lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
-            UintegerValue(1));
+            UintegerValue(2));
     }
 
     ConfigStore inputConfig;
