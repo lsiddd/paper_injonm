@@ -69,9 +69,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 3;
-const int carros = 3;
-const int trens = 4;
+const int pedestres = 40;
+const int carros = 40;
+const int trens = 40;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -83,7 +83,7 @@ int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 500; //distância entre torres HPN (mínima)
 
-double simTime = 30.0; // TEMPO_SIMULAÇÃO
+double simTime = 50.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 5;
 
 // número de handovers realizados
@@ -485,7 +485,7 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
     int seedValue = 1;
-    double interPacketInterval = 0.1;
+    double interPacketInterval = 1;
 
     std::string handoverAlg = "ahp";
 
@@ -806,6 +806,10 @@ int main(int argc, char* argv[])
     requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart);
     requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart);
     requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart);
+
+    requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart + 20);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");
