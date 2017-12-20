@@ -485,7 +485,7 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
     int seedValue = 1;
-    double interPacketInterval = 1;
+    double interPacketInterval = 0.01;
 
     std::string handoverAlg = "ahp";
 
@@ -535,8 +535,8 @@ int main(int argc, char* argv[])
 
     //*********** CONFIGURAÇÃO LTE ***************//
     // Configuração padrão de Downlink e Uplink
-    Config::SetDefault("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue(25));
-    Config::SetDefault("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue(25));
+    Config::SetDefault("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue(6));
+    Config::SetDefault("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue(6));
 
     // Modo de transmissão (SISO [0], MIMO [1])
     Config::SetDefault("ns3::LteEnbRrc::DefaultTransmissionMode",
