@@ -69,9 +69,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 40;
-const int carros = 40;
-const int trens = 40;
+const int pedestres = 0;
+const int carros = 0;
+const int trens = 0;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -760,6 +760,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
+        client.SetAttribute("PacketSize", UintegerValue(2000));
 
         clientApps.Add(client.Install(remoteHost));
 
