@@ -540,7 +540,7 @@ int main(int argc, char* argv[])
 
     // Modo de transmissão (SISO [0], MIMO [1])
     Config::SetDefault("ns3::LteEnbRrc::DefaultTransmissionMode",
-        UintegerValue(1));
+        UintegerValue(0));
 
     /*------------------------- MÓDULOS LTE ----------------------*/
     Ptr<LteHelper> lteHelper = CreateObject<LteHelper>();
