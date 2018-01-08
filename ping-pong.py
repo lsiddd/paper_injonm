@@ -1,3 +1,5 @@
+#!/bin/python
+
 import re, os, sys
 
 #([0-9]|[0-9][0-9])\.([0-9])\w+ simtime
@@ -5,7 +7,7 @@ import re, os, sys
 #CellId ([0-9]|[0-9][0-9]) --->> ([0-9]|[0-9][0-9])
 handover = []
 pp = 0
-verbose = False
+verbose = 0
 checked = []
 if (len(sys.argv) > 1):
 	filename = sys.argv[1]
@@ -16,7 +18,7 @@ if (len(sys.argv) > 1):
 			for i in data: #REGEX PARA EXTRAIR INFOS
 				if (re.search("doing handover", i)):
 					
-					simtime = re.search("([0-9]|[0-9][0-9])\.([0-9])\w+", i)
+					simtime = re.search("^[-+]?([0-9]*\.[0-9]+|[0-9]+)", i)
 
 					imsi = re.search("IMSI ([0-9][0-9]|[0-9])", i)
 					imsi = re.search("([0-9][0-9]|[0-9])", imsi.group(0))
