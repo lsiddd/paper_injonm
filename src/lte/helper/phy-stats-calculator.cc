@@ -181,7 +181,7 @@ PhyStatsCalculator::ReportUeSinr (uint16_t cellId, uint64_t imsi, uint16_t rnti,
   outFile << cellId << "\t";
   outFile << imsi << "\t";
   outFile << rnti << "\t";
-  outFile << 10*log10(sinrLinear) << "\t";
+  outFile << sinrLinear << "\t";
   outFile << (uint32_t)componentCarrierId << std::endl;
   outFile.close ();
 }

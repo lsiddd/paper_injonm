@@ -89,14 +89,13 @@ AhpHandoverAlgorithm::GetTypeId()
                                 UintegerValue(150),
                                 MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
                                 MakeUintegerChecker<uint8_t>())
-                            .AddAttribute ("TimeToTrigger",
-                               "Time during which neighbour cell's RSRP "
-                               "must continuously higher than serving cell's RSRP "
-                               "in order to trigger a handover",
-                               TimeValue (MilliSeconds (256)), // 3GPP time-to-trigger median value as per Section 6.3.5 of 3GPP TS 36.331
-                               MakeTimeAccessor (&AhpHandoverAlgorithm::m_timeToTrigger),
-                               MakeTimeChecker ())
-                            ;
+                            .AddAttribute("TimeToTrigger",
+                                "Time during which neighbour cell's RSRP "
+                                "must continuously higher than serving cell's RSRP "
+                                "in order to trigger a handover",
+                                TimeValue(MilliSeconds(256)), // 3GPP time-to-trigger median value as per Section 6.3.5 of 3GPP TS 36.331
+                                MakeTimeAccessor(&AhpHandoverAlgorithm::m_timeToTrigger),
+                                MakeTimeChecker());
     return tid;
 }
 
@@ -130,7 +129,7 @@ void AhpHandoverAlgorithm::DoInitialize()
     reportConfig.threshold1.choice = LteRrcSap::ThresholdEutra::THRESHOLD_RSRQ;
     reportConfig.threshold1.range = 0; // THRESHOLD BAIXO FACILITA DETECÇÃO
     reportConfig.triggerQuantity = LteRrcSap::ReportConfigEutra::RSRQ;
-    reportConfig.timeToTrigger = m_timeToTrigger.GetMilliSeconds ();
+    reportConfig.timeToTrigger = m_timeToTrigger.GetMilliSeconds();
     reportConfig.reportInterval = LteRrcSap::ReportConfigEutra::MS480;
     m_a4MeasId = m_handoverManagementSapUser->AddUeMeasReportConfigForHandover(reportConfig);
     LteHandoverAlgorithm::DoInitialize();
@@ -166,9 +165,9 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 
 void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     uint8_t servingCellRsrq, uint16_t measId)
-{   
+{
     /*if (Simulator::Now().GetSeconds() < Seconds(StartTime)){
-	   std::cout << "skip\n";
+       std::cout << "skip\n";
        return;
     }
     if (Simulator::Now().GetSeconds() > Seconds(StopTime)){
@@ -199,7 +198,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             return;
         }*/
 
-        int a, b;//aux variables
+        int a, b; //aux variables
         while (servingCellId >> a >> b) {
         }
 
@@ -229,7 +228,35 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         double soma[n_c];
         double soma_res = 0;
         //        double res[n_c];
+        
+        double qosAtual = 0;
+        double qoeAtual = 0;
+        //CURRENT QOE VALUE
 
+        std::stringstream qoeRnti;
+        qoeRnti << "rnti/" << rnti << "-qoe.txt";
+        std::ifstream qoeRntiFile;
+        qoeRntiFile.open(qoeRnti.str());
+
+        //current qos value
+        std::stringstream qosRnti;
+        qosRnti << "rnti/" << rnti << "-qos.txt";
+        std::ifstream qosRntiFile;
+        qosRntiFile.open(qosRnti.str());
+
+        if (qoeRntiFile.is_open()) {
+            while (qoeRntiFile >> qoeAtual) {
+            }
+            // if (qoeAtual < 2)
+            //     threshold = 0;
+        }
+
+        if (qosRntiFile.is_open()) {
+            while (qosRntiFile >> qosAtual) {
+            }
+            // if (qosAtual < 0.5)
+            //     threshold = 0;
+        }
 
         /*----------------neighbor cell values----------------*/
         for (it2 = it1->second.begin(); it2 != it1->second.end(); ++it2) {
@@ -244,18 +271,15 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             std::ifstream qosFile(qosFileName.str());
             std::ifstream qoeFile(qoeFileName.str());
 
-
             cell[i][0] = (uint16_t)it2->second->m_rsrq;
 
-
-            if((uint16_t) it2->first <= 7) //do not prioritize large cells(test)
+            if ((uint16_t)it2->first <= 7) //do not prioritize large cells(test)
                 cell[i][1] = 1;
             else if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][1] = 5;//prioritize cells not used
+                cell[i][1] = 5; //prioritize cells not used
             else
                 while (qoeFile >> qoeResult)
                     cell[i][1] = stod(qoeResult);
-
 
             if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
                 cell[i][2] = 1;
@@ -280,22 +304,24 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         std::ifstream qoeFile(qoeFileName.str());
 
         cell[i][0] = (uint16_t)servingCellRsrq;
+        cell[i][1] = qoeAtual;
+        cell[i][2] = qosAtual;       
 
-        if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-            cell[i][1] = 1;
-        else
-            while (qoeFile >> qoeResult)
-                cell[i][1] = stod(qoeResult);
-        if (cell[i][1] >= 4)
-            return;
+        // if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
+        //     cell[i][1] = 1;
+        // else
+        //     while (qoeFile >> qoeResult)
+        //         cell[i][1] = stod(qoeResult);
+        // if (cell[i][1] >= 4)
+        //     return;
 
-        if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
-            cell[i][2] = 0;
-        else
-            while (qosFile >> qosResult)
-                cell[i][2] = stod(qosResult);
-        if (cell[i][2] >= 0.9)
-            return;
+        // if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
+        //     cell[i][2] = 0;
+        // else
+        //     while (qosFile >> qosResult)
+        //         cell[i][2] = stod(qosResult);
+        // if (cell[i][2] >= 0.9)
+        //     return;
 
         //----------------------------------------------------------------------------//
         /*-----------------------------MATRIX CALCULATION-----------------------------*/
@@ -360,25 +386,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             }
         }
 
-        std::stringstream qoeRnti;
-        qoeRnti << "rnti/" << rnti << "-qoe.txt";
-
-
-        std::ifstream qoeRntiFile;
-
-        qoeRntiFile.open(qoeRnti.str());
-
-        double qoeAtual = 0;
-        if (qoeRntiFile.is_open()){
-
-            while(qoeRntiFile >> qoeAtual){}
-            //std::cout << qoeAtual << "\n";
-            if (qoeAtual < 2)
-                threshold = 0;
-
-            else if (qoeAtual > 3.5)
-                return;
-        }
         /*for (int i = 0; i < n_c; ++i){
            for (int u = 0; u < 4; ++u)
                std::cout << cell[i][u] << "\t";
@@ -389,9 +396,15 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         //std::cout << soma_res << "\n";
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
-       if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= threshold) {
+        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= threshold) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
-            NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId);
+            for (int i = 0; i < n_c; ++i){
+                NS_LOG_INFO("\n\n\nCélula " << i + 1 <<" -- Soma Ahp:" << soma[i]);
+                NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);
+                NS_LOG_INFO("         -- MOSp: " << cell[i][1]);
+                NS_LOG_INFO("         -- PDR: " << cell[i][2]);
+            }
+            NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId << "\n\n\n");
         }
     } // end of else of if (it1 == m_neighbourCellMeasures.end ())
 

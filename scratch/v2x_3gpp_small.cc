@@ -27,6 +27,7 @@
 #include "ns3/point-to-point-module.h"
 #include "ns3/ipv4-global-routing-helper.h"
 #include "ns3/ipv4-address.h"
+#include "ns3/mobility-model.h"
 // NetAnim & Evalvid
 #include "ns3/netanim-module.h"
 #include "ns3/evalvid-client-server-helper.h"
@@ -69,21 +70,21 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 40;
-const int carros = 40;
-const int trens = 40;
+const int pedestres = 10;
+const int carros = 10;
+const int trens = 10;
 
 const int node_ue = pedestres + carros + trens;
 
 uint16_t n_cbr = 3;
 const uint16_t enb_HPN = 3; // 7;
-const uint16_t low_power = 8; // 56;
+const uint16_t low_power = 1; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 500; //distância entre torres HPN (mínima)
 
-double simTime = 35.0; // TEMPO_SIMULAÇÃO
+double simTime = 30.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 5;
 
 // número de handovers realizados
@@ -128,6 +129,8 @@ void NotifyConnectionEstablishedUe(std::string context,
     //feed connection files
     std::stringstream strrnti;
     strrnti << rnti;
+
+    if (mkdir("./rnti",S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0){}
     std::ofstream ofs("rnti/" + strrnti.str() + ".txt"); //, ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
@@ -209,14 +212,14 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
 
     srand(seedValue);
 
-    if (luca){
-	int x_start = 500;
-	int y_start = 500;
+    if (luca) {
+        int x_start = 500;
+        int y_start = 500;
         for (int i = x_start; i <= 2500; i += 1000)
             HpnPosition->Add(Vector(i, y_start, 25));
-	for (int i = 0; i <= 8; i ++)
-	    HpnPosition->Add(Vector(rand() % 3000, rand() % 1000, 10));
-	return;
+        for (int i = 0; i <= 8; i++)
+            HpnPosition->Add(Vector(rand() % 3000, rand() % 1000, 10));
+        return;
     }
     int x_start = 2000;
     int y_start = 2000;
@@ -277,7 +280,7 @@ void WriteMetrics()
 {
     NS_LOG_DEBUG(Simulator::Now().GetSeconds() << " Segundos...");
     NS_LOG_DEBUG("Realizados " << handNumber << " Handover");
-    for (int i = 0; i < 11; ++i){
+    for (int i = 0; i < 11; ++i) {
         for (int u = 0; u < node_ue; ++u)
             if (cell_ue[i][u]) {
                 std::stringstream rdTrace;
@@ -322,12 +325,18 @@ void WriteMetrics()
                     qosOutFile << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos;
                     NS_LOG_DEBUG("NODE " << u << " QOS ESTIMADO " << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos);
 
+                    std::stringstream rntiQosFileName;
+                    rntiQosFileName << "rnti/" << cell_ue[i][u] << "-qos.txt";
+
+                    ofstream rntiQosFile;
+                    rntiQosFile.open(rntiQosFileName.str());
+                    rntiQosFile << ((float)nReceived - 1) / 60 - valorAtualQos;
+
                     //CALCULO DE QOS POR MÉDIA SIMPLES
                     //qosSum[i] += ((float)nReceived - 1) / 60;
                     //qosMetricsIterator[i]++;
                     //qosOutFile << qosSum[i] / qosMetricsIterator[i];
                     //NS_LOG_DEBUG("NODE " << u << " QOS ESTIMADO " << qosSum[i] / qosMetricsIterator[i]);
-
                 }
 
                 /*--------------------------------------------------------*/
@@ -404,8 +413,6 @@ void WriteMetrics()
                     ofstream qoeOutFile(qoeFileName.str(),
                         std::ofstream::out | std::ofstream::trunc);
 
-
-
                     cmd << "python2.7 ia.py " << ILoss << " " << PLoss << " " << BLoss
                         << " 20";
 
@@ -418,18 +425,17 @@ void WriteMetrics()
                     //qoeMetricsIterator[i]++;
                     //qoeOutFile << qoeSum[i] / qoeMetricsIterator[i];
 
-                    std::stringstream rntiFileName;
-                    rntiFileName << "rnti/" << cell_ue[i][u] << "-qoe.txt";
+                    std::stringstream rntiQoeFileName;
+                    rntiQoeFileName << "rnti/" << cell_ue[i][u] << "-qoe.txt";
 
-                    ofstream rntiFile;
-                    rntiFile.open(rntiFileName.str());
-                    rntiFile << stod(exec(cmd.str().c_str()));
-
+                    ofstream rntiQoeFile;
+                    rntiQoeFile.open(rntiQoeFileName.str());
+                    rntiQoeFile << stod(exec(cmd.str().c_str()));
 
                     //NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeSum[i] / qoeMetricsIterator[i]);
                 }
             }
-        }
+    }
     NS_LOG_INFO("\n\n\n\n");
     return;
 }
@@ -472,6 +478,20 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
     }
 }
 
+void showPosition(Ptr<Node> node, double deltaTime)
+{
+    uint32_t nodeId = node->GetId();
+    Ptr<MobilityModel> mobModel = node->GetObject<MobilityModel>();
+    Vector3D pos = mobModel->GetPosition();
+    Vector3D speed = mobModel->GetVelocity();
+    cout << "At " << Simulator::Now().GetSeconds() << " seconds, "
+         << " node " << nodeId
+         << "):  Speed(" << speed.x << ", " << speed.y << ")  Position(" << pos.x << ", " << pos.y << ")"
+                                                                                                      "\n";
+
+    Simulator::Schedule(Seconds(deltaTime), &showPosition, node, deltaTime);
+}
+
 /*--------------------------MAIN FUNCTION-------------------------*/
 int main(int argc, char* argv[])
 {
@@ -493,8 +513,6 @@ int main(int argc, char* argv[])
 
     // void WriteMetrics();
 
-
-
     /*--------------------- COMMAND LINE PARSING -------------------*/
     //std::string entradaSumo = "mobil/reta2km.tcl"; // Mobilidade usada
     std::string entradaSumo = "mobil/rapido.tcl"; // Mobilidade usada
@@ -504,15 +522,14 @@ int main(int argc, char* argv[])
     cmm.AddValue("handoverAlg", "Handover algorith in use", handoverAlg);
     cmm.Parse(argc, argv);
 
-
-    RngSeedManager::SetSeed (seedValue); //valor de seed para geração de números aleatórios
+    RngSeedManager::SetSeed(seedValue); //valor de seed para geração de números aleatórios
 
     // asssertions
     //NS_ASSERT_MSG(node_ue < 51, "exceeded number of nodes.");
     NS_ASSERT_MSG(enb_HPN + low_power + hot_spot <= 77, "Too many towers.");
-    if (luca){
-	NS_ASSERT_MSG(enb_HPN == 3, "this scenario should only have 3 HPNs");
-	NS_ASSERT_MSG(low_power == 8, "this scenario should only have 8 LPNs");
+    if (luca) {
+        //NS_ASSERT_MSG(enb_HPN == 3, "this scenario should only have 3 HPNs");
+        //NS_ASSERT_MSG(low_power == 8, "this scenario should only have 8 LPNs");
     }
 
     // Logs
@@ -535,8 +552,8 @@ int main(int argc, char* argv[])
 
     //*********** CONFIGURAÇÃO LTE ***************//
     // Configuração padrão de Downlink e Uplink
-    Config::SetDefault("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue(6));
-    Config::SetDefault("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue(6));
+    Config::SetDefault("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue(25));
+    Config::SetDefault("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue(25));
 
     // Modo de transmissão (SISO [0], MIMO [1])
     Config::SetDefault("ns3::LteEnbRrc::DefaultTransmissionMode",
@@ -569,7 +586,7 @@ int main(int argc, char* argv[])
         lteHelper->SetHandoverAlgorithmAttribute("StartTime", UintegerValue(transmissionStart));
         lteHelper->SetHandoverAlgorithmAttribute("StopTime", UintegerValue(simTime));
         //lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
-            //TimeValue(MilliSeconds(512)));
+        //TimeValue(MilliSeconds(512)));
     }
 
     else if (handoverAlg == "noop")
@@ -643,7 +660,6 @@ int main(int argc, char* argv[])
 
     NodeContainer trens_nc;
     trens_nc.Create(trens);
-
 
     NodeContainer cbr_nodes;
     cbr_nodes.Create(n_cbr);
@@ -721,18 +737,21 @@ int main(int argc, char* argv[])
         Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
         ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
             1);
+        Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
     }
     for (uint32_t u = 0; u < carros_nc.GetN(); ++u) {
         Ptr<Node> ueNode = carros_nc.Get(u);
         Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
         ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
             1);
+        Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
     }
     for (uint32_t u = 0; u < trens_nc.GetN(); ++u) {
         Ptr<Node> ueNode = trens_nc.Get(u);
         Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
         ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
             1);
+        Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
     }
 
     /*-------------------------CONFIGURAÇÃO DE CBR-------------------------*/
@@ -760,7 +779,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
-        client.SetAttribute("PacketSize", UintegerValue(2000));
+        client.SetAttribute("PacketSize", UintegerValue(100));
 
         clientApps.Add(client.Install(remoteHost));
 
@@ -822,7 +841,6 @@ int main(int argc, char* argv[])
 
     /*---------------------- Simulation Stopping Time ----------------------*/
     Simulator::Stop(SIMULATION_TIME_FORMAT(simTime));
-
 
     /*--------------NOTIFICAÇÕES DE HANDOVER E SINAL-------------------------*/
     // Config::Connect("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
