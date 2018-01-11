@@ -779,7 +779,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
-        client.SetAttribute("PacketSize", UintegerValue(100));
+        client.SetAttribute("PacketSize", UintegerValue(1024));
 
         clientApps.Add(client.Install(remoteHost));
 

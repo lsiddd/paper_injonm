@@ -186,9 +186,10 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     }
     else {
         MeasurementRow_t::iterator it2;
-        double threshold = 0.7;
+        double threshold = 0;
 
         /*------------ASSOCIATE RNTI WITH CELLID------------*/
+        //retrieve cell id from files
         std::stringstream rntiPath;
         rntiPath << "rnti/" << rnti << ".txt";
 
@@ -203,7 +204,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }
 
         /*-----------------DEFINE PARAMETERS-----------------*/
-        uint16_t bestNeighbourCellId = 0;
+        uint16_t bestNeighbourCellId = b;
         //        uint8_t bestcell = 0;
 
         int i = 0;
@@ -249,7 +250,10 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             }
             // if (qoeAtual < 2)
             //     threshold = 0;
+            if (qoeAtual > 3.5)
+              return;
         }
+
 
         if (qosRntiFile.is_open()) {
             while (qosRntiFile >> qosAtual) {
@@ -400,7 +404,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             for (int i = 0; i < n_c; ++i){
                 if(cell[i][3] == b)
-                  NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<"*-- Soma Ahp:" << soma[i]);
+                  NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" ** Soma Ahp:" << soma[i]);
                 else
                   NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
                 NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);
