@@ -228,7 +228,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         double soma[n_c];
         double soma_res = 0;
         //        double res[n_c];
-        
+
         double qosAtual = 0;
         double qoeAtual = 0;
         //CURRENT QOE VALUE
@@ -305,7 +305,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         cell[i][0] = (uint16_t)servingCellRsrq;
         cell[i][1] = qoeAtual;
-        cell[i][2] = qosAtual;       
+        cell[i][2] = qosAtual;
 
         // if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
         //     cell[i][1] = 1;
@@ -399,7 +399,10 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= threshold) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             for (int i = 0; i < n_c; ++i){
-                NS_LOG_INFO("\n\n\nCélula " << i + 1 <<" -- Soma Ahp:" << soma[i]);
+                if(cell[i][3] == b)
+                  NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<"*-- Soma Ahp:" << soma[i]);
+                else
+                  NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
                 NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);
                 NS_LOG_INFO("         -- MOSp: " << cell[i][1]);
                 NS_LOG_INFO("         -- PDR: " << cell[i][2]);
