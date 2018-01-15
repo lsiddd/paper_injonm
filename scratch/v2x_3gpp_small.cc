@@ -78,7 +78,7 @@ const int node_ue = pedestres + carros + trens;
 
 uint16_t n_cbr = 3;
 const uint16_t enb_HPN = 3; // 7;
-const uint16_t low_power = 1; // 56;
+const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
@@ -506,6 +506,7 @@ int main(int argc, char* argv[])
 
     int seedValue = 1;
     double interPacketInterval = 0.01;
+    double threshold = 0.2;
 
     std::string handoverAlg = "ahp";
 
@@ -520,6 +521,7 @@ int main(int argc, char* argv[])
     CommandLine cmm;
     cmm.AddValue("seedValue", "valor de seed para aleatoriedade", seedValue);
     cmm.AddValue("handoverAlg", "Handover algorith in use", handoverAlg);
+    cmm.AddValue("Threshold", "Threshold do algoritmo", threshold);
     cmm.Parse(argc, argv);
 
     RngSeedManager::SetSeed(seedValue); //valor de seed para geração de números aleatórios
@@ -583,10 +585,9 @@ int main(int argc, char* argv[])
     /*----------------------ALGORITMO DE HANDOVER----------------------*/
     if (handoverAlg == "ahp") {
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
-        lteHelper->SetHandoverAlgorithmAttribute("StartTime", UintegerValue(transmissionStart));
-        lteHelper->SetHandoverAlgorithmAttribute("StopTime", UintegerValue(simTime));
         //lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
         //TimeValue(MilliSeconds(512)));
+        lteHelper->SetHandoverAlgorithmAttribute("Threshold", DoubleValue(threshold));
     }
 
     else if (handoverAlg == "noop")
@@ -792,13 +793,13 @@ int main(int argc, char* argv[])
     for (int i = 0; i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
-            enb0Phy->SetTxPower(46);
+            enb0Phy->SetTxPower(46/2);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(23);
+            enb0Phy->SetTxPower(23/2);
         }
         else {
-            enb0Phy->SetTxPower(15);
+            enb0Phy->SetTxPower(15/2);
         }
     }
 

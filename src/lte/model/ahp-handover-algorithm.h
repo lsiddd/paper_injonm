@@ -107,8 +107,7 @@ protected:
 private:
 
   Time m_timeToTrigger;
-  uint8_t StartTime;
-  uint8_t StopTime;
+  double  m_threshold;
   /**
    * Called when Event A2 is detected, then trigger a handover if needed.
    *

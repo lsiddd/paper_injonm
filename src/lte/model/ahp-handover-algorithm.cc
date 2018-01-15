@@ -79,16 +79,11 @@ AhpHandoverAlgorithm::GetTypeId()
                                 UintegerValue(1),
                                 MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
                                 MakeUintegerChecker<uint8_t>())
-                            .AddAttribute("StartTime",
-                                "start time",
-                                UintegerValue(0),
-                                MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
-                                MakeUintegerChecker<uint8_t>())
-                            .AddAttribute("StopTime",
-                                "stop time",
-                                UintegerValue(150),
-                                MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
-                                MakeUintegerChecker<uint8_t>())
+                            .AddAttribute("Threshold",
+                                "lorem ipsum",
+                                DoubleValue(0.2),
+                                MakeDoubleAccessor(&AhpHandoverAlgorithm::m_threshold),
+                                MakeDoubleChecker<double>())
                             .AddAttribute("TimeToTrigger",
                                 "Time during which neighbour cell's RSRP "
                                 "must continuously higher than serving cell's RSRP "
@@ -186,7 +181,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     }
     else {
         MeasurementRow_t::iterator it2;
-        double threshold = 0;
+        double threshold = AhpHandoverAlgorithm::m_threshold;
 
         /*------------ASSOCIATE RNTI WITH CELLID------------*/
         //retrieve cell id from files
@@ -308,8 +303,16 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         std::ifstream qoeFile(qoeFileName.str());
 
         cell[i][0] = (uint16_t)servingCellRsrq;
-        cell[i][1] = qoeAtual;
-        cell[i][2] = qosAtual;
+        if (qoeAtual)
+            cell[i][1] = qoeAtual;
+        else {
+            cell[i][1] = 5;
+        }
+        if(qosAtual)
+            cell[i][2] = qosAtual;
+        else 
+            cell[i][2] = 1;
+        cell[i][3] = b;
 
         // if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
         //     cell[i][1] = 1;
@@ -389,7 +392,15 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
                 bestNeighbourCellId = cell[i][3];
             }
         }
+        double second = 0;
+        int secondId = 0;
 
+        for (int i = 0; i < n_c; ++i) {
+            if (second < soma[i] && soma[i] < soma_res) {
+                second = soma[i];
+                secondId = cell[i][3];
+            }
+        }
         /*for (int i = 0; i < n_c; ++i){
            for (int u = 0; u < 4; ++u)
                std::cout << cell[i][u] << "\t";
@@ -400,11 +411,11 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         //std::cout << soma_res << "\n";
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
-        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res >= threshold) {
+        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res - second > threshold) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             for (int i = 0; i < n_c; ++i){
                 if(cell[i][3] == b)
-                  NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" ** Soma Ahp:" << soma[i]);
+                  NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
                 else
                   NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
                 NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);

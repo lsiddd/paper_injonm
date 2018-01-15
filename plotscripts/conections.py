@@ -4,11 +4,11 @@ import sys
 import re
 
 def main():
-    imsi = set()
-    serving = []
-    count = 0
-
     if (len(sys.argv) == 2):
+        imsi = set()
+        serving = []
+        count = 0
+
         with open(sys.argv[1]) as f:
             lines = f.readlines()
         for i in lines:

@@ -1,0 +1,100 @@
+Waf: Entering directory `/home/lucas/git/ns/build'
+Waf: Leaving directory `/home/lucas/git/ns/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (1.282s)
+Create Applications.
+0 Segundos...
+Realizados 0 Handover
+
+
+
+
+
+0.0202143 /NodeList/7/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 6: connected to CellId 1 with RNTI 1
+0.0202143 /NodeList/5/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 4: connected to CellId 2 with RNTI 1
+0.147214 /NodeList/6/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 5: connected to CellId 3 with RNTI 9
+0.260214 /NodeList/2/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 1: connected to CellId 1 with RNTI 3
+0.260214 /NodeList/3/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 2: connected to CellId 1 with RNTI 4
+0.260214 /NodeList/4/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 3: connected to CellId 1 with RNTI 2
+
+
+
+Célula 1 -- Soma Ahp:0.884498
+         -- RSRQ: 0.595745
+         -- MOSp: 1
+         -- PDR: 1
+
+
+
+Célula 4.64997e-310 -- Soma Ahp:0.115502
+         -- RSRQ: 0.404255
+         -- MOSp: 0
+         -- PDR: 0
+Triggering Handover -- RNTI: 1 -- cellId:1
+
+
+
+
+
+
+Célula 1 -- Soma Ahp:3.07067e-41
+         -- RSRQ: 0.531915
+         -- MOSp: 0.5
+         -- PDR: 0.5
+
+
+
+Célula 2 -- Soma Ahp:6.14133e-41
+         -- RSRQ: 0.468085
+         -- MOSp: 0.5
+         -- PDR: 0.5
+
+
+
+Célula 4.64997e-310 -- Soma Ahp:3.95253e-323
+         -- RSRQ: 0
+         -- MOSp: 0
+         -- PDR: 0
+Triggering Handover -- RNTI: 9 -- cellId:2
+
+
+
+0.936001 /NodeList/5/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 4: previously connected to CellId 2 with RNTI 1, doing handover to CellId 1
+0.936001 /NodeList/6/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 5: previously connected to CellId 3 with RNTI 9, doing handover to CellId 2
+0.940214 /NodeList/5/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 4: successful handover to CellId 1 with RNTI 5
+0.940214 /NodeList/6/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 5: successful handover to CellId 2 with RNTI 2
+1 Segundos...
+Realizados 2 Handover
+
+
+
+
+
+
+
+
+Célula 2 -- Soma Ahp:0.839286
+         -- RSRQ: 0.4375
+         -- MOSp: 1
+         -- PDR: 1
+
+
+
+Célula 4.64997e-310 -- Soma Ahp:0.160714
+         -- RSRQ: 0.5625
+         -- MOSp: 0
+         -- PDR: 0
+Triggering Handover -- RNTI: 5 -- cellId:2
+
+
+
+1.736 /NodeList/5/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 4: previously connected to CellId 1 with RNTI 5, doing handover to CellId 2
+1.74021 /NodeList/5/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 4: successful handover to CellId 2 with RNTI 3
+2 Segundos...
+Realizados 3 Handover
+
+
+
+
+
+Interrupted 
