@@ -521,7 +521,7 @@ int main(int argc, char* argv[])
     CommandLine cmm;
     cmm.AddValue("seedValue", "valor de seed para aleatoriedade", seedValue);
     cmm.AddValue("handoverAlg", "Handover algorith in use", handoverAlg);
-    cmm.AddValue("Threshold", "Threshold do algoritmo", threshold);
+    cmm.AddValue("threshold", "Threshold do algoritmo", threshold);
     cmm.Parse(argc, argv);
 
     RngSeedManager::SetSeed(seedValue); //valor de seed para geração de números aleatórios
