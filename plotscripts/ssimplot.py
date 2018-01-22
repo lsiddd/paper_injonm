@@ -16,9 +16,9 @@ for i in content:
     except ValueError:
         pass
 value = np.array(value)
-x = np.arange(0, 10, 10/len(value))
+x = np.arange(5, 15, 10/len(value))
 #y = np.arange(0, 1, 1/len(value))
-plt.xlim(0.0, 10)
+plt.xlim(0.0, 35)
 #plt.ylim(0.0, 1)
 plt.yticks(np.arange(0, 1, 0.1))
 #plt.xticks(np.arange(0, 10, 1/len(value)))
