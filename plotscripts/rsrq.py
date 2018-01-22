@@ -6,6 +6,7 @@ def main():
     if (len(sys.argv) == 2):
         imsi = set()
         serving = []
+        y = []
         count = 0
 
         with open(sys.argv[1]) as f:
@@ -22,9 +23,12 @@ def main():
             for k in lines:
                 if(k.split('\t')[2] == str(i)):
                     serving[count].append(10 * np.log10(float(k.split('\t')[5])))
-            plt.plot(serving[count], label='Rsrq (dbm) medido por Ue ' + str(count))
+                    y.append(float(k.split('\t')[0]))
+                    print("y length: " + str(len(y)) + "\n serving length: " + str(len(serving[count])))
+            plt.plot(y, serving[count], label='Rsrq (dbm) medido por Ue ' + str(count))
             plt.legend()
             count = count + 1
+            y = []
         plt.show()
 
     else:
