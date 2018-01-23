@@ -70,13 +70,13 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 10;
-const int carros = 10;
-const int trens = 10;
+const int pedestres = 0;
+const int carros = 0;
+const int trens = 3;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 3;
+uint16_t n_cbr = 11;
 const uint16_t enb_HPN = 3; // 7;
 const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
@@ -286,6 +286,8 @@ void WriteMetrics()
                 std::stringstream rdTrace;
                 rdTrace << "rd_a01_" << u;
                 std::ifstream rdFile(rdTrace.str());
+                if (!rdFile.good())
+                  return;
 
                 double rdTime;
                 std::string id;
@@ -330,7 +332,10 @@ void WriteMetrics()
 
                     ofstream rntiQosFile;
                     rntiQosFile.open(rntiQosFileName.str());
-                    rntiQosFile << ((float)nReceived - 1) / 60 - valorAtualQos;
+                    int qosResult = ((float) nReceived - 1) / 60;
+                    if (qosResult < 0)
+                        cout << "isajcbskjdvbsd";
+                    rntiQosFile << qosResult;
 
                     //CALCULO DE QOS POR MÉDIA SIMPLES
                     //qosSum[i] += ((float)nReceived - 1) / 60;
@@ -554,8 +559,8 @@ int main(int argc, char* argv[])
 
     //*********** CONFIGURAÇÃO LTE ***************//
     // Configuração padrão de Downlink e Uplink
-    Config::SetDefault("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue(25));
-    Config::SetDefault("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue(25));
+    Config::SetDefault("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue(6));
+    Config::SetDefault("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue(6));
 
     // Modo de transmissão (SISO [0], MIMO [1])
     Config::SetDefault("ns3::LteEnbRrc::DefaultTransmissionMode",
@@ -756,7 +761,7 @@ int main(int argc, char* argv[])
     }
 
     /*-------------------------CONFIGURAÇÃO DE CBR-------------------------*/
-    uint16_t otherPort = 3000;
+    uint16_t cbrPort = 3000;
     ApplicationContainer clientApps;
     ApplicationContainer serverApps;
 
@@ -772,11 +777,11 @@ int main(int argc, char* argv[])
         Ipv4Address addri = iaddr.GetLocal();
         PacketSinkHelper packetSinkHelper(
             "ns3::UdpSocketFactory",
-            InetSocketAddress(Ipv4Address::GetAny(), otherPort));
+            InetSocketAddress(Ipv4Address::GetAny(), cbrPort));
         serverApps.Add(packetSinkHelper.Install(cbr_nodes.Get(u)));
         serverApps.Start(Seconds(transmissionStart));
 
-        UdpClientHelper client(addri, otherPort);
+        UdpClientHelper client(addri, cbrPort);
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
