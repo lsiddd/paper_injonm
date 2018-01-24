@@ -71,12 +71,12 @@ using namespace std;
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
 const int pedestres = 0;
-const int carros = 0;
-const int trens = 3;
+const int carros = 10;
+const int trens = 0;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 11;
+uint16_t n_cbr = 0;
 const uint16_t enb_HPN = 3; // 7;
 const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
@@ -217,7 +217,7 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
         int y_start = 500;
         for (int i = x_start; i <= 2500; i += 1000)
             HpnPosition->Add(Vector(i, y_start, 25));
-        for (int i = 0; i <= 8; i++)
+        for (int i = 0; i <= 2; i++)
             HpnPosition->Add(Vector(rand() % 3000, rand() % 1000, 10));
         return;
     }
@@ -286,9 +286,10 @@ void WriteMetrics()
                 std::stringstream rdTrace;
                 rdTrace << "rd_a01_" << u;
                 std::ifstream rdFile(rdTrace.str());
-                if (!rdFile.good())
+                if (!rdFile){
+                  std::cout << "NO FILE TO BE READ" << '\n';
                   return;
-
+                }
                 double rdTime;
                 std::string id;
                 int rdPacketId;
@@ -334,7 +335,6 @@ void WriteMetrics()
                     rntiQosFile.open(rntiQosFileName.str());
                     int qosResult = ((float) nReceived - 1) / 60;
                     if (qosResult < 0)
-                        cout << "isajcbskjdvbsd";
                     rntiQosFile << qosResult;
 
                     //CALCULO DE QOS POR MÉDIA SIMPLES
@@ -545,6 +545,8 @@ int main(int argc, char* argv[])
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
+    LogComponentEnable("MultiHandoverAlgorithm", LOG_LEVEL_INFO);
+    LogComponentEnable("MultiHandoverAlgorithm", LOG_LEVEL_DEBUG);
     LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
     //LogComponentEnable("LteAnr", LOG_LEVEL_FUNCTION);
     /*LogComponentEnable("LteEnbNetDevice", LOG_LEVEL_FUNCTION);
@@ -553,7 +555,7 @@ int main(int argc, char* argv[])
 
     //-------------Parâmetros da simulação
     uint16_t node_remote = 1; // HOST_REMOTO
-    for (double t = 0; t < simTime; t += 1)
+    for (double t = 5; t < simTime; t += 1)
         Simulator::Schedule(Seconds(t), &WriteMetrics);
     /*----------------------------------------------------------------------*/
 
@@ -611,6 +613,11 @@ int main(int argc, char* argv[])
             UintegerValue(30));
         lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
             UintegerValue(2));
+    }
+
+    else if (handoverAlg == "multi"){
+      lteHelper->SetHandoverAlgorithmType("ns3::MultiHandoverAlgorithm");
+      std::cout << "udncjncjksnDVKJN" << '\n';
     }
 
     ConfigStore inputConfig;
