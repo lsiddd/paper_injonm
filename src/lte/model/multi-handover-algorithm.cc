@@ -161,6 +161,8 @@ void MultiHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 void MultiHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     uint8_t servingCellRsrq, uint16_t measId)
 {
+  if (Simulator::Now().GetSeconds() < 5)
+    return;
     /*if (Simulator::Now().GetSeconds() < Seconds(StartTime)){
        std::cout << "skip\n";
        return;
@@ -243,6 +245,8 @@ void MultiHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         if (qoeRntiFile.is_open()) {
             while (qoeRntiFile >> qoeAtual) {
             }
+            if(qoeAtual > 3)
+              return;
         }
 
 
@@ -306,7 +310,7 @@ void MultiHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         cell[i][3] = b;
 
         for (i = 0; i < n_c; ++i){
-          soma[i] = cell[i][0] * 2 + cell[i][1] * 4 + cell[i][2];
+          soma[i] = cell[i][0] * 0.2 + cell[i][1] * 0.4 + 0.1 * cell[i][2];
           if (soma[i] > soma_res){
             soma_res = soma[i];
             bestNeighbourCellId = cell[i][3];
@@ -314,7 +318,7 @@ void MultiHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
-        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b) {
+        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b && soma_res > 5) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             for (int i = 0; i < n_c; ++i){
                 if(cell[i][3] == b)

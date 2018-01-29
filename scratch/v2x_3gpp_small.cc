@@ -70,13 +70,13 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 0;
+const int pedestres = 10;
 const int carros = 10;
-const int trens = 0;
+const int trens = 10;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 0;
+uint16_t n_cbr = 3;
 const uint16_t enb_HPN = 3; // 7;
 const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
@@ -805,13 +805,13 @@ int main(int argc, char* argv[])
     for (int i = 0; i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
-            enb0Phy->SetTxPower(46/2);
+            enb0Phy->SetTxPower(46);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(23/2);
+            enb0Phy->SetTxPower(23);
         }
         else {
-            enb0Phy->SetTxPower(15/2);
+            enb0Phy->SetTxPower(15);
         }
     }
 
