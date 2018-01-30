@@ -70,9 +70,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 10;
-const int carros = 10;
-const int trens = 10;
+const int pedestres = 20;
+const int carros = 20;
+const int trens = 20;
 
 const int node_ue = pedestres + carros + trens;
 

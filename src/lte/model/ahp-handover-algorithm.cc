@@ -161,15 +161,6 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     uint8_t servingCellRsrq, uint16_t measId)
 {
-    /*if (Simulator::Now().GetSeconds() < Seconds(StartTime)){
-       std::cout << "skip\n";
-       return;
-    }
-    if (Simulator::Now().GetSeconds() > Seconds(StopTime)){
-       std::cout << "skip\n";
-       return;
-    }*/
-
     NS_LOG_FUNCTION(this << rnti << (uint16_t)servingCellRsrq);
 
     /*------------FIND MEASURES FOR GIVEN RNTI------------*/
@@ -190,9 +181,9 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         std::ifstream servingCellId(rntiPath.str());
 
-        /*if (servingCellId.fail()) {
+        if (servingCellId.fail()) {
             return;
-        }*/
+        }
 
         int a, b; //aux variables
         while (servingCellId >> a >> b) {
@@ -314,79 +305,30 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             cell[i][2] = 0;
         cell[i][3] = b;
 
-        // if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-        //     cell[i][1] = 1;
-        // else
-        //     while (qoeFile >> qoeResult)
-        //         cell[i][1] = stod(qoeResult);
-        // if (cell[i][1] >= 4)
-        //     return;
-
-        // if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
-        //     cell[i][2] = 0;
-        // else
-        //     while (qosFile >> qosResult)
-        //         cell[i][2] = stod(qosResult);
-        // if (cell[i][2] >= 0.9)
-        //     return;
-
         //----------------------------------------------------------------------------//
         /*-----------------------------MATRIX CALCULATION-----------------------------*/
         double prioridades[n_p][n_p];  // matriz de prioridades
         double prioridades_aux[n_p][n_p];  // matriz ao quadrado
 
-        for (int i = 0; i < n_p; i++)
-          for (int j = 0; j < n_p; j++)
-            prioridades[i][j] = (float)parametros[i] / (float)parametros[j];
-        /*---------------------OBTER O AUTOVETOR--------------------------*/
-        do {
-          for (int i = 0; i < n_p; i++) {
-            eigenvector_aux[i] = eigenvector[i];
-          }
-          // elevar a matriz de prioridades ao quadrado
-          for (int i = 0; i < n_p; i++)
-            for (int j = 0; j < n_p; j++)
-              prioridades_aux[i][j] = prioridades[i][0] * prioridades[0][j] +
-                                      prioridades[i][1] * prioridades[1][j] +
-                                      prioridades[i][2] * prioridades[2][j];
-          for (int i = 0; i < n_p; i++)
-            for (int j = 0; j < n_p; j++) prioridades[i][j] = prioridades_aux[i][j];
-          // soma das linhas das prioridades
-          for (int i = 0; i < n_p; i++)
-            for (int j = 0; j < n_p; j++) prior_sum += prioridades[i][j];
-
-          // porcentagem de prioridade de cada
-          for (int i = 0; i < n_p; i++) {
-            eigenvector[i] =
-                (prioridades[i][0] + prioridades[i][1] + prioridades[i][2]) /
-                prior_sum;
-          }
-          counter++;
-        } while (eigenvector[0] != eigenvector_aux[0] ||
-                 eigenvector[1] != eigenvector_aux[1] ||
-                 eigenvector[2] != eigenvector_aux[2]);
-
-        /*-------------TRATAR O RSRQ------------------------------------------*/
-        //O RSRQ CONSTITUI UMA VARIÁVEL QUE QUANTO MENOR O VALOR ABSOLUTO MELHOR
-        //ENTÃO TEM QUE PRIMEIRO SER TRATADA PARA ENTRAR NO AHP
-        /*for (int i = 0; i < n_c; ++i)
-          soma_rsrq += cell[i][0];
-        for (int i = 0; i < n_c; ++i)
-          cell[i][0] = soma_rsrq / cell[i][0];  */
         /*-----------------------RESULTADO NÃO NORMALIZADO-------------------*/
-        for (int i = 0; i < n_c; ++i)
-          for (int j = 0; j < n_p; ++j)
-            soma[i] += cell[i][j]*eigenvector[j];
-        /*------------------------RESPOSTA FINAL-----------------------------*/
-        for (int i = 0; i < n_c; ++i)
-          soma_res += soma[i];
-        for (int i = 0; i < n_c; ++i)
-        {
-          res[i] = soma[i]/soma_res;
+
+        /*for (int i = 0; i < n_c; ++i)
+          for (int j = 0; j < n_p; ++j) soma[i] += cell[i][j]*eigenvector[j];*/
+        for (int i = 0; i < n_c; ++i){
+          soma[i] = cell[i][0] * 0.28;
+          soma[i] += cell[i][1] * 0.57;
+          soma[i] += cell[i][2] * 0.14;
         }
+        /*------------------------RESPOSTA FINAL-----------------------------*/
+        //for (int i = 0; i < n_c; ++i)
+        //  soma_res += soma[i];
+        //for (int i = 0; i < n_c; ++i)
+        //{
+        //  res[i] = soma[i]/soma_res;
+        //}
 
         for (i = 0; i < n_c; ++i){
-          if (res[i] > soma_res){
+          if (soma[i] > soma_res){
               bestNeighbourCellId = cell[i][3];
           }
         }
@@ -398,19 +340,21 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }*/
 
         //std::cout << soma_res << "\n";
+        NS_LOG_INFO("------------------------------------------------------------------------");
+        for (int i = 0; i < n_c; ++i){
+          if(cell[i][3] == b)
+          NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
+          else
+          NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
+          NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);
+          NS_LOG_INFO("         -- MOSp: " << cell[i][1]);
+          NS_LOG_INFO("         -- PDR: " << cell[i][2]);
+        }
+        NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
         if (bestNeighbourCellId != 0 && bestNeighbourCellId != b) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
-            for (int i = 0; i < n_c; ++i){
-                if(cell[i][3] == b)
-                  NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
-                else
-                  NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
-                NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);
-                NS_LOG_INFO("         -- MOSp: " << cell[i][1]);
-                NS_LOG_INFO("         -- PDR: " << cell[i][2]);
-            }
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId << "\n\n\n");
         }
     } // end of else of if (it1 == m_neighbourCellMeasures.end ())
