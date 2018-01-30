@@ -213,7 +213,6 @@ A2A4RsrqHandoverAlgorithm::EvaluateHandover (uint16_t rnti,
         {
           NS_LOG_LOGIC ("Best neighbour cellId " << bestNeighbourCellId);
 
-
           if ((bestNeighbourRsrq - servingCellRsrq) >= m_neighbourCellOffset)
             {
               NS_LOG_LOGIC ("Trigger Handover to cellId " << bestNeighbourCellId);

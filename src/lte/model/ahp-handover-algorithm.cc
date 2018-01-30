@@ -141,7 +141,8 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 {
     NS_LOG_FUNCTION(this << rnti << (uint16_t)measResults.measId);
 
-    EvaluateHandover(rnti, measResults.rsrqResult, (uint16_t)measResults.measId);
+    EvaluateHandover(rnti, measResults.rsrqResult, (uint16_t)measResults.measId, (uint16_t) measResults.servingCellId);
+
     if (measResults.haveMeasResultNeighCells
         && !measResults.measResultListEutra.empty()) {
         for (std::list<LteRrcSap::MeasResultEutra>::iterator it = measResults.measResultListEutra.begin();
@@ -159,7 +160,7 @@ void AhpHandoverAlgorithm::DoReportUeMeas(uint16_t rnti,
 } // end of DoReportUeMeas
 
 void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
-    uint8_t servingCellRsrq, uint16_t measId)
+    uint8_t servingCellRsrq, uint16_t measId, uint16_t servingCellId)
 {
     NS_LOG_FUNCTION(this << rnti << (uint16_t)servingCellRsrq);
 
@@ -179,15 +180,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         std::stringstream rntiPath;
         rntiPath << "rnti/" << rnti << ".txt";
 
-        std::ifstream servingCellId(rntiPath.str());
-
-        if (servingCellId.fail()) {
-            return;
-        }
-
-        int a, b; //aux variables
-        while (servingCellId >> a >> b) {
-        }
+        uint16_t b;
+        b = servingCellId;
 
         /*-----------------DEFINE PARAMETERS-----------------*/
         uint16_t bestNeighbourCellId = b;
@@ -330,8 +324,10 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         for (i = 0; i < n_c; ++i){
           if (soma[i] > soma_res){
               bestNeighbourCellId = cell[i][3];
+              soma_res = soma[i];
           }
         }
+        NS_LOG_INFO("Best Neighbor Cell ID: " << bestNeighbourCellId);
         /*for (int i = 0; i < n_c; ++i){
            for (int u = 0; u < 4; ++u)
                std::cout << cell[i][u] << "\t";
@@ -353,7 +349,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
-        if (bestNeighbourCellId != 0 && bestNeighbourCellId != b) {
+        if (bestNeighbourCellId != b) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId << "\n\n\n");
         }

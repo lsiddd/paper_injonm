@@ -114,8 +114,9 @@ private:
    * \param rnti The RNTI of the UE who reported the event.
    * \param servingCellRsrq The RSRQ of this cell as reported by the UE.
    */
-  void EvaluateHandover (uint16_t rnti, uint8_t servingCellRsrq, uint16_t measId);
-  /**
+   void EvaluateHandover(uint16_t rnti,
+       uint8_t servingCellRsrq, uint16_t measId, uint16_t servingCellId);
+         /**
    * Determines if a neighbour cell is a valid destination for handover.
    * Currently always return true.
    *
