@@ -70,9 +70,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 20;
-const int carros = 20;
-const int trens = 20;
+const int pedestres = 60;
+const int carros = 60;
+const int trens = 60;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -130,7 +130,8 @@ void NotifyConnectionEstablishedUe(std::string context,
     std::stringstream strrnti;
     strrnti << rnti;
 
-    if (mkdir("./rnti",S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0){}
+    if (mkdir("./rnti", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0) {
+    }
     std::ofstream ofs("rnti/" + strrnti.str() + ".txt"); //, ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
@@ -215,9 +216,9 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     if (luca) {
         int x_start = 500;
         int y_start = 500;
-        for (int i = x_start; i <= 2500; i += 1000)
-            HpnPosition->Add(Vector(i, y_start, 25));
-        for (int i = 0; i <= 2; i++)
+        for (int i = x_start; i <= enb_HPN; ++i)
+            HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
+        for (int i = 0; i <= low_power; ++i)
             HpnPosition->Add(Vector(rand() % 3000, rand() % 1000, 10));
         return;
     }
@@ -286,9 +287,9 @@ void WriteMetrics()
                 std::stringstream rdTrace;
                 rdTrace << "rd_a01_" << u;
                 std::ifstream rdFile(rdTrace.str());
-                if (!rdFile){
-                  std::cout << "NO FILE TO BE READ" << '\n';
-                  return;
+                if (!rdFile) {
+                    std::cout << "NO FILE TO BE READ" << '\n';
+                    return;
                 }
                 double rdTime;
                 std::string id;
@@ -333,9 +334,9 @@ void WriteMetrics()
 
                     ofstream rntiQosFile;
                     rntiQosFile.open(rntiQosFileName.str());
-                    int qosResult = ((float) nReceived - 1) / 60;
+                    int qosResult = ((float)nReceived - 1) / 60;
                     if (qosResult < 0)
-                    rntiQosFile << qosResult;
+                        rntiQosFile << qosResult;
 
                     //CALCULO DE QOS POR MÉDIA SIMPLES
                     //qosSum[i] += ((float)nReceived - 1) / 60;
@@ -615,9 +616,9 @@ int main(int argc, char* argv[])
             UintegerValue(2));
     }
 
-    else if (handoverAlg == "multi"){
-      lteHelper->SetHandoverAlgorithmType("ns3::MultiHandoverAlgorithm");
-      std::cout << "udncjncjksnDVKJN" << '\n';
+    else if (handoverAlg == "multi") {
+        lteHelper->SetHandoverAlgorithmType("ns3::MultiHandoverAlgorithm");
+        std::cout << "udncjncjksnDVKJN" << '\n';
     }
 
     ConfigStore inputConfig;

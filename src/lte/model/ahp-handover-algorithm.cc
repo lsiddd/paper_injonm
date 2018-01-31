@@ -327,7 +327,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
               soma_res = soma[i];
           }
         }
-        NS_LOG_INFO("Best Neighbor Cell ID: " << bestNeighbourCellId);
         /*for (int i = 0; i < n_c; ++i){
            for (int u = 0; u < 4; ++u)
                std::cout << cell[i][u] << "\t";
@@ -346,6 +345,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
           NS_LOG_INFO("         -- MOSp: " << cell[i][1]);
           NS_LOG_INFO("         -- PDR: " << cell[i][2]);
         }
+        NS_LOG_INFO("\n\nBest Neighbor Cell ID: " << bestNeighbourCellId);
         NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
