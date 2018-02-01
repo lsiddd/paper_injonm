@@ -70,9 +70,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 60;
-const int carros = 60;
-const int trens = 60;
+const int pedestres = 10;
+const int carros = 10;
+const int trens = 10;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -82,7 +82,7 @@ const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
-int distancia = 500; //distância entre torres HPN (mínima)
+int distancia = 1000; //distância entre torres HPN (mínima)
 
 double simTime = 30.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 5;
@@ -222,8 +222,8 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
             HpnPosition->Add(Vector(rand() % 3000, rand() % 1000, 10));
         return;
     }
-    int x_start = 2000;
-    int y_start = 2000;
+    int x_start = 1000;
+    int y_start = 1000;
 
     HpnPosition->Add(Vector(x_start, y_start, 25));
 
@@ -666,6 +666,7 @@ int main(int argc, char* argv[])
 
     /*------------------- Criacao de UEs-Enb--------------------------*/
     // UE - Veículos
+
     NodeContainer pedestres_nc;
     pedestres_nc.Create(pedestres);
 
@@ -712,10 +713,16 @@ int main(int argc, char* argv[])
     // LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
 
     /*---------------MONILIDADE DOS CARROS------------------------------*/
-    Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/lucaPedestre.tcl");
-    Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/lucaCarro.tcl");
-    Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/lucaTrem.tcl");
 
+    Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+    Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+    Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+
+    if(luca){
+      Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/lucaPedestre.tcl");
+      Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/lucaCarro.tcl");
+      Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/lucaTrem.tcl");
+    }
     //mobility.Install(ueNodes.Begin(), ueNodes.End());
     mobil_ped.Install(pedestres_nc.Begin(), pedestres_nc.End());
     mobil_carro.Install(carros_nc.Begin(), carros_nc.End());
