@@ -84,8 +84,8 @@ int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 1000; //distância entre torres HPN (mínima)
 
-double simTime = 30.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 5;
+double simTime = 70.0; // TEMPO_SIMULAÇÃO
+int transmissionStart = 35;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -511,7 +511,7 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
     int seedValue = 1;
-    double interPacketInterval = 0.01;
+    double interPacketInterval = 0.001;
     double threshold = 0.2;
 
     std::string handoverAlg = "ahp";
@@ -593,8 +593,6 @@ int main(int argc, char* argv[])
     /*----------------------ALGORITMO DE HANDOVER----------------------*/
     if (handoverAlg == "ahp") {
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
-        //lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
-        //TimeValue(MilliSeconds(512)));
         lteHelper->SetHandoverAlgorithmAttribute("Threshold", DoubleValue(threshold));
     }
 
@@ -618,7 +616,6 @@ int main(int argc, char* argv[])
 
     else if (handoverAlg == "multi") {
         lteHelper->SetHandoverAlgorithmType("ns3::MultiHandoverAlgorithm");
-        std::cout << "udncjncjksnDVKJN" << '\n';
     }
 
     ConfigStore inputConfig;
@@ -848,9 +845,9 @@ int main(int argc, char* argv[])
     requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart);
     requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart);
 
-    //requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart + 20);
-    //requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart + 20);
-    //requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart + 20);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");
