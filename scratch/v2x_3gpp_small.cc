@@ -76,7 +76,7 @@ const int trens = 10;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 3;
+uint16_t n_cbr = 5;
 const uint16_t enb_HPN = 3; // 7;
 const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
@@ -85,7 +85,7 @@ int txpower = 15; //  Lte Ue Tx Power
 int distancia = 1000; //distância entre torres HPN (mínima)
 
 double simTime = 70.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 35;
+int transmissionStart = 5;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -214,12 +214,13 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     srand(seedValue);
 
     if (luca) {
-        int x_start = 500;
-        int y_start = 500;
+        int x_start = 1800;
+        int y_start = 1800;
         for (int i = x_start; i <= enb_HPN; ++i)
-            HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
+            HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
+            //HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
         for (int i = 0; i <= low_power; ++i)
-            HpnPosition->Add(Vector(rand() % 3000, rand() % 1000, 10));
+            HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
         return;
     }
     int x_start = 1000;

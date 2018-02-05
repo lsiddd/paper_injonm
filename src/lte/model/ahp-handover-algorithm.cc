@@ -226,8 +226,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         if (qosRntiFile.is_open()) {
             while (qosRntiFile >> qosAtual) {
             }
-            // if (qosAtual < 0.5)
-            //     threshold = 0;
         }
         if (qosAtual < 0)
           qosAtual = 0;
@@ -248,7 +246,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             cell[i][0] = (uint16_t)it2->second->m_rsrq;
 
             if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][1] = 0; //prioritize cells not used
+                cell[i][1] = 0;
             else
                 while (qoeFile >> qoeResult)
                     cell[i][1] = stod(qoeResult);
@@ -296,13 +294,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
           soma[i] += cell[i][1] * 0.28;
           soma[i] += cell[i][2] * 0.14;
         }
-        /*------------------------RESPOSTA FINAL-----------------------------*/
-        //for (int i = 0; i < n_c; ++i)
-        //  soma_res += soma[i];
-        //for (int i = 0; i < n_c; ++i)
-        //{
-        //  res[i] = soma[i]/soma_res;
-        //}
 
         for (i = 0; i < n_c; ++i){
           if (soma[i] > soma_res){
@@ -310,32 +301,24 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
               soma_res = soma[i];
           }
         }
-        /*for (int i = 0; i < n_c; ++i){
-           for (int u = 0; u < 4; ++u)
-               std::cout << cell[i][u] << "\t";
-           std::cout << soma[i];
-           std::cout << std::endl;
-        }*/
-
-        //std::cout << soma_res << "\n";
-        NS_LOG_INFO("------------------------------------------------------------------------");
+        NS_LOG_INFO("\n\n\n------------------------------------------------------------------------");
         for (int i = 0; i < n_c; ++i){
           if(cell[i][3] == servingCellId)
-          NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
+          NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
           else
-          NS_LOG_INFO("\n\n\nCélula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
+          NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
           NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);
           NS_LOG_INFO("         -- MOSp: " << cell[i][1]);
-          NS_LOG_INFO("         -- PDR: " << cell[i][2]);
+          NS_LOG_INFO("         -- PDR: " << cell[i][2] << "\n");
         }
         NS_LOG_INFO("\n\nBest Neighbor Cell ID: " << bestNeighbourCellId);
-        NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
         if (bestNeighbourCellId != servingCellId) {
             m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
             NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId << "\n\n\n");
         }
+        NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
     } // end of else of if (it1 == m_neighbourCellMeasures.end ())
 
 } // end of EvaluateMeasurementReport
