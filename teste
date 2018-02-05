@@ -1,100 +1,6482 @@
 Waf: Entering directory `/home/lucas/git/ns/build'
 Waf: Leaving directory `/home/lucas/git/ns/build'
 Build commands will be stored in build/compile_commands.json
-'build' finished successfully (1.282s)
+'build' finished successfully (1.493s)
 Create Applications.
-0 Segundos...
-Realizados 0 Handover
+0.0202143 /NodeList/63/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 62: connected to CellId 1 with RNTI 1
+0.0202143 /NodeList/64/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 63: connected to CellId 2 with RNTI 1
+0.260214 /NodeList/51/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 50: connected to CellId 1 with RNTI 2
+0.260214 /NodeList/48/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 47: connected to CellId 2 with RNTI 2
+0.265214 /NodeList/27/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 26: connected to CellId 1 with RNTI 11
+0.265214 /NodeList/33/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 32: connected to CellId 2 with RNTI 11
+0.269214 /NodeList/62/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 61: connected to CellId 6 with RNTI 16
+0.271214 /NodeList/24/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 23: connected to CellId 1 with RNTI 26
+0.271214 /NodeList/45/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 44: connected to CellId 2 with RNTI 21
+0.277214 /NodeList/10/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 9: connected to CellId 1 with RNTI 46
+0.283214 /NodeList/19/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 18: connected to CellId 1 with RNTI 60
+0.289214 /NodeList/22/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 21: connected to CellId 1 with RNTI 74
+0.295214 /NodeList/54/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 53: connected to CellId 1 with RNTI 99
+0.301214 /NodeList/56/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 55: connected to CellId 1 with RNTI 118
+0.301214 /NodeList/15/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 14: connected to CellId 2 with RNTI 54
+0.307214 /NodeList/50/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 49: connected to CellId 1 with RNTI 135
+0.307214 /NodeList/5/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 4: connected to CellId 2 with RNTI 60
+0.313214 /NodeList/35/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 34: connected to CellId 1 with RNTI 156
+0.313214 /NodeList/39/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 38: connected to CellId 2 with RNTI 67
+0.319214 /NodeList/8/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 7: connected to CellId 1 with RNTI 172
+0.325214 /NodeList/7/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 6: connected to CellId 1 with RNTI 189
+0.325214 /NodeList/9/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 8: connected to CellId 2 with RNTI 76
+0.331214 /NodeList/30/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 29: connected to CellId 1 with RNTI 211
+0.331214 /NodeList/25/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 24: connected to CellId 2 with RNTI 81
+0.337214 /NodeList/6/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 5: connected to CellId 1 with RNTI 228
+0.343214 /NodeList/16/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 15: connected to CellId 1 with RNTI 249
+0.343214 /NodeList/13/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 12: connected to CellId 2 with RNTI 88
+0.355214 /NodeList/59/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 58: connected to CellId 1 with RNTI 283
+0.361214 /NodeList/61/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 60: connected to CellId 1 with RNTI 297
+0.361214 /NodeList/17/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 16: connected to CellId 2 with RNTI 95
+0.367214 /NodeList/49/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 48: connected to CellId 1 with RNTI 312
+0.367214 /NodeList/53/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 52: connected to CellId 2 with RNTI 97
+0.373214 /NodeList/47/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 46: connected to CellId 1 with RNTI 326
+0.379214 /NodeList/55/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 54: connected to CellId 1 with RNTI 344
+0.385214 /NodeList/23/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 22: connected to CellId 1 with RNTI 356
+0.391214 /NodeList/52/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 51: connected to CellId 1 with RNTI 381
+0.397214 /NodeList/21/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 20: connected to CellId 1 with RNTI 397
+0.403214 /NodeList/26/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 25: connected to CellId 1 with RNTI 411
+0.409214 /NodeList/40/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 39: connected to CellId 1 with RNTI 429
+0.415214 /NodeList/60/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 59: connected to CellId 1 with RNTI 450
+0.421214 /NodeList/44/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 43: connected to CellId 1 with RNTI 468
+0.427214 /NodeList/29/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 28: connected to CellId 1 with RNTI 482
+0.433214 /NodeList/3/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 2: connected to CellId 1 with RNTI 497
+0.445214 /NodeList/43/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 42: connected to CellId 1 with RNTI 523
+0.457214 /NodeList/12/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 11: connected to CellId 1 with RNTI 557
+0.463214 /NodeList/4/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 3: connected to CellId 1 with RNTI 570
+0.469214 /NodeList/37/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 36: connected to CellId 1 with RNTI 584
+0.475214 /NodeList/42/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 41: connected to CellId 1 with RNTI 595
+0.481214 /NodeList/38/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 37: connected to CellId 1 with RNTI 606
+0.487214 /NodeList/20/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 19: connected to CellId 1 with RNTI 617
+0.499214 /NodeList/2/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 1: connected to CellId 1 with RNTI 636
+0.505214 /NodeList/57/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 56: connected to CellId 1 with RNTI 643
+0.511214 /NodeList/31/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 30: connected to CellId 1 with RNTI 653
+0.517214 /NodeList/36/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 35: connected to CellId 1 with RNTI 664
+0.523214 /NodeList/14/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 13: connected to CellId 1 with RNTI 668
+0.529214 /NodeList/41/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 40: connected to CellId 1 with RNTI 675
+0.535214 /NodeList/46/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 45: connected to CellId 1 with RNTI 683
+0.541214 /NodeList/18/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 17: connected to CellId 1 with RNTI 690
+0.547214 /NodeList/58/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 57: connected to CellId 1 with RNTI 696
+0.553214 /NodeList/28/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 27: connected to CellId 1 with RNTI 701
+0.559214 /NodeList/34/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 33: connected to CellId 1 with RNTI 705
+0.566214 /NodeList/11/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 10: connected to CellId 1 with RNTI 708
+0.571214 /NodeList/32/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 31: connected to CellId 1 with RNTI 710
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
 
 
 
-
-
-0.0202143 /NodeList/7/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 6: connected to CellId 1 with RNTI 1
-0.0202143 /NodeList/5/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 4: connected to CellId 2 with RNTI 1
-0.147214 /NodeList/6/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 5: connected to CellId 3 with RNTI 9
-0.260214 /NodeList/2/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 1: connected to CellId 1 with RNTI 3
-0.260214 /NodeList/3/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 2: connected to CellId 1 with RNTI 4
-0.260214 /NodeList/4/DeviceList/1/LteUeRrc/ConnectionEstablished UE IMSI 3: connected to CellId 1 with RNTI 2
-
-
-
-Célula 1 -- Soma Ahp:0.884498
-         -- RSRQ: 0.595745
-         -- MOSp: 1
-         -- PDR: 1
-
-
-
-Célula 4.64997e-310 -- Soma Ahp:0.115502
-         -- RSRQ: 0.404255
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
          -- MOSp: 0
          -- PDR: 0
-Triggering Handover -- RNTI: 1 -- cellId:1
+
+
+
+Célula 2 -- Soma Ahp:7.56 (serving)
+         -- RSRQ: 27
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
 
 
 
 
+At 0 seconds,  node 2):  Speed(0, 0)  Position(0.32, -4.95)
+At 0 seconds,  node 3):  Speed(0, 0)  Position(2999.68, 8.25)
+At 0 seconds,  node 4):  Speed(0, 0)  Position(0.32, -1.65)
+At 0 seconds,  node 5):  Speed(0, 0)  Position(2999.68, 4.95)
+At 0 seconds,  node 6):  Speed(0, 0)  Position(0.32, -1.65)
+At 0 seconds,  node 7):  Speed(0, 0)  Position(2999.68, 1.65)
+At 0 seconds,  node 8):  Speed(0, 0)  Position(0.32, -11.55)
+At 0 seconds,  node 9):  Speed(0, 0)  Position(2999.68, 1.65)
+At 0 seconds,  node 10):  Speed(0, 0)  Position(0.32, -11.55)
+At 0 seconds,  node 11):  Speed(0, 0)  Position(2999.68, 8.25)
+At 0 seconds,  node 12):  Speed(0, 0)  Position(0.32, -8.25)
+At 0 seconds,  node 13):  Speed(0, 0)  Position(2999.68, 8.25)
+At 0 seconds,  node 14):  Speed(0, 0)  Position(0.32, -1.65)
+At 0 seconds,  node 15):  Speed(0, 0)  Position(2999.68, 8.25)
+At 0 seconds,  node 16):  Speed(0, 0)  Position(0.32, -1.65)
+At 0 seconds,  node 17):  Speed(0, 0)  Position(2999.68, 8.25)
+At 0 seconds,  node 18):  Speed(0, 0)  Position(0.32, -8.25)
+At 0 seconds,  node 19):  Speed(0, 0)  Position(2999.68, 4.95)
+At 0 seconds,  node 20):  Speed(0, 0)  Position(0.32, -1.65)
+At 0 seconds,  node 21):  Speed(0, 0)  Position(2999.68, 8.25)
+At 0 seconds,  node 22):  Speed(0, 0)  Position(5.1, -4.95)
+At 0 seconds,  node 23):  Speed(0, 0)  Position(2994.9, 8.25)
+At 0 seconds,  node 24):  Speed(0, 0)  Position(5.1, -1.65)
+At 0 seconds,  node 25):  Speed(0, 0)  Position(2994.9, 4.95)
+At 0 seconds,  node 26):  Speed(0, 0)  Position(2994.9, 1.65)
+At 0 seconds,  node 27):  Speed(0, 0)  Position(5.1, -11.55)
+At 0 seconds,  node 28):  Speed(0, 0)  Position(2994.9, 4.95)
+At 0 seconds,  node 29):  Speed(0, 0)  Position(5.1, -8.25)
+At 0 seconds,  node 30):  Speed(0, 0)  Position(5.1, -11.55)
+At 0 seconds,  node 31):  Speed(0, 0)  Position(2994.9, 8.25)
+At 0 seconds,  node 32):  Speed(0, 0)  Position(5.1, -1.65)
+At 0 seconds,  node 33):  Speed(0, 0)  Position(2994.9, 4.95)
+At 0 seconds,  node 34):  Speed(0, 0)  Position(2994.9, 8.25)
+At 0 seconds,  node 35):  Speed(0, 0)  Position(5.1, -11.55)
+At 0 seconds,  node 36):  Speed(0, 0)  Position(5.1, -1.65)
+At 0 seconds,  node 37):  Speed(0, 0)  Position(2994.9, 8.25)
+At 0 seconds,  node 38):  Speed(0, 0)  Position(5.1, -8.25)
+At 0 seconds,  node 39):  Speed(0, 0)  Position(2994.9, 4.95)
+At 0 seconds,  node 40):  Speed(0, 0)  Position(5.1, -1.65)
+At 0 seconds,  node 41):  Speed(0, 0)  Position(2994.9, 8.25)
+At 0 seconds,  node 42):  Speed(0, 0)  Position(22.1, -4.95)
+At 0 seconds,  node 43):  Speed(0, 0)  Position(2977.9, 8.25)
+At 0 seconds,  node 44):  Speed(0, 0)  Position(22.1, -1.65)
+At 0 seconds,  node 45):  Speed(0, 0)  Position(2977.9, 4.95)
+At 0 seconds,  node 46):  Speed(0, 0)  Position(2977.9, 1.65)
+At 0 seconds,  node 47):  Speed(0, 0)  Position(22.1, -11.55)
+At 0 seconds,  node 48):  Speed(0, 0)  Position(2977.9, 8.25)
+At 0 seconds,  node 49):  Speed(0, 0)  Position(22.1, -8.25)
+At 0 seconds,  node 50):  Speed(0, 0)  Position(22.1, -4.95)
+At 0 seconds,  node 51):  Speed(0, 0)  Position(22.1, -1.65)
+At 0 seconds,  node 52):  Speed(0, 0)  Position(2977.9, 4.95)
+At 0 seconds,  node 53):  Speed(0, 0)  Position(2977.9, 11.55)
+At 0 seconds,  node 54):  Speed(0, 0)  Position(22.1, -11.55)
+At 0 seconds,  node 55):  Speed(0, 0)  Position(2977.9, 8.25)
+At 0 seconds,  node 56):  Speed(0, 0)  Position(22.1, -8.25)
+At 0 seconds,  node 57):  Speed(0, 0)  Position(2977.9, 1.65)
+At 0 seconds,  node 58):  Speed(0, 0)  Position(22.1, -1.65)
+At 0 seconds,  node 59):  Speed(0, 0)  Position(2977.9, 4.95)
+At 0 seconds,  node 60):  Speed(0, 0)  Position(22.1, -4.95)
+At 0 seconds,  node 61):  Speed(0, 0)  Position(2977.9, 8.25)
+At 1 seconds,  node 2):  Speed(0, 0)  Position(0.32, -4.95)
+At 1 seconds,  node 3):  Speed(0, 0)  Position(2999.68, 8.25)
+At 1 seconds,  node 4):  Speed(0, 0)  Position(0.32, -1.65)
+At 1 seconds,  node 5):  Speed(0, 0)  Position(2999.68, 4.95)
+At 1 seconds,  node 6):  Speed(0, 0)  Position(0.32, -1.65)
+At 1 seconds,  node 7):  Speed(0, 0)  Position(2999.68, 1.65)
+At 1 seconds,  node 8):  Speed(0, 0)  PoBest Neighbor Cell ID: 2
+------------------------------------------------------------------------
 
 
-Célula 1 -- Soma Ahp:3.07067e-41
-         -- RSRQ: 0.531915
-         -- MOSp: 0.5
-         -- PDR: 0.5
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
 
 
 
-Célula 2 -- Soma Ahp:6.14133e-41
-         -- RSRQ: 0.468085
-         -- MOSp: 0.5
-         -- PDR: 0.5
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
 
 
 
-Célula 4.64997e-310 -- Soma Ahp:3.95253e-323
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:4.76
+         -- RSRQ: 17
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.68
+         -- RSRQ: 6
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 76 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 88 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 54 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.64
+         -- RSRQ: 13
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 95 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:7.28
+         -- RSRQ: 26
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:4.48
+         -- RSRQ: 16
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 397 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 356 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:7.56
+         -- RSRQ: 27
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:4.2
+         -- RSRQ: 15
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 81 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:7.84
+         -- RSRQ: 28
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 11 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 67 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 21 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 2 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.92
+         -- RSRQ: 14
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.92
+         -- RSRQ: 14
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 6 -- Soma Ahp:0 (serving)
          -- RSRQ: 0
          -- MOSp: 0
          -- PDR: 0
-Triggering Handover -- RNTI: 9 -- cellId:2
-
-
-
-0.936001 /NodeList/5/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 4: previously connected to CellId 2 with RNTI 1, doing handover to CellId 1
-0.936001 /NodeList/6/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 5: previously connected to CellId 3 with RNTI 9, doing handover to CellId 2
-0.940214 /NodeList/5/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 4: successful handover to CellId 1 with RNTI 5
-0.940214 /NodeList/6/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 5: successful handover to CellId 2 with RNTI 2
-1 Segundos...
-Realizados 2 Handover
+------------------------------------------------------------------------
 
 
 
 
+Triggering Handover -- RNTI: 16 -- cellId:1
 
 
 
+1.136 /NodeList/62/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 61: previously connected to CellId 6 with RNTI 16, doing handover to CellId 1
+1.136 /NodeList/9/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 8: previously connected to CellId 2 with RNTI 76, doing handover to CellId 1
+1.136 /NodeList/13/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 12: previously connected to CellId 2 with RNTI 88, doing handover to CellId 1
+1.136 /NodeList/15/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 14: previously connected to CellId 2 with RNTI 54, doing handover to CellId 1
+1.136 /NodeList/17/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 16: previously connected to CellId 2 with RNTI 95, doing handover to CellId 1
+1.136 /NodeList/25/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 24: previously connected to CellId 2 with RNTI 81, doing handover to CellId 1
+1.136 /NodeList/33/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 32: previously connected to CellId 2 with RNTI 11, doing handover to CellId 1
+1.136 /NodeList/39/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 38: previously connected to CellId 2 with RNTI 67, doing handover to CellId 1
+1.136 /NodeList/45/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 44: previously connected to CellId 2 with RNTI 21, doing handover to CellId 1
+1.136 /NodeList/21/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 20: previously connected to CellId 1 with RNTI 397, doing handover to CellId 2
+1.136 /NodeList/48/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 47: previously connected to CellId 2 with RNTI 2, doing handover to CellId 1
+1.136 /NodeList/23/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 22: previously connected to CellId 1 with RNTI 356, doing handover to CellId 2
+1.14621 /NodeList/21/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 20: successful handover to CellId 2 with RNTI 98
+1.15221 /NodeList/9/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 8: successful handover to CellId 1 with RNTI 711
+1.15221 /NodeList/23/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 22: successful handover to CellId 2 with RNTI 99
+1.15821 /NodeList/62/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 61: successful handover to CellId 1 with RNTI 712
+1.16421 /NodeList/13/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 12: successful handover to CellId 1 with RNTI 713
+1.17021 /NodeList/15/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 14: successful handover to CellId 1 with RNTI 714
+1.17621 /NodeList/17/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 16: successful handover to CellId 1 with RNTI 715
+1.18221 /NodeList/25/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 24: successful handover to CellId 1 with RNTI 716
+1.20021 /NodeList/33/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 32: successful handover to CellId 1 with RNTI 717
+1.20621 /NodeList/39/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 38: successful handover to CellId 1 with RNTI 718
+1.21221 /NodeList/45/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 44: successful handover to CellId 1 with RNTI 719
+1.22421 /NodeList/48/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 47: successful handover to CellId 1 with RNTI 720
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
 
-Célula 2 -- Soma Ahp:0.839286
-         -- RSRQ: 0.4375
-         -- MOSp: 1
-         -- PDR: 1
 
 
-
-Célula 4.64997e-310 -- Soma Ahp:0.160714
-         -- RSRQ: 0.5625
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
          -- MOSp: 0
          -- PDR: 0
-Triggering Handover -- RNTI: 5 -- cellId:2
 
 
 
-1.736 /NodeList/5/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 4: previously connected to CellId 1 with RNTI 5, doing handover to CellId 2
-1.74021 /NodeList/5/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 4: successful handover to CellId 2 with RNTI 3
-2 Segundos...
-Realizados 3 Handover
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
 
 
 
 
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
 
-Interrupted 
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 411 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 653 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:7 (serving)
+         -- RSRQ: 25
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+1.336 /NodeList/26/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 25: previously connected to CellId 1 with RNTI 411, doing handover to CellId 2
+1.336 /NodeList/31/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 30: previously connected to CellId 1 with RNTI 653, doing handover to CellId 2
+1.34021 /NodeList/26/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 25: successful handover to CellId 2 with RNTI 100
+1.34621 /NodeList/31/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 30: successful handover to CellId 2 with RNTI 101
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:7.56 (serving)
+         -- RSRQ: 27
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 60 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 97 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 283 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+1.616 /NodeList/5/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 4: previously connected to CellId 2 with RNTI 60, doing handover to CellId 1
+1.616 /NodeList/59/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 58: previously connected to CellId 1 with RNTI 283, doing handover to CellId 2
+1.616 /NodeList/53/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 52: previously connected to CellId 2 with RNTI 97, doing handover to CellId 1
+1.62021 /NodeList/5/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 4: successful handover to CellId 1 with RNTI 721
+1.62621 /NodeList/53/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 52: successful handover to CellId 1 with RNTI 722
+1.62621 /NodeList/59/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 58: successful handover to CellId 2 with RNTI 102
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.04 (serving)
+         -- RSRQ: 18
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 584 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+1.816 /NodeList/37/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 36: previously connected to CellId 1 with RNTI 584, doing handover to CellId 2
+1.82621 /NodeList/37/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 36: successful handover to CellId 2 with RNTI 103
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:7.28 (serving)
+         -- RSRQ: 26
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 711 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 713 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 714 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 98 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 99 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 712 -- cellId:2
+
+
+
+1.936 /NodeList/9/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 8: previously connected to CellId 1 with RNTI 711, doing handover to CellId 2
+1.936 /NodeList/13/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 12: previously connected to CellId 1 with RNTI 713, doing handover to CellId 2
+1.936 /NodeList/15/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 14: previously connected to CellId 1 with RNTI 714, doing handover to CellId 2
+1.936 /NodeList/21/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 20: previously connected to CellId 2 with RNTI 98, doing handover to CellId 1
+1.936 /NodeList/62/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 61: previously connected to CellId 1 with RNTI 712, doing handover to CellId 2
+1.936 /NodeList/23/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 22: previously connected to CellId 2 with RNTI 99, doing handover to CellId 1
+1.94021 /NodeList/21/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 20: successful handover to CellId 1 with RNTI 723
+1.94621 /NodeList/23/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 22: successful handover to CellId 1 with RNTI 724
+1.95221 /NodeList/9/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 8: successful handover to CellId 2 with RNTI 104
+1.95821 /NodeList/13/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 12: successful handover to CellId 2 with RNTI 105
+1.96421 /NodeList/15/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 14: successful handover to CellId 2 with RNTI 106
+1.97021 /NodeList/62/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 61: successful handover to CellId 2 with RNTI 107
+sition(0.32, -11.55)
+At 1 seconds,  node 9):  Speed(0, 0)  Position(2999.68, 1.65)
+At 1 seconds,  node 10):  Speed(0, 0)  Position(0.32, -11.55)
+At 1 seconds,  node 11):  Speed(0, 0)  Position(2999.68, 8.25)
+At 1 seconds,  node 12):  Speed(0, 0)  Position(0.32, -8.25)
+At 1 seconds,  node 13):  Speed(0, 0)  Position(2999.68, 8.25)
+At 1 seconds,  node 14):  Speed(0, 0)  Position(0.32, -1.65)
+At 1 seconds,  node 15):  Speed(0, 0)  Position(2999.68, 8.25)
+At 1 seconds,  node 16):  Speed(0, 0)  Position(0.32, -1.65)
+At 1 seconds,  node 17):  Speed(0, 0)  Position(2999.68, 8.25)
+At 1 seconds,  node 18):  Speed(0, 0)  Position(0.32, -8.25)
+At 1 seconds,  node 19):  Speed(0, 0)  Position(2999.68, 4.95)
+At 1 seconds,  node 20):  Speed(0, 0)  Position(0.32, -1.65)
+At 1 seconds,  node 21):  Speed(0, 0)  Position(2999.68, 8.25)
+At 1 seconds,  node 22):  Speed(0, 0)  Position(5.1, -4.95)
+At 1 seconds,  node 23):  Speed(0, 0)  Position(2994.9, 8.25)
+At 1 seconds,  node 24):  Speed(0, 0)  Position(5.1, -1.65)
+At 1 seconds,  node 25):  Speed(0, 0)  Position(2994.9, 4.95)
+At 1 seconds,  node 26):  Speed(0, 0)  Position(2994.9, 1.65)
+At 1 seconds,  node 27):  Speed(0, 0)  Position(5.1, -11.55)
+At 1 seconds,  node 28):  Speed(0, 0)  Position(2994.9, 4.95)
+At 1 seconds,  node 29):  Speed(0, 0)  Position(5.1, -8.25)
+At 1 seconds,  node 30):  Speed(0, 0)  Position(5.1, -11.55)
+At 1 seconds,  node 31):  Speed(0, 0)  Position(2994.9, 8.25)
+At 1 seconds,  node 32):  Speed(0, 0)  Position(5.1, -1.65)
+At 1 seconds,  node 33):  Speed(0, 0)  Position(2994.9, 4.95)
+At 1 seconds,  node 34):  Speed(0, 0)  Position(2994.9, 8.25)
+At 1 seconds,  node 35):  Speed(0, 0)  Position(5.1, -11.55)
+At 1 seconds,  node 36):  Speed(0, 0)  Position(5.1, -1.65)
+At 1 seconds,  node 37):  Speed(0, 0)  Position(2994.9, 8.25)
+At 1 seconds,  node 38):  Speed(0, 0)  Position(5.1, -8.25)
+At 1 seconds,  node 39):  Speed(0, 0)  Position(2994.9, 4.95)
+At 1 seconds,  node 40):  Speed(0, 0)  Position(5.1, -1.65)
+At 1 seconds,  node 41):  Speed(0, 0)  Position(2994.9, 8.25)
+At 1 seconds,  node 42):  Speed(0, 0)  Position(22.1, -4.95)
+At 1 seconds,  node 43):  Speed(0, 0)  Position(2977.9, 8.25)
+At 1 seconds,  node 44):  Speed(0, 0)  Position(22.1, -1.65)
+At 1 seconds,  node 45):  Speed(0, 0)  Position(2977.9, 4.95)
+At 1 seconds,  node 46):  Speed(0, 0)  Position(2977.9, 1.65)
+At 1 seconds,  node 47):  Speed(0, 0)  Position(22.1, -11.55)
+At 1 seconds,  node 48):  Speed(0, 0)  Position(2977.9, 8.25)
+At 1 seconds,  node 49):  Speed(0, 0)  Position(22.1, -8.25)
+At 1 seconds,  node 50):  Speed(0, 0)  Position(22.1, -4.95)
+At 1 seconds,  node 51):  Speed(0, 0)  Position(22.1, -1.65)
+At 1 seconds,  node 52):  Speed(0, 0)  Position(2977.9, 4.95)
+At 1 seconds,  node 53):  Speed(0, 0)  Position(2977.9, 11.55)
+At 1 seconds,  node 54):  Speed(0, 0)  Position(22.1, -11.55)
+At 1 seconds,  node 55):  Speed(0, 0)  Position(2977.9, 8.25)
+At 1 seconds,  node 56):  Speed(0, 0)  Position(22.1, -8.25)
+At 1 seconds,  node 57):  Speed(0, 0)  Position(2977.9, 1.65)
+At 1 seconds,  node 58):  Speed(0, 0)  Position(22.1, -1.65)
+At 1 seconds,  node 59):  Speed(0, 0)  Position(2977.9, 4.95)
+At 1 seconds,  node 60):  Speed(0, 0)  Position(22.1, -4.95)
+At 1 seconds,  node 61):  Speed(0, 0)  Position(2977.9, 8.25)
+At 2 seconds,  node 2):  Speed(1.05, 0)  Position(0.32, -4.95)
+At 2 seconds,  node 3):  Speed(-1.36, 0)  Position(2999.68, 8.25)
+At 2 seconds,  node 4):  Speed(0, 0)  Position(0.32, -1.65)
+At 2 seconds,  node 5):  Speed(0, 0)  Position(2999.68, 4.95)
+At 2 seconds,  node 6):  Speed(0, 0)  Position(0.32, -1.65)
+At 2 seconds,  node 7):  Speed(0, 0)  Position(2999.68, 1.65)
+At 2 seconds,  node 8):  Speed(0, 0)  Position(0.32, -11.55)
+At 2 seconds,  node 9):  Speed(0, 0)  Position(2999.68, 1.65)
+At 2 seconds,  node 10):  Speed(0, 0)  Position(0.32, -11.55)
+At 2 seconds,  node 11):  Speed(0, 0)  Position(2999.68, 8.25)
+At 2 seconds,  node 12):  Speed(0, 0)  Position(0.32, -8.25)
+At 2 seconds,  node 13):  Speed(0, 0)  Position(2999.68, 8.25)
+At 2 seconds,  node 14):  Speed(0, 0)  Position(0.32, -1.65)
+At 2 sBest Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 100 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 101 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+2.136 /NodeList/26/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 25: previously connected to CellId 2 with RNTI 100, doing handover to CellId 1
+2.136 /NodeList/31/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 30: previously connected to CellId 2 with RNTI 101, doing handover to CellId 1
+2.15221 /NodeList/26/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 25: successful handover to CellId 1 with RNTI 725
+2.15821 /NodeList/31/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 30: successful handover to CellId 1 with RNTI 726
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 675 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+2.296 /NodeList/41/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 40: previously connected to CellId 1 with RNTI 675, doing handover to CellId 2
+2.30021 /NodeList/41/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 40: successful handover to CellId 2 with RNTI 108
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:7
+         -- RSRQ: 25
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:7.56 (serving)
+         -- RSRQ: 27
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 716 -- cellId:2
+
+
+
+2.416 /NodeList/25/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 24: previously connected to CellId 1 with RNTI 716, doing handover to CellId 2
+2.42021 /NodeList/25/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 24: successful handover to CellId 2 with RNTI 109
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 189 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 381 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 297 -- cellId:2
+
+
+
+2.576 /NodeList/7/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 6: previously connected to CellId 1 with RNTI 189, doing handover to CellId 2
+2.576 /NodeList/52/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 51: previously connected to CellId 1 with RNTI 381, doing handover to CellId 2
+2.576 /NodeList/61/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 60: previously connected to CellId 1 with RNTI 297, doing handover to CellId 2
+2.58021 /NodeList/7/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 6: successful handover to CellId 2 with RNTI 110
+2.58621 /NodeList/52/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 51: successful handover to CellId 2 with RNTI 111
+2.60421 /NodeList/61/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 60: successful handover to CellId 2 with RNTI 112
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 719 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+2.616 /NodeList/45/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 44: previously connected to CellId 1 with RNTI 719, doing handover to CellId 2
+2.62021 /NodeList/45/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 44: successful handover to CellId 2 with RNTI 113
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 104 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 105 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 106 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 103 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 107 -- cellId:1
+
+
+
+2.736 /NodeList/9/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 8: previously connected to CellId 2 with RNTI 104, doing handover to CellId 1
+2.736 /NodeList/13/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 12: previously connected to CellId 2 with RNTI 105, doing handover to CellId 1
+2.736 /NodeList/15/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 14: previously connected to CellId 2 with RNTI 106, doing handover to CellId 1
+2.736 /NodeList/37/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 36: previously connected to CellId 2 with RNTI 103, doing handover to CellId 1
+2.736 /NodeList/62/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 61: previously connected to CellId 2 with RNTI 107, doing handover to CellId 1
+2.74021 /NodeList/9/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 8: successful handover to CellId 1 with RNTI 727
+2.75221 /NodeList/13/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 12: successful handover to CellId 1 with RNTI 728
+2.75821 /NodeList/15/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 14: successful handover to CellId 1 with RNTI 729
+2.76421 /NodeList/37/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 36: successful handover to CellId 1 with RNTI 730
+2.77021 /NodeList/62/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 61: successful handover to CellId 1 with RNTI 731
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.04
+         -- RSRQ: 18
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:7 (serving)
+         -- RSRQ: 25
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:7.28 (serving)
+         -- RSRQ: 26
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 725 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+2.936 /NodeList/26/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 25: previously connected to CellId 1 with RNTI 725, doing handover to CellId 2
+2.94021 /NodeList/26/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 25: successful handover to CellId 2 with RNTI 114
+econds,  node 15):  Speed(0, 0)  Position(2999.68, 8.25)
+At 2 seconds,  node 16):  Speed(0, 0)  Position(0.32, -1.65)
+At 2 seconds,  node 17):  Speed(0, 0)  Position(2999.68, 8.25)
+At 2 seconds,  node 18):  Speed(0, 0)  Position(0.32, -8.25)
+At 2 seconds,  node 19):  Speed(0, 0)  Position(2999.68, 4.95)
+At 2 seconds,  node 20):  Speed(0, 0)  Position(0.32, -1.65)
+At 2 seconds,  node 21):  Speed(0, 0)  Position(2999.68, 8.25)
+At 2 seconds,  node 22):  Speed(1.96, 0)  Position(5.1, -4.95)
+At 2 seconds,  node 23):  Speed(-2.54, 0)  Position(2994.9, 8.25)
+At 2 seconds,  node 24):  Speed(0, 0)  Position(5.1, -1.65)
+At 2 seconds,  node 25):  Speed(0, 0)  Position(2994.9, 4.95)
+At 2 seconds,  node 26):  Speed(0, 0)  Position(2994.9, 1.65)
+At 2 seconds,  node 27):  Speed(0, 0)  Position(5.1, -11.55)
+At 2 seconds,  node 28):  Speed(0, 0)  Position(2994.9, 4.95)
+At 2 seconds,  node 29):  Speed(0, 0)  Position(5.1, -8.25)
+At 2 seconds,  node 30):  Speed(0, 0)  Position(5.1, -11.55)
+At 2 seconds,  node 31):  Speed(0, 0)  Position(2994.9, 8.25)
+At 2 seconds,  node 32):  Speed(0, 0)  Position(5.1, -1.65)
+At 2 seconds,  node 33):  Speed(0, 0)  Position(2994.9, 4.95)
+At 2 seconds,  node 34):  Speed(0, 0)  Position(2994.9, 8.25)
+At 2 seconds,  node 35):  Speed(0, 0)  Position(5.1, -11.55)
+At 2 seconds,  node 36):  Speed(0, 0)  Position(5.1, -1.65)
+At 2 seconds,  node 37):  Speed(0, 0)  Position(2994.9, 8.25)
+At 2 seconds,  node 38):  Speed(0, 0)  Position(5.1, -8.25)
+At 2 seconds,  node 39):  Speed(0, 0)  Position(2994.9, 4.95)
+At 2 seconds,  node 40):  Speed(0, 0)  Position(5.1, -1.65)
+At 2 seconds,  node 41):  Speed(0, 0)  Position(2994.9, 8.25)
+At 2 seconds,  node 42):  Speed(1, 0)  Position(22.1, -4.95)
+At 2 seconds,  node 43):  Speed(-1, 0)  Position(2977.9, 8.25)
+At 2 seconds,  node 44):  Speed(0, 0)  Position(22.1, -1.65)
+At 2 seconds,  node 45):  Speed(0, 0)  Position(2977.9, 4.95)
+At 2 seconds,  node 46):  Speed(0, 0)  Position(2977.9, 1.65)
+At 2 seconds,  node 47):  Speed(0, 0)  Position(22.1, -11.55)
+At 2 seconds,  node 48):  Speed(0, 0)  Position(2977.9, 8.25)
+At 2 seconds,  node 49):  Speed(0, 0)  Position(22.1, -8.25)
+At 2 seconds,  node 50):  Speed(0, 0)  Position(22.1, -4.95)
+At 2 seconds,  node 51):  Speed(0, 0)  Position(22.1, -1.65)
+At 2 seconds,  node 52):  Speed(0, 0)  Position(2977.9, 4.95)
+At 2 seconds,  node 53):  Speed(0, 0)  Position(2977.9, 11.55)
+At 2 seconds,  node 54):  Speed(0, 0)  Position(22.1, -11.55)
+At 2 seconds,  node 55):  Speed(0, 0)  Position(2977.9, 8.25)
+At 2 seconds,  node 56):  Speed(0, 0)  Position(22.1, -8.25)
+At 2 seconds,  node 57):  Speed(0, 0)  Position(2977.9, 1.65)
+At 2 seconds,  node 58):  Speed(0, 0)  Position(22.1, -1.65)
+At 2 seconds,  node 59):  Speed(0, 0)  Position(2977.9, 4.95)
+At 2 seconds,  node 60):  Speed(0, 0)  Position(22.1, -4.95)
+At 2 seconds,  node 61):  Speed(0, 0)  Position(2977.9, 8.25)
+At 3 seconds,  node 2):  Speed(0.87, 0)  Position(1.36, -4.95)
+At 3 seconds,  node 3):  Speed(-1.01, 0)  Position(2998.33, 8.25)
+At 3 seconds,  node 4):  Speed(1.22, 0)  Position(0.32, -1.65)
+At 3 seconds,  node 5):  Speed(-0.87, 0)  Position(2999.68, 4.95)
+At 3 seconds,  node 6):  Speed(0, 0)  Position(0.32, -1.65)
+At 3 seconds,  node 7):  Speed(0, 0)  Position(2999.68, 1.65)
+At 3 seconds,  node 8):  Speed(0, 0)  Position(0.32, -11.55)
+At 3 seconds,  node 9):  Speed(0, 0)  Position(2999.68, 1.65)
+At 3 seconds,  node 10):  Speed(0, 0)  Position(0.32, -11.55)
+At 3 seconds,  node 11):  Speed(0, 0)  Position(2999.68, 8.25)
+At 3 seconds,  node 12):  Speed(0, 0)  Position(0.32, -8.25)
+At 3 seconds,  node 13):  Speed(0, 0)  Position(2999.68, 8.25)
+At 3 seconds,  node 14):  Speed(0, 0)  Position(0.32, -1.65)
+At 3 seconds,  node 15):  Speed(0, 0)  Position(2999.68, 8.25)
+At 3 seconds,  node 16):  Speed(0, 0)  Position(0.32, -1.65)
+At 3 seconds,  node 17):  Speed(0, 0)  Position(2999.68, 8.25)
+At 3 seconds,  node 18):  Speed(0, 0)  Position(0.32, -8.25)
+At 3 seconds,  node 19):  Speed(0, 0)  Position(2999.68, 4.95)
+At 3 seconds,  node 20):  Speed(0, 0)  Position(0.32, -1.65)
+At 3 seconds,  nodBest Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 102 -- cellId:1
+
+
+
+3.016 /NodeList/59/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 58: previously connected to CellId 2 with RNTI 102, doing handover to CellId 1
+3.02021 /NodeList/59/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 58: successful handover to CellId 1 with RNTI 732
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 60 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+3.056 /NodeList/19/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 18: previously connected to CellId 1 with RNTI 60, doing handover to CellId 2
+3.07221 /NodeList/19/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 18: successful handover to CellId 2 with RNTI 115
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.64
+         -- RSRQ: 13
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 108 -- cellId:1
+
+
+
+3.136 /NodeList/41/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 40: previously connected to CellId 2 with RNTI 108, doing handover to CellId 1
+3.14021 /NodeList/41/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 40: successful handover to CellId 1 with RNTI 733
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 523 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+3.256 /NodeList/43/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 42: previously connected to CellId 1 with RNTI 523, doing handover to CellId 2
+3.26021 /NodeList/43/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 42: successful handover to CellId 2 with RNTI 116
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:7.56 (serving)
+         -- RSRQ: 27
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.04 (serving)
+         -- RSRQ: 18
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 110 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 109 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 111 -- cellId:1
+
+
+
+3.336 /NodeList/7/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 6: previously connected to CellId 2 with RNTI 110, doing handover to CellId 1
+3.336 /NodeList/25/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 24: previously connected to CellId 2 with RNTI 109, doing handover to CellId 1
+3.336 /NodeList/52/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 51: previously connected to CellId 2 with RNTI 111, doing handover to CellId 1
+3.34021 /NodeList/7/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 6: successful handover to CellId 1 with RNTI 734
+3.34621 /NodeList/25/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 24: successful handover to CellId 1 with RNTI 735
+3.35221 /NodeList/52/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 51: successful handover to CellId 1 with RNTI 736
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 715 -- cellId:2
+
+
+
+3.376 /NodeList/17/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 16: previously connected to CellId 1 with RNTI 715, doing handover to CellId 2
+3.38621 /NodeList/17/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 16: successful handover to CellId 2 with RNTI 117
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 722 -- cellId:2
+
+
+
+3.496 /NodeList/53/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 52: previously connected to CellId 1 with RNTI 722, doing handover to CellId 2
+3.50021 /NodeList/53/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 52: successful handover to CellId 2 with RNTI 118
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 728 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:7 (serving)
+         -- RSRQ: 25
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+3.536 /NodeList/13/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 12: previously connected to CellId 1 with RNTI 728, doing handover to CellId 2
+3.54021 /NodeList/13/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 12: successful handover to CellId 2 with RNTI 119
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 717 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+3.576 /NodeList/33/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 32: previously connected to CellId 1 with RNTI 717, doing handover to CellId 2
+3.58021 /NodeList/33/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 32: successful handover to CellId 2 with RNTI 120
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 723 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 724 -- cellId:2
+
+
+
+3.696 /NodeList/21/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 20: previously connected to CellId 1 with RNTI 723, doing handover to CellId 2
+3.696 /NodeList/23/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 22: previously connected to CellId 1 with RNTI 724, doing handover to CellId 2
+3.70021 /NodeList/21/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 20: successful handover to CellId 2 with RNTI 121
+3.70621 /NodeList/23/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 22: successful handover to CellId 2 with RNTI 122
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 701 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.04
+         -- RSRQ: 18
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+3.736 /NodeList/28/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 27: previously connected to CellId 1 with RNTI 701, doing handover to CellId 2
+3.74021 /NodeList/28/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 27: successful handover to CellId 2 with RNTI 123
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:7.28 (serving)
+         -- RSRQ: 26
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 115 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:1.96
+         -- RSRQ: 7
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+3.936 /NodeList/19/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 18: previously connected to CellId 2 with RNTI 115, doing handover to CellId 1
+3.94021 /NodeList/19/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 18: successful handover to CellId 1 with RNTI 737
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+e 21):  Speed(0, 0)  Position(2999.68, 8.25)
+At 3 seconds,  node 22):  Speed(3.59, 0)  Position(7.06, -4.95)
+At 3 seconds,  node 23):  Speed(-4.43, 0)  Position(2992.36, 8.25)
+At 3 seconds,  node 24):  Speed(2.28, 0)  Position(5.1, -1.65)
+At 3 seconds,  node 25):  Speed(-1.63, 0)  Position(2994.9, 4.95)
+At 3 seconds,  node 26):  Speed(0, 0)  Position(2994.9, 1.65)
+At 3 seconds,  node 27):  Speed(0, 0)  Position(5.1, -11.55)
+At 3 seconds,  node 28):  Speed(0, 0)  Position(2994.9, 4.95)
+At 3 seconds,  node 29):  Speed(0, 0)  Position(5.1, -8.25)
+At 3 seconds,  node 30):  Speed(0, 0)  Position(5.1, -11.55)
+At 3 seconds,  node 31):  Speed(0, 0)  Position(2994.9, 8.25)
+At 3 seconds,  node 32):  Speed(0, 0)  Position(5.1, -1.65)
+At 3 seconds,  node 33):  Speed(0, 0)  Position(2994.9, 4.95)
+At 3 seconds,  node 34):  Speed(0, 0)  Position(2994.9, 8.25)
+At 3 seconds,  node 35):  Speed(0, 0)  Position(5.1, -11.55)
+At 3 seconds,  node 36):  Speed(0, 0)  Position(5.1, -1.65)
+At 3 seconds,  node 37):  Speed(0, 0)  Position(2994.9, 8.25)
+At 3 seconds,  node 38):  Speed(0, 0)  Position(5.1, -8.25)
+At 3 seconds,  node 39):  Speed(0, 0)  Position(2994.9, 4.95)
+At 3 seconds,  node 40):  Speed(0, 0)  Position(5.1, -1.65)
+At 3 seconds,  node 41):  Speed(0, 0)  Position(2994.9, 8.25)
+At 3 seconds,  node 42):  Speed(2, 0)  Position(23.1, -4.95)
+At 3 seconds,  node 43):  Speed(-2, 0)  Position(2976.9, 8.25)
+At 3 seconds,  node 44):  Speed(1, 0)  Position(22.1, -1.65)
+At 3 seconds,  node 45):  Speed(-1, 0)  Position(2977.9, 4.95)
+At 3 seconds,  node 46):  Speed(0, 0)  Position(2977.9, 1.65)
+At 3 seconds,  node 47):  Speed(0, 0)  Position(22.1, -11.55)
+At 3 seconds,  node 48):  Speed(0, 0)  Position(2977.9, 8.25)
+At 3 seconds,  node 49):  Speed(0, 0)  Position(22.1, -8.25)
+At 3 seconds,  node 50):  Speed(0, 0)  Position(22.1, -4.95)
+At 3 seconds,  node 51):  Speed(0, 0)  Position(22.1, -1.65)
+At 3 seconds,  node 52):  Speed(0, 0)  Position(2977.9, 4.95)
+At 3 seconds,  node 53):  Speed(0, 0)  Position(2977.9, 11.55)
+At 3 seconds,  node 54):  Speed(0, 0)  Position(22.1, -11.55)
+At 3 seconds,  node 55):  Speed(0, 0)  Position(2977.9, 8.25)
+At 3 seconds,  node 56):  Speed(0, 0)  Position(22.1, -8.25)
+At 3 seconds,  node 57):  Speed(0, 0)  Position(2977.9, 1.65)
+At 3 seconds,  node 58):  Speed(0, 0)  Position(22.1, -1.65)
+At 3 seconds,  node 59):  Speed(0, 0)  Position(2977.9, 4.95)
+At 3 seconds,  node 60):  Speed(0, 0)  Position(22.1, -4.95)
+At 3 seconds,  node 61):  Speed(0, 0)  Position(2977.9, 8.25)
+At 4 seconds,  node 2):  Speed(1.07, 0)  Position(2.23, -4.95)
+At 4 seconds,  node 3):  Speed(-1.07, 0)  Position(2997.32, 8.25)
+At 4 seconds,  node 4):  Speed(0.92, 0)  Position(1.53, -1.65)
+At 4 seconds,  node 5):  Speed(-1.38, 0)  Position(2998.81, 4.95)
+At 4 seconds,  node 6):  Speed(0, 0)  Position(0.32, -1.65)
+At 4 seconds,  node 7):  Speed(0, 0)  Position(2999.68, 1.65)
+At 4 seconds,  node 8):  Speed(0, 0)  Position(0.32, -11.55)
+At 4 seconds,  node 9):  Speed(0, 0)  Position(2999.68, 1.65)
+At 4 seconds,  node 10):  Speed(0, 0)  Position(0.32, -11.55)
+At 4 seconds,  node 11):  Speed(0, 0)  Position(2999.68, 8.25)
+At 4 seconds,  node 12):  Speed(0, 0)  Position(0.32, -8.25)
+At 4 seconds,  node 13):  Speed(0, 0)  Position(2999.68, 8.25)
+At 4 seconds,  node 14):  Speed(0, 0)  Position(0.32, -1.65)
+At 4 seconds,  node 15):  Speed(0, 0)  Position(2999.68, 8.25)
+At 4 seconds,  node 16):  Speed(0, 0)  Position(0.32, -1.65)
+At 4 seconds,  node 17):  Speed(0, 0)  Position(2999.68, 8.25)
+At 4 seconds,  node 18):  Speed(0, 0)  Position(0.32, -8.25)
+At 4 seconds,  node 19):  Speed(0, 0)  Position(2999.68, 4.95)
+At 4 seconds,  node 20):  Speed(0, 0)  Position(0.32, -1.65)
+At 4 seconds,  node 21):  Speed(0, 0)  Position(2999.68, 8.25)
+At 4 seconds,  node 22):  Speed(5.6, 0)  Position(10.65, -4.95)
+At 4 seconds,  node 23):  Speed(-6.43, 0)  Position(2987.93, 8.25)
+At 4 seconds,  node 24):  Speed(4, 0)  Position(7.38, -1.65)
+At 4 seconds,  node 25):  Speed(-4.23, 0)  Position(2993.27, 4.95)
+At 4 seconds,  node 26):  Speed(0, 0)  Position(2994.9, 1.65)
+At 4 secBest Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 344 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 727 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 729 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 730 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 113 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 112 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:7 (serving)
+         -- RSRQ: 25
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+4.016 /NodeList/55/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 54: previously connected to CellId 1 with RNTI 344, doing handover to CellId 2
+4.016 /NodeList/9/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 8: previously connected to CellId 1 with RNTI 727, doing handover to CellId 2
+4.016 /NodeList/15/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 14: previously connected to CellId 1 with RNTI 729, doing handover to CellId 2
+4.016 /NodeList/45/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 44: previously connected to CellId 2 with RNTI 113, doing handover to CellId 1
+4.016 /NodeList/37/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 36: previously connected to CellId 1 with RNTI 730, doing handover to CellId 2
+4.016 /NodeList/61/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 60: previously connected to CellId 2 with RNTI 112, doing handover to CellId 1
+4.02021 /NodeList/45/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 44: successful handover to CellId 1 with RNTI 738
+4.02021 /NodeList/55/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 54: successful handover to CellId 2 with RNTI 124
+4.02621 /NodeList/61/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 60: successful handover to CellId 1 with RNTI 739
+4.02621 /NodeList/9/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 8: successful handover to CellId 2 with RNTI 125
+4.03221 /NodeList/15/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 14: successful handover to CellId 2 with RNTI 126
+4.03821 /NodeList/37/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 36: successful handover to CellId 2 with RNTI 127
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 718 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+4.056 /NodeList/39/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 38: previously connected to CellId 1 with RNTI 718, doing handover to CellId 2
+4.06021 /NodeList/39/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 38: successful handover to CellId 2 with RNTI 128
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 117 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+4.136 /NodeList/17/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 16: previously connected to CellId 2 with RNTI 117, doing handover to CellId 1
+4.14021 /NodeList/17/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 16: successful handover to CellId 1 with RNTI 740
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.72 (serving)
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 114 -- cellId:1
+
+
+
+4.216 /NodeList/26/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 25: previously connected to CellId 2 with RNTI 114, doing handover to CellId 1
+4.23821 /NodeList/26/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 25: successful handover to CellId 1 with RNTI 741
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:7.28 (serving)
+         -- RSRQ: 26
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 119 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 120 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.6 (serving)
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 118 -- cellId:1
+
+
+
+4.336 /NodeList/13/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 12: previously connected to CellId 2 with RNTI 119, doing handover to CellId 1
+4.336 /NodeList/33/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 32: previously connected to CellId 2 with RNTI 120, doing handover to CellId 1
+4.336 /NodeList/53/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 52: previously connected to CellId 2 with RNTI 118, doing handover to CellId 1
+4.34621 /NodeList/33/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 32: successful handover to CellId 1 with RNTI 743
+4.35221 /NodeList/13/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 12: successful handover to CellId 1 with RNTI 742
+4.35821 /NodeList/53/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 52: successful handover to CellId 1 with RNTI 744
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.04
+         -- RSRQ: 18
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:7 (serving)
+         -- RSRQ: 25
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.32
+         -- RSRQ: 19
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 121 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:5.88 (serving)
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 122 -- cellId:1
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.36
+         -- RSRQ: 12
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 123 -- cellId:1
+
+
+
+4.536 /NodeList/21/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 20: previously connected to CellId 2 with RNTI 121, doing handover to CellId 1
+4.536 /NodeList/23/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 22: previously connected to CellId 2 with RNTI 122, doing handover to CellId 1
+4.536 /NodeList/28/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 27: previously connected to CellId 2 with RNTI 123, doing handover to CellId 1
+4.55221 /NodeList/21/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 20: successful handover to CellId 1 with RNTI 745
+4.55821 /NodeList/23/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 22: successful handover to CellId 1 with RNTI 746
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.6
+         -- RSRQ: 20
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:3.08
+         -- RSRQ: 11
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.16
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:6.72
+         -- RSRQ: 24
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.52
+         -- RSRQ: 9
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.16 (serving)
+         -- RSRQ: 22
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Triggering Handover -- RNTI: 683 -- cellId:2
+
+
+
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.8
+         -- RSRQ: 10
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+4.696 /NodeList/46/DeviceList/1/LteUeRrc/HandoverStart UE IMSI 45: previously connected to CellId 1 with RNTI 683, doing handover to CellId 2
+4.70021 /NodeList/46/DeviceList/1/LteUeRrc/HandoverEndOk UE IMSI 45: successful handover to CellId 2 with RNTI 129
+Best Neighbor Cell ID: 1
+------------------------------------------------------------------------
+
+
+
+Célula 2 -- Soma Ahp:5.88
+         -- RSRQ: 21
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 3 -- Soma Ahp:2.24
+         -- RSRQ: 8
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 1 -- Soma Ahp:6.44 (serving)
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+Best Neighbor Cell ID: 2
+------------------------------------------------------------------------
+
+
+
+Célula 1 -- Soma Ahp:6.44
+         -- RSRQ: 23
+         -- MOSp: 0
+         -- PDR: 0
+
+
+
+Célula 2 -- Soma Ahp:7.56 (serving)
+         -- RSRQ: 27
+         -- MOSp: 0
+         -- PDR: 0
+------------------------------------------------------------------------
+
+
+
+
+onds,  node 27):  Speed(0, 0)  Position(5.1, -11.55)
+At 4 seconds,  node 28):  Speed(0, 0)  Position(2994.9, 4.95)
+At 4 seconds,  node 29):  Speed(0, 0)  Position(5.1, -8.25)
+At 4 seconds,  node 30):  Speed(0, 0)  Position(5.1, -11.55)
+At 4 seconds,  node 31):  Speed(0, 0)  Position(2994.9, 8.25)
+At 4 seconds,  node 32):  Speed(0, 0)  Position(5.1, -1.65)
+At 4 seconds,  node 33):  Speed(0, 0)  Position(2994.9, 4.95)
+At 4 seconds,  node 34):  Speed(0, 0)  Position(2994.9, 8.25)
+At 4 seconds,  node 35):  Speed(0, 0)  Position(5.1, -11.55)
+At 4 seconds,  node 36):  Speed(0, 0)  Position(5.1, -1.65)
+At 4 seconds,  node 37):  Speed(0, 0)  Position(2994.9, 8.25)
+At 4 seconds,  node 38):  Speed(0, 0)  Position(5.1, -8.25)
+At 4 seconds,  node 39):  Speed(0, 0)  Position(2994.9, 4.95)
+At 4 seconds,  node 40):  Speed(0, 0)  Position(5.1, -1.65)
+At 4 seconds,  node 41):  Speed(0, 0)  Position(2994.9, 8.25)
+At 4 seconds,  node 42):  Speed(3, 0)  Position(25.1, -4.95)
+At 4 seconds,  node 43):  Speed(-3, 0)  Position(2974.9, 8.25)
+At 4 seconds,  node 44):  Speed(2, 0)  Position(23.1, -1.65)
+At 4 seconds,  node 45):  Speed(-2, 0)  Position(2976.9, 4.95)
+At 4 seconds,  node 46):  Speed(0, 0)  Position(2977.9, 1.65)
+At 4 seconds,  node 47):  Speed(0, 0)  Position(22.1, -11.55)
+At 4 seconds,  node 48):  Speed(0, 0)  Position(2977.9, 8.25)
+At 4 seconds,  node 49):  Speed(0, 0)  Position(22.1, -8.25)
+At 4 seconds,  node 50):  Speed(0, 0)  Position(22.1, -4.95)
+At 4 seconds,  node 51):  Speed(0, 0)  Position(22.1, -1.65)
+At 4 seconds,  node 52):  Speed(0, 0)  Position(2977.9, 4.95)
+At 4 seconds,  node 53):  Speed(0, 0)  Position(2977.9, 11.55)
+At 4 seconds,  node 54):  Speed(0, 0)  Position(22.1, -11.55)
+At 4 seconds,  node 55):  Speed(0, 0)  Position(2977.9, 8.25)
+At 4 seconds,  node 56):  Speed(0, 0)  Position(22.1, -8.25)
+At 4 seconds,  node 57):  Speed(0, 0)  Position(2977.9, 1.65)
+At 4 seconds,  node 58):  Speed(0, 0)  Position(22.1, -1.65)
+At 4 seconds,  node 59):  Speed(0, 0)  Position(2977.9, 4.95)
+At 4 seconds,  node 60):  Speed(0, 0)  Position(22.1, -4.95)
+At 4 seconds,  node 61):  Speed(0, 0)  Position(2977.9, 8.25)
+msg="Lookup /NodeList/65/DeviceList/0/LteEnbRrc/UeMap/747 got no matches", file=../src/lte/helper/lte-stats-calculator.cc, line=159
+terminate called without an active exception
+Command ['/home/lucas/git/ns/build/scratch/v2x_3gpp_small'] terminated with signal SIGIOT. Run it under a debugger to get more information (./waf --run <program> --command-template="gdb --args %s <args>").

@@ -70,9 +70,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 20;
-const int carros = 20;
-const int trens = 20;
+const int pedestres = 10;
+const int carros = 10;
+const int trens = 10;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -82,10 +82,10 @@ const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
-int distancia = 500; //distância entre torres HPN (mínima)
+int distancia = 1000; //distância entre torres HPN (mínima)
 
-double simTime = 30.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 5;
+double simTime = 70.0; // TEMPO_SIMULAÇÃO
+int transmissionStart = 35;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -130,7 +130,8 @@ void NotifyConnectionEstablishedUe(std::string context,
     std::stringstream strrnti;
     strrnti << rnti;
 
-    if (mkdir("./rnti",S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0){}
+    if (mkdir("./rnti", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0) {
+    }
     std::ofstream ofs("rnti/" + strrnti.str() + ".txt"); //, ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
@@ -215,14 +216,14 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     if (luca) {
         int x_start = 500;
         int y_start = 500;
-        for (int i = x_start; i <= 2500; i += 1000)
-            HpnPosition->Add(Vector(i, y_start, 25));
-        for (int i = 0; i <= 2; i++)
+        for (int i = x_start; i <= enb_HPN; ++i)
+            HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
+        for (int i = 0; i <= low_power; ++i)
             HpnPosition->Add(Vector(rand() % 3000, rand() % 1000, 10));
         return;
     }
-    int x_start = 2000;
-    int y_start = 2000;
+    int x_start = 1000;
+    int y_start = 1000;
 
     HpnPosition->Add(Vector(x_start, y_start, 25));
 
@@ -286,9 +287,9 @@ void WriteMetrics()
                 std::stringstream rdTrace;
                 rdTrace << "rd_a01_" << u;
                 std::ifstream rdFile(rdTrace.str());
-                if (!rdFile){
-                  std::cout << "NO FILE TO BE READ" << '\n';
-                  return;
+                if (!rdFile) {
+                    std::cout << "NO FILE TO BE READ" << '\n';
+                    return;
                 }
                 double rdTime;
                 std::string id;
@@ -333,9 +334,9 @@ void WriteMetrics()
 
                     ofstream rntiQosFile;
                     rntiQosFile.open(rntiQosFileName.str());
-                    int qosResult = ((float) nReceived - 1) / 60;
+                    int qosResult = ((float)nReceived - 1) / 60;
                     if (qosResult < 0)
-                    rntiQosFile << qosResult;
+                        rntiQosFile << qosResult;
 
                     //CALCULO DE QOS POR MÉDIA SIMPLES
                     //qosSum[i] += ((float)nReceived - 1) / 60;
@@ -510,7 +511,7 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
     int seedValue = 1;
-    double interPacketInterval = 0.01;
+    double interPacketInterval = 0.001;
     double threshold = 0.2;
 
     std::string handoverAlg = "ahp";
@@ -592,8 +593,6 @@ int main(int argc, char* argv[])
     /*----------------------ALGORITMO DE HANDOVER----------------------*/
     if (handoverAlg == "ahp") {
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
-        //lteHelper->SetHandoverAlgorithmAttribute("TimeToTrigger",
-        //TimeValue(MilliSeconds(512)));
         lteHelper->SetHandoverAlgorithmAttribute("Threshold", DoubleValue(threshold));
     }
 
@@ -615,9 +614,8 @@ int main(int argc, char* argv[])
             UintegerValue(2));
     }
 
-    else if (handoverAlg == "multi"){
-      lteHelper->SetHandoverAlgorithmType("ns3::MultiHandoverAlgorithm");
-      std::cout << "udncjncjksnDVKJN" << '\n';
+    else if (handoverAlg == "multi") {
+        lteHelper->SetHandoverAlgorithmType("ns3::MultiHandoverAlgorithm");
     }
 
     ConfigStore inputConfig;
@@ -665,6 +663,7 @@ int main(int argc, char* argv[])
 
     /*------------------- Criacao de UEs-Enb--------------------------*/
     // UE - Veículos
+
     NodeContainer pedestres_nc;
     pedestres_nc.Create(pedestres);
 
@@ -711,10 +710,16 @@ int main(int argc, char* argv[])
     // LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
 
     /*---------------MONILIDADE DOS CARROS------------------------------*/
-    Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/lucaPedestre.tcl");
-    Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/lucaCarro.tcl");
-    Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/lucaTrem.tcl");
 
+    Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+    Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+    Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+
+    if(luca){
+      Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/lucaPedestre.tcl");
+      Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/lucaCarro.tcl");
+      Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/lucaTrem.tcl");
+    }
     //mobility.Install(ueNodes.Begin(), ueNodes.End());
     mobil_ped.Install(pedestres_nc.Begin(), pedestres_nc.End());
     mobil_carro.Install(carros_nc.Begin(), carros_nc.End());
@@ -840,9 +845,9 @@ int main(int argc, char* argv[])
     requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart);
     requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart);
 
-    //requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart + 20);
-    //requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart + 20);
-    //requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart + 20);
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");

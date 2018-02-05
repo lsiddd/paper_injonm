@@ -677,7 +677,7 @@ public:
     std::list<MeasResultEutra> measResultListEutra; ///< measure result list eutra
     bool haveScellsMeas; ///< has SCells measure
     MeasResultServFreqList measScellResultList; ///< measure SCell result list
-    uint16_t physCellId;
+    uint16_t servingCellId;
   };
 
   // Messages
@@ -720,7 +720,7 @@ public:
   {
     uint16_t alpha; ///< alpha value
   };
-  
+
   /// PrachConfigSCell structure
   struct PrachConfigSCell
   {
@@ -744,10 +744,10 @@ public:
   };
 
   /// UlConfiguration structure
-  struct UlConfiguration 
-  { 
+  struct UlConfiguration
+  {
     FreqInfo ulFreqInfo; ///< UL frequency info
-    UlPowerControlCommonSCell ulPowerControlCommonSCell; ///< 3GPP TS 36.331 v.11.10 R11 pag.223 
+    UlPowerControlCommonSCell ulPowerControlCommonSCell; ///< 3GPP TS 36.331 v.11.10 R11 pag.223
     SoundingRsUlConfigCommon soundingRsUlConfigCommon; ///< sounding RS UL config common
     PrachConfigSCell prachConfigSCell; ///< PRACH config SCell
     //PushConfigCommon pushConfigCommon; //NOT IMPLEMENTED!
@@ -1705,7 +1705,3 @@ MemberLteEnbRrcSapProvider<C>::RecvMeasurementReport (uint16_t rnti, Measurement
 
 
 #endif // LTE_RRC_SAP_H
-
-
-
-
