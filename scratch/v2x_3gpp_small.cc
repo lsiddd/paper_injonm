@@ -214,13 +214,13 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     srand(seedValue);
 
     if (luca) {
-        int x_start = 500;
-        int y_start = 500;
+        int x_start = 1800;
+        int y_start = 1800;
         for (int i = x_start; i <= enb_HPN; ++i)
-            HpnPosition->Add(Vector(x_start + rand() % 3000, y_start + rand() % 3000, 10));
+            HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
             //HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
         for (int i = 0; i <= low_power; ++i)
-            HpnPosition->Add(Vector(x_start + rand() % 3000, y_start + rand() % 3000, 10));
+            HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
         return;
     }
     int x_start = 1000;
