@@ -513,7 +513,6 @@ int main(int argc, char* argv[])
 
     int seedValue = 1;
     double interPacketInterval = 0.001;
-    double threshold = 0.2;
 
     std::string handoverAlg = "ahp";
 
@@ -522,13 +521,9 @@ int main(int argc, char* argv[])
     // void WriteMetrics();
 
     /*--------------------- COMMAND LINE PARSING -------------------*/
-    //std::string entradaSumo = "mobil/reta2km.tcl"; // Mobilidade usada
-    std::string entradaSumo = "mobil/rapido.tcl"; // Mobilidade usada
-
     CommandLine cmm;
     cmm.AddValue("seedValue", "valor de seed para aleatoriedade", seedValue);
     cmm.AddValue("handoverAlg", "Handover algorith in use", handoverAlg);
-    cmm.AddValue("threshold", "Threshold do algoritmo", threshold);
     cmm.Parse(argc, argv);
 
     RngSeedManager::SetSeed(seedValue); //valor de seed para geração de números aleatórios
@@ -550,14 +545,10 @@ int main(int argc, char* argv[])
     LogComponentEnable("MultiHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("MultiHandoverAlgorithm", LOG_LEVEL_DEBUG);
     LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
-    //LogComponentEnable("LteAnr", LOG_LEVEL_FUNCTION);
-    /*LogComponentEnable("LteEnbNetDevice", LOG_LEVEL_FUNCTION);
-    LogComponentEnable("EvalvidServer", LOG_LEVEL_INFO);
-    LogComponentEnable("A2A4RsrqHandoverAlgorithm", LOG_LEVEL_LOGIC);*/
 
     //-------------Parâmetros da simulação
     uint16_t node_remote = 1; // HOST_REMOTO
-    for (double t = 5; t < simTime; t += 1)
+    for (double t = transmissionStart; t < simTime; t += 1)
         Simulator::Schedule(Seconds(t), &WriteMetrics);
     /*----------------------------------------------------------------------*/
 
@@ -594,7 +585,6 @@ int main(int argc, char* argv[])
     /*----------------------ALGORITMO DE HANDOVER----------------------*/
     if (handoverAlg == "ahp") {
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
-        lteHelper->SetHandoverAlgorithmAttribute("Threshold", DoubleValue(threshold));
     }
 
     else if (handoverAlg == "noop")
