@@ -6,7 +6,7 @@ read alg
 
 for i in $(seq 1 $times)
 do
-    ./waf --run "scratch/v2x_3gpp_small --handoverAlg=$alg --seedValue=$i"
+    time ./waf --run "scratch/v2x_3gpp_small --handoverAlg=$alg --seedValue=$i" > run-$alg-$times 2>&1
     mkdir simul$i
     mv rd* sd* simul$i
     rm -rf rnti qo* Dl* Ul*
