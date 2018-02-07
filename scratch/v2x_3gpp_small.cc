@@ -82,7 +82,7 @@ const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
-int distancia = 1000; //distância entre torres HPN (mínima)
+int distancia = 500; //distância entre torres HPN (mínima)
 
 double simTime = 70.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 5;
@@ -788,7 +788,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
-        client.SetAttribute("PacketSize", UintegerValue());
+        client.SetAttribute("PacketSize", UintegerValue(2000));
 
         clientApps.Add(client.Install(remoteHost));
 
@@ -801,13 +801,13 @@ int main(int argc, char* argv[])
     for (int i = 0; i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
-            enb0Phy->SetTxPower(46);
+            enb0Phy->SetTxPower(46/3);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(23);
+            enb0Phy->SetTxPower(23/3);
         }
         else {
-            enb0Phy->SetTxPower(15);
+            enb0Phy->SetTxPower(15/3);
         }
     }
 
