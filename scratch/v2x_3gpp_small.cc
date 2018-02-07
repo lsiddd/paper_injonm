@@ -214,11 +214,11 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     srand(seedValue);
 
     if (luca) {
-        int x_start = 1800;
+        int x_start = 0;
         int y_start = 1800;
-        for (int i = x_start; i <= enb_HPN + low_power; ++i)
+        for (int i = 0; i < enb_HPN + low_power; ++i)
+            //HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
             HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
-        //    HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
         //for (int i = 0; i <= low_power; ++i)
         //    HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
         return;
@@ -788,7 +788,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
-        client.SetAttribute("PacketSize", UintegerValue(2000));
+        client.SetAttribute("PacketSize", UintegerValue(1500));
 
         clientApps.Add(client.Install(remoteHost));
 
@@ -801,13 +801,13 @@ int main(int argc, char* argv[])
     for (int i = 0; i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
-            enb0Phy->SetTxPower(46/3);
+            enb0Phy->SetTxPower(46);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(23/3);
+            enb0Phy->SetTxPower(23);
         }
         else {
-            enb0Phy->SetTxPower(15/3);
+            enb0Phy->SetTxPower(15);
         }
     }
 
