@@ -216,11 +216,11 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     if (luca) {
         int x_start = 1800;
         int y_start = 1800;
-        for (int i = x_start; i <= enb_HPN; ++i)
-            HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
-            //HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
-        for (int i = 0; i <= low_power; ++i)
-            HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
+        for (int i = x_start; i <= enb_HPN + low_power; ++i)
+            HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
+        //    HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
+        //for (int i = 0; i <= low_power; ++i)
+        //    HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
         return;
     }
     int x_start = 1000;
@@ -788,7 +788,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
-        client.SetAttribute("PacketSize", UintegerValue(1024));
+        client.SetAttribute("PacketSize", UintegerValue());
 
         clientApps.Add(client.Install(remoteHost));
 
@@ -810,16 +810,6 @@ int main(int argc, char* argv[])
             enb0Phy->SetTxPower(15);
         }
     }
-
-    //LogComponentEnable("LteUePhy", LOG_LEVEL_INFO);
-    /*
-    Ptr<LteUePhy> ue0Phy;
-    for (int i = 0; i < ueLteDevs.GetN(); i++) {
-        ue0Phy = ueLteDevs.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
-        enb0Phy->SetTxPower(txpower);
-        NS_LOG_INFO("Node " << i << " transmitting at " << enb0Phy->GetTxPower() << " dbm");
-    }
-    */
 
     //-------------Anexa as UEs na eNodeB
     lteHelper->Attach(pedLteDevs);
@@ -876,8 +866,6 @@ int main(int argc, char* argv[])
     Simulator::Run(); // Executa
 
     Simulator::Destroy();
-
-    NS_LOG_INFO("realizados " << handNumber << " handovers");
 
     Simulator::Run();
     return EXIT_SUCCESS;
