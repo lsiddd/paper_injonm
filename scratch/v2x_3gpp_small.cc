@@ -76,7 +76,7 @@ const int trens = 10;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 5;
+uint16_t n_cbr = 0;
 const uint16_t enb_HPN = 3; // 7;
 const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
@@ -105,8 +105,8 @@ int qosMetricsIterator[enb_HPN + low_power];
 int qoeMetricsIterator[enb_HPN + low_power];
 
 // variaveis do vídeo
-const int numberOfFrames = 300;
-const int numberOfPackets = 614;
+const int numberOfFrames = 2000;
+const int numberOfPackets = 2106;
 
 int framePct[numberOfFrames + 1];
 std::string frameTypeGlobal[numberOfFrames];
@@ -450,7 +450,7 @@ void WriteMetrics()
 void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostAddr, double simTime, double start)
 {
     for (uint32_t i = 0; i < ueNodes.GetN(); ++i) {
-        string video_trans = "st_container_cif_h264_300_20.st";
+        string video_trans = "st_highway_cif.st";
 
         std::stringstream sdTrace;
         std::stringstream rdTrace;
@@ -516,7 +516,7 @@ int main(int argc, char* argv[])
 
     std::string handoverAlg = "ahp";
 
-    VideoTraceParse("st_container_cif_h264_300_20.st");
+    VideoTraceParse("st_highway_cif.st");
 
     // void WriteMetrics();
 
@@ -764,6 +764,8 @@ int main(int argc, char* argv[])
     }
 
     /*-------------------------CONFIGURAÇÃO DE CBR-------------------------*/
+
+    srand(seedValue);
     uint16_t cbrPort = 3000;
     ApplicationContainer clientApps;
     ApplicationContainer serverApps;
@@ -788,7 +790,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
-        client.SetAttribute("PacketSize", UintegerValue(1500));
+        client.SetAttribute("PacketSize", UintegerValue(rand() % 2000));
 
         clientApps.Add(client.Install(remoteHost));
 
