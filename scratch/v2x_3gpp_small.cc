@@ -76,7 +76,7 @@ const int trens = 10;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 0;
+uint16_t n_cbr = 3;
 const uint16_t enb_HPN = 3; // 7;
 const uint16_t low_power = 8; // 56;
 const uint16_t hot_spot = 0; // 14;
@@ -421,7 +421,7 @@ void WriteMetrics()
                         std::ofstream::out | std::ofstream::trunc);
 
                     cmd << "python2.7 ia.py " << ILoss << " " << PLoss << " " << BLoss
-                        << " 20";
+                        << " 30";
 
                     //CÁLCULO DA MÉDIA EXPONENCIAL
                     qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
