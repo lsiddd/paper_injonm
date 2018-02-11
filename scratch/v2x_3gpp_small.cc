@@ -828,9 +828,9 @@ int main(int argc, char* argv[])
     requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart);
     requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart);
 
-    requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    /*requestStream(remoteHost, pedestres_nc, remoteHostAddr, simTime, transmissionStart + 20);
     requestStream(remoteHost, carros_nc, remoteHostAddr, simTime, transmissionStart + 20);
-    requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart + 20);
+    requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart + 20);*/
 
     /*----------------NETANIM-------------------------------*/
     AnimationInterface anim("LTEnormal_v2x.xml");
