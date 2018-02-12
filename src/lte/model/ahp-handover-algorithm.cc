@@ -303,6 +303,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }
         NS_LOG_INFO("\n\n\n------------------------------------------------------------------------");
         for (int i = 0; i < n_c; ++i){
+          NS_LOG_INFO("Measured at: " << Simulator::Now().GetSeconds() << " Seconds.\n");
           if(cell[i][3] == servingCellId)
           NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
           else

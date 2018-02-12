@@ -70,22 +70,22 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 10;
-const int carros = 10;
-const int trens = 10;
+const int pedestres = 5;
+const int carros = 5;
+const int trens = 5;
 
 const int node_ue = pedestres + carros + trens;
 
 uint16_t n_cbr = 3;
-const uint16_t enb_HPN = 3; // 7;
-const uint16_t low_power = 8; // 56;
+const uint16_t enb_HPN = 7; // 7;
+const uint16_t low_power = 0; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 500; //distância entre torres HPN (mínima)
 
-double simTime = 100.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 5;
+double simTime = 120.0; // TEMPO_SIMULAÇÃO
+int transmissionStart = 35;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
@@ -105,6 +105,9 @@ int qosMetricsIterator[enb_HPN + low_power];
 int qoeMetricsIterator[enb_HPN + low_power];
 
 // variaveis do vídeo
+string video_st = "st_highway_cif.st";
+//string video_st = "st_container_cif_h264_300_20.st";
+
 const int numberOfFrames = 2000;
 const int numberOfPackets = 2106;
 
@@ -113,6 +116,7 @@ std::string frameTypeGlobal[numberOfFrames];
 int LastReceivedFrame[node_ue];
 bool receivedFrames[node_ue][numberOfPackets];
 bool receivedPackets[node_ue][numberOfPackets];
+
 
 NS_LOG_COMPONENT_DEFINE("v2x_3gpp");
 
@@ -450,7 +454,7 @@ void WriteMetrics()
 void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remoteHostAddr, double simTime, double start)
 {
     for (uint32_t i = 0; i < ueNodes.GetN(); ++i) {
-        string video_trans = "st_highway_cif.st";
+        string video_trans = video_st;
 
         std::stringstream sdTrace;
         std::stringstream rdTrace;
@@ -516,7 +520,7 @@ int main(int argc, char* argv[])
 
     std::string handoverAlg = "ahp";
 
-    VideoTraceParse("st_highway_cif.st");
+    VideoTraceParse(video_st);
 
     // void WriteMetrics();
 
@@ -803,13 +807,13 @@ int main(int argc, char* argv[])
     for (int i = 0; i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
-            enb0Phy->SetTxPower(46);
+            enb0Phy->SetTxPower(46/3);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(23);
+            enb0Phy->SetTxPower(23/3);
         }
         else {
-            enb0Phy->SetTxPower(15);
+            enb0Phy->SetTxPower(15/3);
         }
     }
 
