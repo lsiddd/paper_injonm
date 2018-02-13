@@ -70,19 +70,19 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 5;
-const int carros = 5;
-const int trens = 5;
+const int pedestres = 15;
+const int carros = 15;
+const int trens = 15;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 3;
-const uint16_t enb_HPN = 7; // 7;
-const uint16_t low_power = 0; // 56;
+uint16_t n_cbr = 1;
+const uint16_t enb_HPN = 1; // 7;
+const uint16_t low_power = 3; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
-int distancia = 500; //distância entre torres HPN (mínima)
+int distancia = 1000; //distância entre torres HPN (mínima)
 
 double simTime = 120.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 35;
@@ -516,7 +516,7 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
     int seedValue = 1;
-    double interPacketInterval = 0.001;
+    double interPacketInterval = 0.000000001;
 
     std::string handoverAlg = "ahp";
 
@@ -794,7 +794,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
-        client.SetAttribute("PacketSize", UintegerValue(rand() % 2000));
+        client.SetAttribute("PacketSize", UintegerValue(2000));
 
         clientApps.Add(client.Install(remoteHost));
 
@@ -807,13 +807,13 @@ int main(int argc, char* argv[])
     for (int i = 0; i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
-            enb0Phy->SetTxPower(46/3);
+            enb0Phy->SetTxPower(46);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(23/3);
+            enb0Phy->SetTxPower(23);
         }
         else {
-            enb0Phy->SetTxPower(15/3);
+            enb0Phy->SetTxPower(15);
         }
     }
 

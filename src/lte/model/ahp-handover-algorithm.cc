@@ -246,13 +246,13 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             cell[i][0] = (uint16_t)it2->second->m_rsrq;
 
             if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][1] = 0;
+                cell[i][1] = 5;
             else
                 while (qoeFile >> qoeResult)
                     cell[i][1] = stod(qoeResult);
 
             if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][2] = 0;
+                cell[i][2] = 1;
             else
                 while (qosFile >> qosResult)
                     cell[i][2] = stod(qosResult);
@@ -277,12 +277,12 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         if (qoeAtual)
             cell[i][1] = qoeAtual;
         else {
-            cell[i][1] = 0;
+            cell[i][1] = 5;
         }
         if(qosAtual)
             cell[i][2] = qosAtual;
         else
-            cell[i][2] = 0;
+            cell[i][2] = 1;
         cell[i][3] = servingCellId;
 
         /*-----------------------RESULTADO NÃO NORMALIZADO-------------------*/
@@ -290,8 +290,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         /*for (int i = 0; i < n_c; ++i)
           for (int j = 0; j < n_p; ++j) soma[i] += cell[i][j]*eigenvector[j];*/
         for (int i = 0; i < n_c; ++i){
-          soma[i] = cell[i][0] * 0.57;
-          soma[i] += cell[i][1] * 0.28;
+          soma[i] = cell[i][0] * 0.28;
+          soma[i] += cell[i][1] * 0.57;
           soma[i] += cell[i][2] * 0.14;
         }
 
@@ -302,12 +302,12 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
           }
         }
         NS_LOG_INFO("\n\n\n------------------------------------------------------------------------");
+        NS_LOG_INFO("Measured at: " << Simulator::Now().GetSeconds() << " Seconds.\n");
         for (int i = 0; i < n_c; ++i){
-          NS_LOG_INFO("Measured at: " << Simulator::Now().GetSeconds() << " Seconds.\n");
           if(cell[i][3] == servingCellId)
-          NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
+              NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
           else
-          NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
+              NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
           NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);
           NS_LOG_INFO("         -- MOSp: " << cell[i][1]);
           NS_LOG_INFO("         -- PDR: " << cell[i][2] << "\n");
