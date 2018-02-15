@@ -59,6 +59,7 @@
 #include <memory>
 #include <typeinfo>
 
+
 //we'll use that for cell allocation
 #include <math.h>
 #define PI 3.14159265
@@ -70,13 +71,13 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 15;
-const int carros = 15;
-const int trens = 15;
+const int pedestres = 80;
+const int carros = 100;
+const int trens = 100;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 1;
+uint16_t n_cbr = 3;
 const uint16_t enb_HPN = 1; // 7;
 const uint16_t low_power = 3; // 56;
 const uint16_t hot_spot = 0; // 14;
@@ -104,19 +105,33 @@ double qosSum[enb_HPN + low_power];
 int qosMetricsIterator[enb_HPN + low_power];
 int qoeMetricsIterator[enb_HPN + low_power];
 
-// variaveis do vídeo
-string video_st = "st_highway_cif.st";
-//string video_st = "st_container_cif_h264_300_20.st";
 
-const int numberOfFrames = 2000;
-const int numberOfPackets = 2106;
+/*-----------------------VARIÁVEIS DO VÍDEO-----------------------*/
+// 1 PARA st_highway_cif
+// 2 PARA st_container_cif_h264_300_20
+#define video 2
+
+#if video == 1
+  // variaveis do vídeo
+  #define video_st "st_highway_cif.st"
+
+  #define numberOfFrames  2000
+  #define numberOfPackets  2106
+
+#elif video == 2
+  #define video_st "st_container_cif_h264_300_20.st"
+
+  #define numberOfFrames  300
+  #define numberOfPackets  614
+
+#endif
 
 int framePct[numberOfFrames + 1];
 std::string frameTypeGlobal[numberOfFrames];
 int LastReceivedFrame[node_ue];
 bool receivedFrames[node_ue][numberOfPackets];
 bool receivedPackets[node_ue][numberOfPackets];
-
+/*----------------------------------------------------------------------*/
 
 NS_LOG_COMPONENT_DEFINE("v2x_3gpp");
 
@@ -706,15 +721,15 @@ int main(int argc, char* argv[])
 
     /*---------------MONILIDADE DOS CARROS------------------------------*/
 
-    Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+    /*Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
     Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
     Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
 
-    if(luca){
+    if(luca){*/
       Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/lucaPedestre.tcl");
       Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/lucaCarro.tcl");
       Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/lucaTrem.tcl");
-    }
+    //}
     //mobility.Install(ueNodes.Begin(), ueNodes.End());
     mobil_ped.Install(pedestres_nc.Begin(), pedestres_nc.End());
     mobil_carro.Install(carros_nc.Begin(), carros_nc.End());
