@@ -71,9 +71,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 80;
-const int carros = 100;
-const int trens = 100;
+const int pedestres = 50;
+const int carros = 50;
+const int trens = 50;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -112,18 +112,14 @@ int qoeMetricsIterator[enb_HPN + low_power];
 #define video 2
 
 #if video == 1
-  // variaveis do vídeo
   #define video_st "st_highway_cif.st"
-
   #define numberOfFrames  2000
   #define numberOfPackets  2106
 
 #elif video == 2
   #define video_st "st_container_cif_h264_300_20.st"
-
   #define numberOfFrames  300
   #define numberOfPackets  614
-
 #endif
 
 int framePct[numberOfFrames + 1];

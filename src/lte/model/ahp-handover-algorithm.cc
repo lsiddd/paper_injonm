@@ -290,9 +290,9 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         /*for (int i = 0; i < n_c; ++i)
           for (int j = 0; j < n_p; ++j) soma[i] += cell[i][j]*eigenvector[j];*/
         for (int i = 0; i < n_c; ++i){
-          soma[i] = cell[i][0] * 0.28;
+          soma[i] = cell[i][0] * 0;
           soma[i] += cell[i][1] * 0.57;
-          soma[i] += cell[i][2] * 0.14;
+          soma[i] += cell[i][2] * 0;
         }
 
         for (i = 0; i < n_c; ++i){
