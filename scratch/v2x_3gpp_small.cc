@@ -85,8 +85,8 @@ int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 1000; //distância entre torres HPN (mínima)
 
-double simTime = 120.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 35;
+double simTime = 50.0; // TEMPO_SIMULAÇÃO
+int transmissionStart = 15;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
