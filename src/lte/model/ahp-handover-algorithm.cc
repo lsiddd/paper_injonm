@@ -322,7 +322,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
         if (bestNeighbourCellId != servingCellId) {
-          if (Simulator::Now().GetSeconds() - tm < 0.2){
+          if (Simulator::Now().GetSeconds() - tm < 0.05){
+            NS_LOG_INFO("Last Handover: " << tm);
             NS_LOG_INFO("Delaying Handover");
             NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
             return;
@@ -330,7 +331,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
           tm = Simulator::Now().GetSeconds();
           NS_LOG_INFO(tm);
           //Simulator::Schedule(Seconds(rand() % 2), &m_handoverManagementSapUser->TriggerHandover, this, rnti, bestNeighbourCellId);
-          //m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
+          m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
           NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId << "\n\n\n");
         }
         NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
