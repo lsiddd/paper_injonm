@@ -174,7 +174,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
     else {
         /*if (Simulator::Now().GetSeconds() < 15)
           return;*/
-
+        static double tm = 0;
         MeasurementRow_t::iterator it2;
         double threshold = AhpHandoverAlgorithm::m_threshold;
 
@@ -322,8 +322,16 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
         if (bestNeighbourCellId != servingCellId) {
-            m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
-            NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId << "\n\n\n");
+          if (Simulator::Now().GetSeconds() - tm < 0.2){
+            NS_LOG_INFO("Delaying Handover");
+            NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
+            return;
+          }
+          tm = Simulator::Now().GetSeconds();
+          NS_LOG_INFO(tm);
+          //Simulator::Schedule(Seconds(rand() % 2), &m_handoverManagementSapUser->TriggerHandover, this, rnti, bestNeighbourCellId);
+          //m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
+          NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId << "\n\n\n");
         }
         NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");
     } // end of else of if (it1 == m_neighbourCellMeasures.end ())
