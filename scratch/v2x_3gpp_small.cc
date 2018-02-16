@@ -71,19 +71,19 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 50;
-const int carros = 50;
-const int trens = 50;
+const int pedestres = 30;
+const int carros = 30;
+const int trens = 30;
 
 const int node_ue = pedestres + carros + trens;
 
 uint16_t n_cbr = 3;
 const uint16_t enb_HPN = 1; // 7;
-const uint16_t low_power = 3; // 56;
+const uint16_t low_power = 10; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
-int distancia = 1000; //distância entre torres HPN (mínima)
+int distancia = 100; //distância entre torres HPN (mínima)
 
 double simTime = 50.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 15;
@@ -821,7 +821,7 @@ int main(int argc, char* argv[])
             enb0Phy->SetTxPower(46);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(23);
+            enb0Phy->SetTxPower(33);
         }
         else {
             enb0Phy->SetTxPower(15);

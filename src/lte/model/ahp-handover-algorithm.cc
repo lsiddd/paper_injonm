@@ -124,7 +124,7 @@ void AhpHandoverAlgorithm::DoInitialize()
     reportConfig.threshold1.choice = LteRrcSap::ThresholdEutra::THRESHOLD_RSRQ;
     reportConfig.threshold1.range = 0; // THRESHOLD BAIXO FACILITA DETECÇÃO
     reportConfig.triggerQuantity = LteRrcSap::ReportConfigEutra::RSRQ;
-    reportConfig.timeToTrigger = m_timeToTrigger.GetMilliSeconds();
+    //reportConfig.timeToTrigger = m_timeToTrigger.GetMilliSeconds();
     reportConfig.reportInterval = LteRrcSap::ReportConfigEutra::MS480;
     m_a4MeasId = m_handoverManagementSapUser->AddUeMeasReportConfigForHandover(reportConfig);
     LteHandoverAlgorithm::DoInitialize();
@@ -172,6 +172,9 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         //NS_LOG_WARN("Skipping handover evaluation for RNTI " << rnti << " because neighbour cells information is not found");
     }
     else {
+        /*if (Simulator::Now().GetSeconds() < 15)
+          return;*/
+
         MeasurementRow_t::iterator it2;
         double threshold = AhpHandoverAlgorithm::m_threshold;
 
@@ -218,8 +221,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             }
             // if (qoeAtual < 2)
             //     threshold = 0;
-            if (qoeAtual > 3.5)
-              return;
+            //if (qoeAtual > 3.5)
+            //  return;
         }
 
 
@@ -284,6 +287,9 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         else
             cell[i][2] = 1;
         cell[i][3] = servingCellId;
+
+        if (cell[i][1] == 5)
+          return;
 
         /*-----------------------RESULTADO NÃO NORMALIZADO-------------------*/
 
