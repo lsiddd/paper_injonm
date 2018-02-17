@@ -829,12 +829,12 @@ int main(int argc, char* argv[])
     }
 
     //-------------Anexa as UEs na eNodeB
-    //lteHelper->Attach(pedLteDevs);
-    //lteHelper->Attach(carLteDevs);
-    //lteHelper->Attach(tremLteDevs);
-    lteHelper->AttachToClosestEnb(pedLteDevs, enbLteDevs);
+    lteHelper->Attach(pedLteDevs);
+    lteHelper->Attach(carLteDevs);
+    lteHelper->Attach(tremLteDevs);
+    /*lteHelper->AttachToClosestEnb(pedLteDevs, enbLteDevs);
     lteHelper->AttachToClosestEnb(carLteDevs, enbLteDevs);
-    lteHelper->AttachToClosestEnb(tremLteDevs, enbLteDevs);
+    lteHelper->AttachToClosestEnb(tremLteDevs, enbLteDevs);*/
     lteHelper->AttachToClosestEnb(cbrLteDevs, enbLteDevs);
     lteHelper->AddX2Interface(enbNodes);
 
