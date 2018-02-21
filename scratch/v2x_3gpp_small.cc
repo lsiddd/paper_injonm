@@ -71,9 +71,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 50;
-const int carros = 50;
-const int trens = 50;
+const int pedestres = 5;
+const int carros = 0;
+const int trens = 0;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -115,16 +115,19 @@ int qoeMetricsIterator[enb_HPN + low_power];
   #define video_st "st_highway_cif.st"
   #define numberOfFrames  2000
   #define numberOfPackets  2106
+  #define gop 30
 
 #elif video == 2
   #define video_st "st_container_cif_h264_300_20.st"
   #define numberOfFrames  300
   #define numberOfPackets  614
+  #define gop 20
 
 #elif video ==3
   #define video_st "st_highway_600_cif"
   #define numberOfFrames 600
   #define numberOfPackets 716
+  #define gop 28
 #endif
 
 int framePct[numberOfFrames + 1];
@@ -439,9 +442,9 @@ void WriteMetrics()
 
                     ofstream qoeOutFile(qoeFileName.str(),
                         std::ofstream::out | std::ofstream::trunc);
-
+                    
                     cmd << "python2.7 ia.py " << ILoss << " " << PLoss << " " << BLoss
-                        << " 30";
+                        << " " << gop;
 
                     //CÁLCULO DA MÉDIA EXPONENCIAL
                     qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
