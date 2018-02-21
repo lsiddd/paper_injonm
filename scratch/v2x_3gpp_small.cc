@@ -109,7 +109,7 @@ int qoeMetricsIterator[enb_HPN + low_power];
 /*-----------------------VARIÁVEIS DO VÍDEO-----------------------*/
 // 1 PARA st_highway_cif
 // 2 PARA st_container_cif_h264_300_20
-#define video 2
+#define video 3
 
 #if video == 1
   #define video_st "st_highway_cif.st"
@@ -120,6 +120,11 @@ int qoeMetricsIterator[enb_HPN + low_power];
   #define video_st "st_container_cif_h264_300_20.st"
   #define numberOfFrames  300
   #define numberOfPackets  614
+
+#elif video ==3
+  #define video_st "st_highway_600_cif"
+  #define numberOfFrames 600
+  #define numberOfPackets 716
 #endif
 
 int framePct[numberOfFrames + 1];
