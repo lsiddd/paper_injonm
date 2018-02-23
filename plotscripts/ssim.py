@@ -2,10 +2,13 @@ import numpy as np
 import matplotlib as mpl
 import glob
 import re
+import matplotlib.patches as patches
+import matplotlib.path as path
+
 
 mpl.use('agg')
 
-chart_type = 'bar'
+chart_type = 'boxplot'
 
 import matplotlib.pyplot as plt
 
@@ -56,15 +59,16 @@ for j in range(1, 31):
 	#-----------------TAKE STANDARD DEVIATION FOR INDIVIDUAL SIMULATIONS-----------------#
 	if (np.mean(ssim_ahp_aux) == np.mean(ssim_ahp_aux)):
 		ssim_ahp_std.append(np.mean(ssim_ahp_aux))
-	ssim_ahp_aux = []
 	if (np.mean(ssim_a2a4_aux) == np.mean(ssim_a2a4_aux)):
 		ssim_a2a4_std.append(np.mean(ssim_a2a4_aux))
-	ssim_a2a4_aux = []
 	if (np.mean(ssim_a3_aux) == np.mean(ssim_a3_aux)):
 		ssim_a3_std.append(np.mean(ssim_a3_aux))
+	#-----------------------------RETURN THE AUX LISTS TO []-----------------------------#
+	ssim_ahp_aux = []
+	ssim_a2a4_aux = []
 	ssim_a3_aux = []
 
-#--------------------------------PLOT FOR BAR-LIKE GRAP--------------------------------H#
+#--------------------------------PLOT FOR BAR-LIKE GRAPH---------------------------------#
 if (chart_type == 'bar'):
 	N = 3
 
@@ -133,3 +137,51 @@ elif (chart_type == 'boxplot'):
 	ax.set_xticklabels(['AHP', 'A2-A4-RSRQ', 'A3-RSRP'])
 	plt.show()
 	fig.savefig('ssim_boxplot.png', bbox_inches='tight')
+
+elif (chart_type == 'histogram'):
+	fig, ax = plt.subplots()
+
+	plt.title("SSIM HISTOGRAM A2A4")
+	n, bins = np.histogram(ssim_a2a4, 50)
+	left = np.array(bins[:-1])
+	right = np.array(bins[1:])
+	bottom = np.zeros(len(left))
+	top = bottom + n
+	XY = np.array([[left, left, right, right], [bottom, top, top, bottom]]).T
+	barpath = path.Path.make_compound_path_from_polys(XY)
+	patch = patches.PathPatch(barpath)
+	ax.add_patch(patch)
+	ax.set_xlim(left[0], right[-1])
+	ax.set_ylim(bottom.min(), top.max())
+	plt.savefig('ssim_histogram_a2a4.png')
+
+
+	fig, ax = plt.subplots()
+	plt.title("SSIM HISTOGRAM AHP")
+	n, bins = np.histogram(ssim_ahp, 50)
+	left = np.array(bins[:-1])
+	right = np.array(bins[1:])
+	bottom = np.zeros(len(left))
+	top = bottom + n
+	XY = np.array([[left, left, right, right], [bottom, top, top, bottom]]).T
+	barpath = path.Path.make_compound_path_from_polys(XY)
+	patch = patches.PathPatch(barpath)
+	ax.add_patch(patch)
+	ax.set_xlim(left[0], right[-1])
+	ax.set_ylim(bottom.min(), top.max())
+	plt.savefig('ssim_histogram_ahp.png')
+
+	fig, ax = plt.subplots()
+	plt.title("SSIM HISTOGRAM A3")
+	n, bins = np.histogram(ssim_a3, 50)
+	left = np.array(bins[:-1])
+	right = np.array(bins[1:])
+	bottom = np.zeros(len(left))
+	top = bottom + n
+	XY = np.array([[left, left, right, right], [bottom, top, top, bottom]]).T
+	barpath = path.Path.make_compound_path_from_polys(XY)
+	patch = patches.PathPatch(barpath)
+	ax.add_patch(patch)
+	ax.set_xlim(left[0], right[-1])
+	ax.set_ylim(bottom.min(), top.max())
+	plt.savefig('ssim_histogram_a3.png')

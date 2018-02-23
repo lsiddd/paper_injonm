@@ -2,10 +2,12 @@ import numpy as np
 import matplotlib as mpl
 import glob
 import re
+import matplotlib.patches as patches
+import matplotlib.path as path
 
 mpl.use('agg')
 
-chart_type = 'bar'
+chart_type = 'boxplot'
 
 import matplotlib.pyplot as plt
 
@@ -133,3 +135,51 @@ elif (chart_type == 'boxplot'):
 	ax.set_xticklabels(['AHP', 'A2-A4-RSRQ', 'A3-RSRP'])
 	plt.show()
 	fig.savefig('VQM_boxplot.png', bbox_inches='tight')
+
+elif (chart_type == 'histogram'):
+	fig, ax = plt.subplots()
+
+	plt.title("VQM HISTOGRAM A2A4")
+	n, bins = np.histogram(VQM_a2a4, 50)
+	left = np.array(bins[:-1])
+	right = np.array(bins[1:])
+	bottom = np.zeros(len(left))
+	top = bottom + n
+	XY = np.array([[left, left, right, right], [bottom, top, top, bottom]]).T
+	barpath = path.Path.make_compound_path_from_polys(XY)
+	patch = patches.PathPatch(barpath)
+	ax.add_patch(patch)
+	ax.set_xlim(left[0], right[-1])
+	ax.set_ylim(bottom.min(), top.max())
+	plt.savefig('VQM_histogram_a2a4.png')
+
+
+	fig, ax = plt.subplots()
+	plt.title("VQM HISTOGRAM AHP")
+	n, bins = np.histogram(VQM_ahp, 50)
+	left = np.array(bins[:-1])
+	right = np.array(bins[1:])
+	bottom = np.zeros(len(left))
+	top = bottom + n
+	XY = np.array([[left, left, right, right], [bottom, top, top, bottom]]).T
+	barpath = path.Path.make_compound_path_from_polys(XY)
+	patch = patches.PathPatch(barpath)
+	ax.add_patch(patch)
+	ax.set_xlim(left[0], right[-1])
+	ax.set_ylim(bottom.min(), top.max())
+	plt.savefig('VQM_histogram_ahp.png')
+
+	fig, ax = plt.subplots()
+	plt.title("VQM HISTOGRAM A3")
+	n, bins = np.histogram(VQM_a3, 50)
+	left = np.array(bins[:-1])
+	right = np.array(bins[1:])
+	bottom = np.zeros(len(left))
+	top = bottom + n
+	XY = np.array([[left, left, right, right], [bottom, top, top, bottom]]).T
+	barpath = path.Path.make_compound_path_from_polys(XY)
+	patch = patches.PathPatch(barpath)
+	ax.add_patch(patch)
+	ax.set_xlim(left[0], right[-1])
+	ax.set_ylim(bottom.min(), top.max())
+	plt.savefig('VQM_histogram_a3.png')
