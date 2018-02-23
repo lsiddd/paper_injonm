@@ -2,11 +2,8 @@
 
 import re, os, sys
 
-#([0-9]|[0-9][0-9])\.([0-9])\w+ simtime
-#IMSI ([0-9]|[0-9][0-9])   --->> ([0-9]|[0-9][0-9])
-#CellId ([0-9]|[0-9][0-9]) --->> ([0-9]|[0-9][0-9])
 handover = []
-pp = 0
+pp = set()
 verbose = 0
 checked = []
 if (len(sys.argv) > 1):
@@ -17,7 +14,7 @@ if (len(sys.argv) > 1):
 			data = f.readlines()
 			for i in data: #REGEX PARA EXTRAIR INFOS
 				if (re.search("doing handover", i)):
-					
+
 					simtime = re.search("^[-+]?([0-9]*\.[0-9]+|[0-9]+)", i)
 
 					imsi = re.search("IMSI ([0-9][0-9]|[0-9])", i)
@@ -36,10 +33,11 @@ if (len(sys.argv) > 1):
 						print("célula alvo:\t" + str(targetCell.group(0)) + "\n\n\n")
 
 					handover.append([simtime.group(0), imsi.group(0), originCell.group(0), targetCell.group(0)])
+		print (handover)
 	else:
 		print ("isto non exsiste")
 	#------------------------------------------------------------------------
-
+'''
 	#-------------------------DETECÇÃO DE PING-PONG--------------------------
 	for i in handover:
 		origin = i[2]
@@ -57,3 +55,4 @@ if (len(sys.argv) > 1):
 else:
 	print ("passar o nome do arquivo como parâmetro")
 print("realizados " + str(pp) + " handover ping pong")
+'''
