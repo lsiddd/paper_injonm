@@ -9,46 +9,73 @@ chart_type = 'bar'
 
 import matplotlib.pyplot as plt
 
-vqm_a2a4 = []
-vqm_a3 = []
-vqm_ahp = []
+VQM_a2a4 = []
+VQM_a3 = []
+VQM_ahp = []
 
-ahp_path = '/home/lucas/evalvid-tools/final/lucasTestes/ahp/ahp/simul*/*vqm*'
-a2a4_path = '/home/lucas/evalvid-tools/final/lucasTestes/a2a4/a2a4/simul*/*vqm*'
-a3_path = '/home/lucas/evalvid-tools/final/lucasTestes/a3/a3/simul*/*vqm*'
+VQM_a2a4_aux = []
+VQM_a3_aux = []
+VQM_ahp_aux = []
 
-for filename in glob.iglob(ahp_path, recursive=True):
-	for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
-		if (i != []):
-			vqm_ahp.append(float(i[0][-7:]) / 4)
-		else:
-			pass
+VQM_a2a4_std = []
+VQM_a3_std = []
+VQM_ahp_std = []
 
-for filename in glob.iglob(a2a4_path, recursive=True):
-	for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
-		if (i != []):
-			vqm_a2a4.append(float(i[0][-7:]) / 4 )
-		else:
-			pass
+for j in range(1, 31):
+	#------------------------------PATH WHERE THE FILES ARE------------------------------#
+	ahp_path = '/home/lucas/evalvid/final/lucasTestes/ahp/ahp/simul' + str(j) + '/*vqm*'
+	a2a4_path = '/home/lucas/evalvid/final/lucasTestes/a2a4/a2a4/simul' + str(j) + '/*vqm*'
+	a3_path = '/home/lucas/evalvid/final/lucasTestes/a3/a3/simul' + str(j) + '/*vqm*'
 
-for filename in glob.iglob(a3_path, recursive=True):
-	for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
-		if (i != []):
-			vqm_a3.append(float(i[0][-7:]) / 4)
-		else:
-			pass
 
+	#---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
+	for filename in glob.iglob(ahp_path, recursive=True):
+		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
+			if (i != []):
+				VQM_ahp.append(float(i[0][-7:]) / 4)
+				VQM_ahp_aux.append(float(i[0][-7:]) / 4)
+			else:
+				pass
+
+	for filename in glob.iglob(a2a4_path, recursive=True):
+		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
+			if (i != []):
+				VQM_a2a4.append(float(i[0][-7:]) / 4)
+				VQM_a2a4_aux.append(float(i[0][-7:]) / 4)
+			else:
+				pass
+
+	for filename in glob.iglob(a3_path, recursive=True):
+		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
+			if (i != []):
+				VQM_a3.append(float(i[0][-7:]) / 4)
+				VQM_a3_aux.append(float(i[0][-7:]) / 4)
+			else:
+				pass
+
+	#-----------------TAKE STANDARD DEVIATION FOR INDIVIDUAL SIMULATIONS-----------------#
+	if (np.mean(VQM_ahp_aux) == np.mean(VQM_ahp_aux)):
+		VQM_ahp_std.append(np.mean(VQM_ahp_aux))
+	VQM_ahp_aux = []
+	if (np.mean(VQM_a2a4_aux) == np.mean(VQM_a2a4_aux)):
+		VQM_a2a4_std.append(np.mean(VQM_a2a4_aux))
+	VQM_a2a4_aux = []
+	if (np.mean(VQM_a3_aux) == np.mean(VQM_a3_aux)):
+		VQM_a3_std.append(np.mean(VQM_a3_aux))
+	VQM_a3_aux = []
+
+#--------------------------------PLOT FOR BAR-LIKE GRAP--------------------------------H#
 if (chart_type == 'bar'):
 	N = 3
 
-	men_means = (	np.float(np.mean(vqm_ahp)),
-					np.float(np.mean(vqm_a2a4)),
-					np.float(np.mean(vqm_a3))
+	men_means = (	np.float(np.mean(VQM_ahp)),
+					np.float(np.mean(VQM_a2a4)),
+					np.float(np.mean(VQM_a3))
 					)
 
-	men_std = (	np.float(np.std(vqm_ahp)),
-				np.float(np.std(vqm_a2a4)),
-				np.float(np.std(vqm_a3))
+	men_std = (	np.float(np.std(VQM_ahp_std)),
+				np.float(np.std(VQM_a2a4_std)),
+				np.float(np.std(VQM_a3_std))
 				)
 
 	ind = np.arange(N)  # the x locations for the groups
@@ -70,18 +97,14 @@ if (chart_type == 'bar'):
 	def autolabel(rects):
 	    for rect in rects:
 	        height = rect.get_height()
-	        print (height)
-	        '''
-	        ax.text(rect.get_x() + rect.get_width()/2., 1.05*height,
-	                '%d' % int(height),
-	                ha='center', va='bottom')
-	        '''
 
 	autolabel(rects1)
 
-	plt.savefig("vqm_barchart.png")
+	plt.savefig("VQM_barchart.png")
+
+#-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 elif (chart_type == 'boxplot'):
-	data_to_plot = [vqm_ahp, vqm_a2a4, vqm_a3]
+	data_to_plot = [VQM_ahp, VQM_a2a4, VQM_a3]
 
 	fig = plt.figure(1, figsize=(9, 6))
 	plt.title("VQM")
@@ -109,4 +132,4 @@ elif (chart_type == 'boxplot'):
 
 	ax.set_xticklabels(['AHP', 'A2-A4-RSRQ', 'A3-RSRP'])
 	plt.show()
-	fig.savefig('vqm_boxplot.png', bbox_inches='tight')
+	fig.savefig('VQM_boxplot.png', bbox_inches='tight')

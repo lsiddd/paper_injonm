@@ -13,31 +13,58 @@ ssim_a2a4 = []
 ssim_a3 = []
 ssim_ahp = []
 
-ahp_path = '/home/lucas/evalvid-tools/final/lucasTestes/ahp/ahp/simul*/*ssim*'
-a2a4_path = '/home/lucas/evalvid-tools/final/lucasTestes/a2a4/a2a4/simul*/*ssim*'
-a3_path = '/home/lucas/evalvid-tools/final/lucasTestes/a3/a3/simul*/*ssim*'
+ssim_a2a4_aux = []
+ssim_a3_aux = []
+ssim_ahp_aux = []
 
-for filename in glob.iglob(ahp_path, recursive=True):
-	for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
-		if (i != []):
-			ssim_ahp.append(float(i[0][-7:]))
-		else:
-			pass
+ssim_a2a4_std = []
+ssim_a3_std = []
+ssim_ahp_std = []
 
-for filename in glob.iglob(a2a4_path, recursive=True):
-	for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
-		if (i != []):
-			ssim_a2a4.append(float(i[0][-7:]))
-		else:
-			pass
+for j in range(1, 31):
+	#------------------------------PATH WHERE THE FILES ARE------------------------------#
+	ahp_path = '/home/lucas/evalvid/final/lucasTestes/ahp/ahp/simul' + str(j) + '/*ssim*'
+	a2a4_path = '/home/lucas/evalvid/final/lucasTestes/a2a4/a2a4/simul' + str(j) + '/*ssim*'
+	a3_path = '/home/lucas/evalvid/final/lucasTestes/a3/a3/simul' + str(j) + '/*ssim*'
 
-for filename in glob.iglob(a3_path, recursive=True):
-	for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
-		if (i != []):
-			ssim_a3.append(float(i[0][-7:]))
-		else:
-			pass
 
+	#---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
+	for filename in glob.iglob(ahp_path, recursive=True):
+		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
+			if (i != []):
+				ssim_ahp.append(float(i[0][-7:]))
+				ssim_ahp_aux.append(float(i[0][-7:]))
+			else:
+				pass
+
+	for filename in glob.iglob(a2a4_path, recursive=True):
+		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
+			if (i != []):
+				ssim_a2a4.append(float(i[0][-7:]))
+				ssim_a2a4_aux.append(float(i[0][-7:]))
+			else:
+				pass
+
+	for filename in glob.iglob(a3_path, recursive=True):
+		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
+			if (i != []):
+				ssim_a3.append(float(i[0][-7:]))
+				ssim_a3_aux.append(float(i[0][-7:]))
+			else:
+				pass
+
+	#-----------------TAKE STANDARD DEVIATION FOR INDIVIDUAL SIMULATIONS-----------------#
+	if (np.mean(ssim_ahp_aux) == np.mean(ssim_ahp_aux)):
+		ssim_ahp_std.append(np.mean(ssim_ahp_aux))
+	ssim_ahp_aux = []
+	if (np.mean(ssim_a2a4_aux) == np.mean(ssim_a2a4_aux)):
+		ssim_a2a4_std.append(np.mean(ssim_a2a4_aux))
+	ssim_a2a4_aux = []
+	if (np.mean(ssim_a3_aux) == np.mean(ssim_a3_aux)):
+		ssim_a3_std.append(np.mean(ssim_a3_aux))
+	ssim_a3_aux = []
+
+#--------------------------------PLOT FOR BAR-LIKE GRAP--------------------------------H#
 if (chart_type == 'bar'):
 	N = 3
 
@@ -46,9 +73,9 @@ if (chart_type == 'bar'):
 					np.float(np.mean(ssim_a3))
 					)
 
-	men_std = (	np.float(np.std(ssim_ahp)),
-				np.float(np.std(ssim_a2a4)),
-				np.float(np.std(ssim_a3))
+	men_std = (	np.float(np.std(ssim_ahp_std)),
+				np.float(np.std(ssim_a2a4_std)),
+				np.float(np.std(ssim_a3_std))
 				)
 
 	ind = np.arange(N)  # the x locations for the groups
@@ -70,16 +97,12 @@ if (chart_type == 'bar'):
 	def autolabel(rects):
 	    for rect in rects:
 	        height = rect.get_height()
-	        print (height)
-	        '''
-	        ax.text(rect.get_x() + rect.get_width()/2., 1.05*height,
-	                '%d' % int(height),
-	                ha='center', va='bottom')
-	        '''
 
 	autolabel(rects1)
 
 	plt.savefig("ssim_barchart.png")
+
+#-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 elif (chart_type == 'boxplot'):
 	data_to_plot = [ssim_ahp, ssim_a2a4, ssim_a3]
 
