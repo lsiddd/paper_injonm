@@ -5,23 +5,29 @@ import re
 import matplotlib.patches as patches
 import matplotlib.path as path
 
+
 mpl.use('agg')
 
 chart_type = 'bar'
 
 import matplotlib.pyplot as plt
 
-VQM_a2a4 = []
-VQM_a3 = []
-VQM_ahp = []
+xkcdEnabled = False
 
-VQM_a2a4_aux = []
-VQM_a3_aux = []
-VQM_ahp_aux = []
+if (xkcdEnabled):
+	plt.xkcd()
 
-VQM_a2a4_std = []
-VQM_a3_std = []
-VQM_ahp_std = []
+vqm_a2a4 = []
+vqm_a3 = []
+vqm_ahp = []
+
+vqm_a2a4_aux = []
+vqm_a3_aux = []
+vqm_ahp_aux = []
+
+vqm_a2a4_std = []
+vqm_a3_std = []
+vqm_ahp_std = []
 
 for j in range(1, 31):
 	#------------------------------PATH WHERE THE FILES ARE------------------------------#
@@ -30,61 +36,62 @@ for j in range(1, 31):
 	a3_path = '/home/lucas/evalvid/final/lucasTestes_h600/a3/a3/simul' + str(j) + '/*vqm*'
 
 
-	#---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
+	#---------------------FEED THE LISTS WITH INDIVIDUAL VQM VAULES---------------------#
 	for filename in glob.iglob(ahp_path, recursive=True):
 		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
 			if (i != []):
-				VQM_ahp.append(float(i[0][-7:]) / 4)
-				VQM_ahp_aux.append(float(i[0][-7:]) / 4)
+				vqm_ahp.append(float(i[0][-7:]))
+				vqm_ahp_aux.append(float(i[0][-7:]))
 			else:
 				pass
 
 	for filename in glob.iglob(a2a4_path, recursive=True):
 		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
 			if (i != []):
-				VQM_a2a4.append(float(i[0][-7:]) / 4)
-				VQM_a2a4_aux.append(float(i[0][-7:]) / 4)
+				vqm_a2a4.append(float(i[0][-7:]))
+				vqm_a2a4_aux.append(float(i[0][-7:]))
 			else:
 				pass
 
 	for filename in glob.iglob(a3_path, recursive=True):
 		for i in [re.findall(r'AVG: \d.\d\d\d\d\d',line) for line in open(filename)]:
 			if (i != []):
-				VQM_a3.append(float(i[0][-7:]) / 4)
-				VQM_a3_aux.append(float(i[0][-7:]) / 4)
+				vqm_a3.append(float(i[0][-7:]))
+				vqm_a3_aux.append(float(i[0][-7:]))
 			else:
 				pass
 
 	#-----------------TAKE STANDARD DEVIATION FOR INDIVIDUAL SIMULATIONS-----------------#
-	if (np.mean(VQM_ahp_aux) == np.mean(VQM_ahp_aux)):
-		VQM_ahp_std.append(np.mean(VQM_ahp_aux))
-	VQM_ahp_aux = []
-	if (np.mean(VQM_a2a4_aux) == np.mean(VQM_a2a4_aux)):
-		VQM_a2a4_std.append(np.mean(VQM_a2a4_aux))
-	VQM_a2a4_aux = []
-	if (np.mean(VQM_a3_aux) == np.mean(VQM_a3_aux)):
-		VQM_a3_std.append(np.mean(VQM_a3_aux))
-	VQM_a3_aux = []
+	if (np.mean(vqm_ahp_aux) == np.mean(vqm_ahp_aux)):
+		vqm_ahp_std.append(np.mean(vqm_ahp_aux))
+	if (np.mean(vqm_a2a4_aux) == np.mean(vqm_a2a4_aux)):
+		vqm_a2a4_std.append(np.mean(vqm_a2a4_aux))
+	if (np.mean(vqm_a3_aux) == np.mean(vqm_a3_aux)):
+		vqm_a3_std.append(np.mean(vqm_a3_aux))
+	#-----------------------------RETURN THE AUX LISTS TO []-----------------------------#
+	vqm_ahp_aux = []
+	vqm_a2a4_aux = []
+	vqm_a3_aux = []
 
-#--------------------------------PLOT FOR BAR-LIKE GRAP--------------------------------H#
+#--------------------------------PLOT FOR BAR-LIKE GRAPH---------------------------------#
 if (chart_type == 'bar'):
 	N = 3
 
-	men_means = (	np.float(np.mean(VQM_ahp)),
-					np.float(np.mean(VQM_a2a4)),
-					np.float(np.mean(VQM_a3))
+	men_means = (	np.float(np.mean(vqm_ahp)),
+					np.float(np.mean(vqm_a2a4)),
+					np.float(np.mean(vqm_a3))
 					)
 
-	men_std = (	np.float(np.std(VQM_ahp_std)),
-				np.float(np.std(VQM_a2a4_std)),
-				np.float(np.std(VQM_a3_std))
+	men_std = (	np.float(np.std(vqm_ahp_std)),
+				np.float(np.std(vqm_a2a4_std)),
+				np.float(np.std(vqm_a3_std))
 				)
 
 	ind = np.arange(N)  # the x locations for the groups
-	width = 0.35       # the width of the bars
+	width = 0.20       # the width of the bars
 
 	fig, ax = plt.subplots()
-	rects1 = ax.bar(ind, men_means, width, color='orange', yerr=men_std)
+	rects1 = ax.bar(ind, men_means, width, color='blue', yerr=men_std)
 
 
 	# add some text for labels, title and axes ticks
@@ -102,11 +109,11 @@ if (chart_type == 'bar'):
 
 	autolabel(rects1)
 
-	plt.savefig("VQM_barchart_h600.png")
+	plt.savefig("vqm_barchart_h600.png")
 
 #-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 elif (chart_type == 'boxplot'):
-	data_to_plot = [VQM_ahp, VQM_a2a4, VQM_a3]
+	data_to_plot = [vqm_ahp, vqm_a2a4, vqm_a3]
 
 	fig = plt.figure(1, figsize=(9, 6))
 	plt.title("VQM")
@@ -134,13 +141,13 @@ elif (chart_type == 'boxplot'):
 
 	ax.set_xticklabels(['AHP', 'A2-A4-RSRQ', 'A3-RSRP'])
 	plt.show()
-	fig.savefig('VQM_boxplot.png', bbox_inches='tight')
+	fig.savefig('vqm_boxplot.png', bbox_inches='tight')
 
 elif (chart_type == 'histogram'):
 	fig, ax = plt.subplots()
 
 	plt.title("VQM HISTOGRAM A2A4")
-	n, bins = np.histogram(VQM_a2a4, 50)
+	n, bins = np.histogram(vqm_a2a4, 50)
 	left = np.array(bins[:-1])
 	right = np.array(bins[1:])
 	bottom = np.zeros(len(left))
@@ -151,12 +158,12 @@ elif (chart_type == 'histogram'):
 	ax.add_patch(patch)
 	ax.set_xlim(left[0], right[-1])
 	ax.set_ylim(bottom.min(), top.max())
-	plt.savefig('VQM_histogram_a2a4.png')
+	plt.savefig('vqm_histogram_a2a4.png')
 
 
 	fig, ax = plt.subplots()
 	plt.title("VQM HISTOGRAM AHP")
-	n, bins = np.histogram(VQM_ahp, 50)
+	n, bins = np.histogram(vqm_ahp, 50)
 	left = np.array(bins[:-1])
 	right = np.array(bins[1:])
 	bottom = np.zeros(len(left))
@@ -167,11 +174,11 @@ elif (chart_type == 'histogram'):
 	ax.add_patch(patch)
 	ax.set_xlim(left[0], right[-1])
 	ax.set_ylim(bottom.min(), top.max())
-	plt.savefig('VQM_histogram_ahp.png')
+	plt.savefig('vqm_histogram_ahp.png')
 
 	fig, ax = plt.subplots()
 	plt.title("VQM HISTOGRAM A3")
-	n, bins = np.histogram(VQM_a3, 50)
+	n, bins = np.histogram(vqm_a3, 50)
 	left = np.array(bins[:-1])
 	right = np.array(bins[1:])
 	bottom = np.zeros(len(left))
@@ -182,4 +189,7 @@ elif (chart_type == 'histogram'):
 	ax.add_patch(patch)
 	ax.set_xlim(left[0], right[-1])
 	ax.set_ylim(bottom.min(), top.max())
-	plt.savefig('VQM_histogram_a3.png')
+	plt.savefig('vqm_histogram_a3.png')
+
+else:
+	raise Exception("Chart Type has to be either: bar, boxplot or histogram.")

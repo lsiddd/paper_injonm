@@ -12,6 +12,11 @@ chart_type = 'bar'
 
 import matplotlib.pyplot as plt
 
+xkcdEnabled = False
+
+if (xkcdEnabled):
+	plt.xkcd()
+
 ssim_a2a4 = []
 ssim_a3 = []
 ssim_ahp = []
@@ -185,3 +190,6 @@ elif (chart_type == 'histogram'):
 	ax.set_xlim(left[0], right[-1])
 	ax.set_ylim(bottom.min(), top.max())
 	plt.savefig('ssim_histogram_a3.png')
+
+else:
+	raise Exception("Chart Type has to be either: bar, boxplot or histogram.")
