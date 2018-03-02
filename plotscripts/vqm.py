@@ -7,7 +7,7 @@ import matplotlib.path as path
 
 mpl.use('agg')
 
-chart_type = 'boxplot'
+chart_type = 'bar'
 
 import matplotlib.pyplot as plt
 
@@ -25,9 +25,9 @@ VQM_ahp_std = []
 
 for j in range(1, 31):
 	#------------------------------PATH WHERE THE FILES ARE------------------------------#
-	ahp_path = '/home/lucas/evalvid/final/lucasTestes/ahp/ahp/simul' + str(j) + '/*vqm*'
-	a2a4_path = '/home/lucas/evalvid/final/lucasTestes/a2a4/a2a4/simul' + str(j) + '/*vqm*'
-	a3_path = '/home/lucas/evalvid/final/lucasTestes/a3/a3/simul' + str(j) + '/*vqm*'
+	ahp_path = '/home/lucas/evalvid/final/lucasTestes_h600/ahp/ahp/simul' + str(j) + '/*vqm*'
+	a2a4_path = '/home/lucas/evalvid/final/lucasTestes_h600/a2a4/a2a4/simul' + str(j) + '/*vqm*'
+	a3_path = '/home/lucas/evalvid/final/lucasTestes_h600/a3/a3/simul' + str(j) + '/*vqm*'
 
 
 	#---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
@@ -89,7 +89,7 @@ if (chart_type == 'bar'):
 
 	# add some text for labels, title and axes ticks
 	ax.set_ylabel('VQM')
-	ax.set_title('VQM')
+	ax.set_title('VQM - Highway 600F')
 	ax.set_xticks(ind)
 	ax.set_xticklabels(('AHP', 'A2A4', 'A3'))
 
@@ -102,7 +102,7 @@ if (chart_type == 'bar'):
 
 	autolabel(rects1)
 
-	plt.savefig("VQM_barchart.png")
+	plt.savefig("VQM_barchart_h600.png")
 
 #-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 elif (chart_type == 'boxplot'):

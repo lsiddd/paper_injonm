@@ -8,7 +8,7 @@ import matplotlib.path as path
 
 mpl.use('agg')
 
-chart_type = 'boxplot'
+chart_type = 'bar'
 
 import matplotlib.pyplot as plt
 
@@ -26,9 +26,9 @@ ssim_ahp_std = []
 
 for j in range(1, 31):
 	#------------------------------PATH WHERE THE FILES ARE------------------------------#
-	ahp_path = '/home/lucas/evalvid/final/lucasTestes/ahp/ahp/simul' + str(j) + '/*ssim*'
-	a2a4_path = '/home/lucas/evalvid/final/lucasTestes/a2a4/a2a4/simul' + str(j) + '/*ssim*'
-	a3_path = '/home/lucas/evalvid/final/lucasTestes/a3/a3/simul' + str(j) + '/*ssim*'
+	ahp_path = '/home/lucas/evalvid/final/lucasTestes_h600/ahp/ahp/simul' + str(j) + '/*ssim*'
+	a2a4_path = '/home/lucas/evalvid/final/lucasTestes_h600/a2a4/a2a4/simul' + str(j) + '/*ssim*'
+	a3_path = '/home/lucas/evalvid/final/lucasTestes_h600/a3/a3/simul' + str(j) + '/*ssim*'
 
 
 	#---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
@@ -83,15 +83,15 @@ if (chart_type == 'bar'):
 				)
 
 	ind = np.arange(N)  # the x locations for the groups
-	width = 0.35       # the width of the bars
+	width = 0.20       # the width of the bars
 
 	fig, ax = plt.subplots()
-	rects1 = ax.bar(ind, men_means, width, color='orange', yerr=men_std)
+	rects1 = ax.bar(ind, men_means, width, color='blue', yerr=men_std)
 
 
 	# add some text for labels, title and axes ticks
 	ax.set_ylabel('SSIM')
-	ax.set_title('SSIM')
+	ax.set_title('SSIM - Highway 600F')
 	ax.set_xticks(ind)
 	ax.set_xticklabels(('AHP', 'A2A4', 'A3'))
 
@@ -104,7 +104,7 @@ if (chart_type == 'bar'):
 
 	autolabel(rects1)
 
-	plt.savefig("ssim_barchart.png")
+	plt.savefig("ssim_barchart_h600.png")
 
 #-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 elif (chart_type == 'boxplot'):
