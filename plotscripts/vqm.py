@@ -9,6 +9,7 @@ import matplotlib.path as path
 mpl.use('agg')
 
 chart_type = 'bar'
+Video = 'Container'
 
 import matplotlib.pyplot as plt
 
@@ -31,9 +32,9 @@ vqm_ahp_std = []
 
 for j in range(1, 31):
 	#------------------------------PATH WHERE THE FILES ARE------------------------------#
-	ahp_path = '/home/lucas/evalvid/final/lucasTestes_h600/ahp/ahp/simul' + str(j) + '/*vqm*'
-	a2a4_path = '/home/lucas/evalvid/final/lucasTestes_h600/a2a4/a2a4/simul' + str(j) + '/*vqm*'
-	a3_path = '/home/lucas/evalvid/final/lucasTestes_h600/a3/a3/simul' + str(j) + '/*vqm*'
+	ahp_path = '/home/lucas/evalvid/final/lucasTestes/ahp/ahp/simul' + str(j) + '/*vqm*'
+	a2a4_path = '/home/lucas/evalvid/final/lucasTestes/a2a4/a2a4/simul' + str(j) + '/*vqm*'
+	a3_path = '/home/lucas/evalvid/final/lucasTestes/a3/a3/simul' + str(j) + '/*vqm*'
 
 
 	#---------------------FEED THE LISTS WITH INDIVIDUAL VQM VAULES---------------------#
@@ -77,26 +78,35 @@ for j in range(1, 31):
 if (chart_type == 'bar'):
 	N = 3
 
-	men_means = (	np.float(np.mean(vqm_ahp)),
-					np.float(np.mean(vqm_a2a4)),
-					np.float(np.mean(vqm_a3))
+	men_means = (	np.float(np.mean(vqm_ahp)/4),
+					np.float(np.mean(vqm_a2a4)/4),
+					np.float(np.mean(vqm_a3)/4)
 					)
 
-	men_std = (	np.float(np.std(vqm_ahp_std)),
-				np.float(np.std(vqm_a2a4_std)),
-				np.float(np.std(vqm_a3_std))
+	men_std = (	np.float(np.std(vqm_ahp_std)/4),
+				np.float(np.std(vqm_a2a4_std)/4),
+				np.float(np.std(vqm_a3_std)/4)
 				)
 
 	ind = np.arange(N)  # the x locations for the groups
-	width = 0.20       # the width of the bars
+	width = 0.30       # the width of the bars
 
 	fig, ax = plt.subplots()
-	rects1 = ax.bar(ind, men_means, width, color='blue', yerr=men_std)
+	rects1 = ax.bar(ind, men_means, width, color=('blue', 'red', 'green'), hatch="//", yerr=men_std)
+
+
+	#-----------SETTING INDIVIDUAL COLORS AND PATTERS FOR EACH BAR-----------#
+	patterns = ('-', '\\', 'o')
+	#colors = ('#ff8d8d', '#ff4242', '#992727')
+	for bar, pattern in zip(rects1, patterns):
+		#bar.set_color(color)
+		bar.set_hatch(pattern)
 
 
 	# add some text for labels, title and axes ticks
 	ax.set_ylabel('VQM')
-	ax.set_title('VQM - Highway 600F')
+	ax.set_ylim(0,2.5)
+	ax.set_title(f'VQM - {Video}')
 	ax.set_xticks(ind)
 	ax.set_xticklabels(('AHP', 'A2A4', 'A3'))
 
@@ -109,14 +119,14 @@ if (chart_type == 'bar'):
 
 	autolabel(rects1)
 
-	plt.savefig("vqm_barchart_h600.png")
+	plt.savefig(f'vqm_barchart_{Video}.eps')
 
 #-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 elif (chart_type == 'boxplot'):
 	data_to_plot = [vqm_ahp, vqm_a2a4, vqm_a3]
 
 	fig = plt.figure(1, figsize=(9, 6))
-	plt.title("VQM")
+	plt.title(f'VQM - {Video}')
 	ax = fig.add_subplot(111)
 
 	bp = ax.boxplot(data_to_plot)
@@ -141,7 +151,7 @@ elif (chart_type == 'boxplot'):
 
 	ax.set_xticklabels(['AHP', 'A2-A4-RSRQ', 'A3-RSRP'])
 	plt.show()
-	fig.savefig('vqm_boxplot.png', bbox_inches='tight')
+	fig.savefig(f'vqm_boxplot_{Video}.png', bbox_inches='tight')
 
 elif (chart_type == 'histogram'):
 	fig, ax = plt.subplots()
@@ -158,7 +168,7 @@ elif (chart_type == 'histogram'):
 	ax.add_patch(patch)
 	ax.set_xlim(left[0], right[-1])
 	ax.set_ylim(bottom.min(), top.max())
-	plt.savefig('vqm_histogram_a2a4.png')
+	plt.savefig(f'vqm_histogram_a2a4_{Video}.png')
 
 
 	fig, ax = plt.subplots()
@@ -174,7 +184,7 @@ elif (chart_type == 'histogram'):
 	ax.add_patch(patch)
 	ax.set_xlim(left[0], right[-1])
 	ax.set_ylim(bottom.min(), top.max())
-	plt.savefig('vqm_histogram_ahp.png')
+	plt.savefig(f'vqm_histogram_ahp_{Video}.png')
 
 	fig, ax = plt.subplots()
 	plt.title("VQM HISTOGRAM A3")
@@ -189,7 +199,7 @@ elif (chart_type == 'histogram'):
 	ax.add_patch(patch)
 	ax.set_xlim(left[0], right[-1])
 	ax.set_ylim(bottom.min(), top.max())
-	plt.savefig('vqm_histogram_a3.png')
+	plt.savefig(f'vqm_histogram_a3_{Video}.png')
 
 else:
 	raise Exception("Chart Type has to be either: bar, boxplot or histogram.")
