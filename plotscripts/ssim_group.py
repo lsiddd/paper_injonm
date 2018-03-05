@@ -15,11 +15,12 @@ chart_type = 'bar'
 
 #this is pretty much useless
 #but kinda cool
-xkcdEnabled = True
+xkcdEnabled = False
 if (xkcdEnabled):
 	plt.xkcd()
 
-def plott(Video, mType, path):#this needs some serious refactoring
+def plott(Video, mType, resultsPath):#this needs some serious refactoring
+	global chart_type
 	#-----------------LISTS WHERE THE VALUES TO BE PLOTTED WILL BE STORED-----------------#
 	ssim_a2a4 = []
 	ssim_a3 = []
@@ -35,9 +36,9 @@ def plott(Video, mType, path):#this needs some serious refactoring
 
 	for j in range(1, 31):
 		#------------------------------PATH WHERE THE RUSULT FILES ARE------------------------------#
-		ahp_path = f'/home/lucas/evalvid/{path}/lucasTestes/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
-		a2a4_path = f'/home/lucas/evalvid/{path}/lucasTestes/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
-		a3_path = f'/home/lucas/evalvid/{path}/lucasTestes/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
+		ahp_path = f'/home/lucas/evalvid/{resultsPath}/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
+		a2a4_path = f'/home/lucas/evalvid/{resultsPath}/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
+		a3_path = f'/home/lucas/evalvid/{resultsPath}/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
 
 
 		#---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
@@ -123,12 +124,12 @@ def plott(Video, mType, path):#this needs some serious refactoring
 			ax.set_ylim(0,1)
 		else:
 			ax.set_ylim(0, 3)
-		ax.set_title(f'{mType} - {Video}', y=1.09)
+		ax.set_title(f'{mType} - {Video}', y=1.08)
 		ax.set_xticks(ind)
 		ax.set_xticklabels(('', 'Algorithms', ''))
 
-		ax.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
-           ncol=3, mode="expand", borderaxespad=0.)
+		ax.legend(bbox_to_anchor=(0., 1.002, 1., .102), loc="center",
+           ncol=3, borderaxespad=0., prop={'size':13})
 		#ax.legend(rects1[0], 'Men')
 
 
@@ -138,7 +139,7 @@ def plott(Video, mType, path):#this needs some serious refactoring
 
 		autolabel(rects1)
 
-		plt.savefig(f'{mType.lower()}_barchart_{Video}.png')
+		plt.savefig(f'{mType.lower()}_barchart_{Video}.pdf')
 
 	#-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 	elif (chart_type == 'boxplot'):
@@ -170,7 +171,7 @@ def plott(Video, mType, path):#this needs some serious refactoring
 
 		ax.set_xticklabels(['AHP', 'A2-A4-RSRQ', 'A3-RSRP'])
 		plt.show()
-		fig.savefig(f'ssim_boxplot_{Video}.png', bbox_inches='tight')
+		fig.savefig(f'ssim_boxplot_{Video}.pdf', bbox_inches='tight')
 
 	elif (chart_type == 'histogram'):
 		fig, ax = plt.subplots()
@@ -187,7 +188,7 @@ def plott(Video, mType, path):#this needs some serious refactoring
 		ax.add_patch(patch)
 		ax.set_xlim(left[0], right[-1])
 		ax.set_ylim(bottom.min(), top.max())
-		plt.savefig(f'ssim_histogram_a2a4_{Video}.png')
+		plt.savefig(f'ssim_histogram_a2a4_{Video}.pdf')
 
 
 		fig, ax = plt.subplots()
@@ -203,7 +204,7 @@ def plott(Video, mType, path):#this needs some serious refactoring
 		ax.add_patch(patch)
 		ax.set_xlim(left[0], right[-1])
 		ax.set_ylim(bottom.min(), top.max())
-		plt.savefig(f'ssim_histogram_ahp_{Video}.png')
+		plt.savefig(f'ssim_histogram_ahp_{Video}.pdf')
 
 		fig, ax = plt.subplots()
 		plt.title("SSIM HISTOGRAM A3")
@@ -218,11 +219,39 @@ def plott(Video, mType, path):#this needs some serious refactoring
 		ax.add_patch(patch)
 		ax.set_xlim(left[0], right[-1])
 		ax.set_ylim(bottom.min(), top.max())
-		plt.savefig(f'ssim_histogram_a3_{Video}.png')
+		plt.savefig(f'ssim_histogram_a3_{Video}.pdf')
 
 	else:
 		raise Exception("Chart Type has to be either: bar, boxplot or histogram.")
-plott("Container", "SSIM", "final")
-plott("Container", "VQM", "final")
-plott("Highway", "SSIM", "h30_")
-plott("Highway", "VQM", "h30_")
+
+plott("Carros", "SSIM", "types_/carros")
+plott("Carros", "VQM", "types_/carros")
+
+plott("Pedestres", "SSIM", "types_/pedestres")
+plott("Pedestres", "VQM", "types_/pedestres")
+
+plott("Trens", "SSIM", "types_/trens")
+plott("Trens", "VQM", "types_/trens")
+
+plott("Container", "SSIM", "final/lucasTestes")
+plott("Container", "VQM", "final/lucasTestes")
+
+plott("Highway", "SSIM", "h30_/lucasTestes")
+plott("Highway", "VQM", "h30_/lucasTestes")
+
+chart_type = 'histogram'
+
+plott("Carros", "SSIM", "types_/carros")
+plott("Carros", "VQM", "types_/carros")
+
+plott("Pedestres", "SSIM", "types_/pedestres")
+plott("Pedestres", "VQM", "types_/pedestres")
+
+plott("Trens", "SSIM", "types_/trens")
+plott("Trens", "VQM", "types_/trens")
+
+plott("Container", "SSIM", "final/lucasTestes")
+plott("Container", "VQM", "final/lucasTestes")
+
+plott("Highway", "SSIM", "h30_/lucasTestes")
+plott("Highway", "VQM", "h30_/lucasTestes")
