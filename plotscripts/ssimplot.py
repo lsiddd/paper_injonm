@@ -1,27 +1,38 @@
 import sys
+import matplotlib
+matplotlib.use("agg")
 import matplotlib.pyplot as plt, numpy as np
 
-if (len(sys.argv) != 2):
-    print ("passar o arquivo como parâmetro")
-    sys.exit(0)
+a2a4 = []
+a3 = []
+ahp = []
 
-value = []
-with open (sys.argv[1]) as f:
-    content = f.readlines()
-for i in content:
-    try:
-        float(i)
-        value.append(i)
-        print (i)
-    except ValueError:
-        pass
-value = np.array(value)
-x = np.arange(5, 15, 10/len(value))
-#y = np.arange(0, 1, 1/len(value))
-plt.xlim(0.0, 35)
-#plt.ylim(0.0, 1)
-plt.yticks(np.arange(0, 1, 0.1))
-#plt.xticks(np.arange(0, 10, 1/len(value)))
-plt.plot(x, value)
+a2a4Path = "/home/lucas/a2a4_ssim.csv"
+a3Path = "/home/lucas/a3_ssim.csv"
+ahpPath = "/home/lucas/ahp_ssim.csv"
 
-plt.show()
+def extract(path):
+	value = []
+	with open (path) as f:
+	    content = f.readlines()
+	for i in content:
+	    try:
+	        value.append(float(i))
+	    except ValueError:
+	        pass
+	return value
+
+a2a4 = extract(a2a4Path)
+a3 = extract(a3Path)
+ahp = extract(ahpPath)
+
+plt.xlim(0, 300)
+plt.ylim(0, 1)
+plt.plot(a2a4, label='A2A4', linestyle="-")
+plt.plot(a3, label="A3", linestyle="--")
+plt.plot(ahp, label="AHP", linestyle="-.")
+plt.title("SSIM Ao Longo da Transmissão")
+plt.ylabel("SSIM")
+plt.xlabel("Frame")
+plt.legend()
+plt.savefig("ssim_timewise.pdf")
