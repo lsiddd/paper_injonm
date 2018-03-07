@@ -1,7 +1,8 @@
 import sys
 import matplotlib
-matplotlib.use("agg")
-import matplotlib.pyplot as plt, numpy as np
+import numpy as np
+#matplotlib.use("agg")
+import matplotlib.pyplot as plt
 
 a2a4 = []
 a3 = []
@@ -31,8 +32,9 @@ plt.ylim(0, 1)
 plt.plot(a2a4, label='A2A4', linestyle="-")
 plt.plot(a3, label="A3", linestyle="--")
 plt.plot(ahp, label="AHP", linestyle="-.")
-plt.title("SSIM Ao Longo da Transmissão")
+#plt.title("SSIM Ao Longo da Transmissão")
 plt.ylabel("SSIM")
 plt.xlabel("Frame")
 plt.legend()
+#plt.show()
 plt.savefig("ssim_timewise.pdf")

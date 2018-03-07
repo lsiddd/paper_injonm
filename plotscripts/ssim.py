@@ -15,7 +15,7 @@ chart_type = 'bar'
 
 #this is pretty much useless
 #but kinda cool
-xkcdEnabled = True
+xkcdEnabled = False
 if (xkcdEnabled):
 	plt.xkcd()
 
@@ -35,9 +35,9 @@ def plott(Video, mType, path):#this needs some serious refactoring
 
 	for j in range(1, 31):
 		#------------------------------PATH WHERE THE RUSULT FILES ARE------------------------------#
-		ahp_path = f'/home/lucas/evalvid/{path}/lucasTestes/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
-		a2a4_path = f'/home/lucas/evalvid/{path}/lucasTestes/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
-		a3_path = f'/home/lucas/evalvid/{path}/lucasTestes/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
+		ahp_path = f'/home/lucas/evalvid/{path}/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
+		a2a4_path = f'/home/lucas/evalvid/{path}/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
+		a3_path = f'/home/lucas/evalvid/{path}/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
 
 
 		#---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
@@ -123,12 +123,12 @@ def plott(Video, mType, path):#this needs some serious refactoring
 			ax.set_ylim(0,1)
 		else:
 			ax.set_ylim(0, 3)
-		ax.set_title(f'{mType} - {Video}', y=1.09)
+		#ax.set_title(f'{mType} - {Video}', y=1.09)
 		ax.set_xticks(ind)
-		ax.set_xticklabels(('', 'Algorithms', ''))
+		ax.set_xticklabels(('AHP', 'A2A4', 'A3'))
 
-		ax.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
-           ncol=3, mode="expand", borderaxespad=0.)
+		#ax.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+        #   ncol=3, mode="expand", borderaxespad=0.)
 		#ax.legend(rects1[0], 'Men')
 
 
@@ -138,7 +138,7 @@ def plott(Video, mType, path):#this needs some serious refactoring
 
 		autolabel(rects1)
 
-		plt.savefig(f'{mType.lower()}_barchart_{Video}.png')
+		plt.savefig(f'{mType.lower()}_barchart_{Video}.pdf')
 
 	#-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 	elif (chart_type == 'boxplot'):
@@ -222,7 +222,15 @@ def plott(Video, mType, path):#this needs some serious refactoring
 
 	else:
 		raise Exception("Chart Type has to be either: bar, boxplot or histogram.")
-plott("Container", "SSIM", "final")
-plott("Container", "VQM", "final")
-plott("Highway", "SSIM", "h30_")
-plott("Highway", "VQM", "h30_")
+plott("Container", "SSIM", "final/lucasTestes")
+plott("Container", "VQM", "final/lucasTestes")
+plott("Highway", "SSIM", "h30_/lucasTestes")
+plott("Highway", "VQM", "h30_/lucasTestes")
+
+plott("Carros", "SSIM", "types_/carros")
+plott("Pedestres", "SSIM", "types_/pedestres")
+plott("Trens", "SSIM", "types_/trens")
+
+plott("Carros", "VQM","types_/carros")
+plott("Pedestres", "VQM","types_/pedestres")
+plott("Trens", "VQM","types_/trens")
