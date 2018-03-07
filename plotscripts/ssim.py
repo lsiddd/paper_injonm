@@ -222,8 +222,10 @@ def plott(Video, mType, path):#this needs some serious refactoring
 
 	else:
 		raise Exception("Chart Type has to be either: bar, boxplot or histogram.")
+
 plott("Container", "SSIM", "final/lucasTestes")
 plott("Container", "VQM", "final/lucasTestes")
+
 plott("Highway", "SSIM", "h30_/lucasTestes")
 plott("Highway", "VQM", "h30_/lucasTestes")
 
