@@ -92,7 +92,7 @@ if (chart_type == 'bar'):
 	width = 0.50       # the width of the bars
 
 	fig, ax = plt.subplots()
-	rects1 = ax.bar(ind, means, width, color=('blue', 'red', 'green'), yerr=std, error_kw=dict(ecolor='black', lw=2, capsize=3, capthick=3))
+	rects1 = ax.bar(ind, means, width, color=('blue', '#ed4728', '#8dc63f'), yerr=std, error_kw=dict(ecolor='black', lw=2, capsize=3, capthick=3))
 
 	#-----------SETTING INDIVIDUAL COLORS AND PATTERS FOR EACH BAR-----------#
 	labels =('AHP', 'A2A4', 'A3')
@@ -102,7 +102,7 @@ if (chart_type == 'bar'):
 		#bar.set_color(color)
 		bar.set_label(label)
 		bar.set_hatch(pattern)
-	ax.set_ylabel("Number of Handovers")
+	ax.set_ylabel("Número de HO")
 	ax.set_xticks(ind)
 	ax.set_xticklabels(('AHP', 'A2A4', 'A3'))
 
@@ -112,8 +112,8 @@ if (chart_type == 'bar'):
 
 
 	def autolabel(rects):
-	    for rect in rects:
-	        height = rect.get_height()
+		for rect in rects:
+			height = rect.get_height()
 
 	autolabel(rects1)
 

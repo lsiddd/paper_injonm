@@ -105,7 +105,7 @@ def plott(Video, mType, path):#this needs some serious refactoring
 		width = 0.50       # the width of the bars
 
 		fig, ax = plt.subplots()
-		rects1 = ax.bar(ind, means, width, color=('blue', 'red', 'green'), yerr=std, error_kw=dict(ecolor='black', lw=2, capsize=3, capthick=3))
+		rects1 = ax.bar(ind, means, width, color=('blue', '#ed4728', '#8dc63f'), yerr=std, error_kw=dict(ecolor='black', lw=2, capsize=3, capthick=3))
 
 		#-----------SETTING INDIVIDUAL COLORS AND PATTERS FOR EACH BAR-----------#
 		labels =('AHP', 'A2A4', 'A3')
@@ -138,7 +138,7 @@ def plott(Video, mType, path):#this needs some serious refactoring
 
 		autolabel(rects1)
 
-		plt.savefig(f'{mType.lower()}_barchart_{Video}.pdf')
+		plt.savefig(f'{mType.lower()}_barchart_{Video}.png')
 
 	#-----------------------PLOT FOR BOXPLOT-LIKE GRAPH-----------------------#
 	elif (chart_type == 'boxplot'):

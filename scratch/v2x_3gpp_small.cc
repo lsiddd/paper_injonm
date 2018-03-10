@@ -112,25 +112,25 @@ int qoeMetricsIterator[enb_HPN + low_power];
 #define video 4
 
 #if video == 1
-  #define video_st "st_highway_cif.st"
+  #define video_st "sourceTraces/st_highway_cif.st"
   #define numberOfFrames  2000
   #define numberOfPackets  2106
   #define gop 30
 
 #elif video == 2
-  #define video_st "st_container_cif_h264_300_20.st"
+  #define video_st "sourceTraces/st_container_cif_h264_300_20.st"
   #define numberOfFrames  300
   #define numberOfPackets  614
   #define gop 20
 
 #elif video == 3
-  #define video_st "st_highway_600_cif"
+  #define video_st "sourceTraces/st_highway_600_cif"
   #define numberOfFrames 600
   #define numberOfPackets 716
   #define gop 28
 
 #elif video == 4
-    #define video_st "st_akiyo_cif_h264_300_18"
+    #define video_st "sourceTraces/st_akiyo_cif_h264_300_18"
     #define numberOfFrames 300
     #define numberOfPackets 839
     #define gop 18
