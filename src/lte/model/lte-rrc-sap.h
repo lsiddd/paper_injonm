@@ -59,7 +59,7 @@ public:
   virtual ~LteRrcSap ();
 
   /// Constraint values
-  static const uint8_t MaxReportCells = 255;
+  static const uint8_t MaxReportCells = 8;
 
   // Information Elements
   /// PlmnIdentityInfo structure
@@ -327,7 +327,7 @@ public:
     std::list<uint8_t> blackCellsToRemoveList; ///< black cells to remove list
     std::list<BlackCellsToAddMod> blackCellsToAddModList; ///< black cells to add mod list
     bool haveCellForWhichToReportCGI; ///< have cell for which to report CGI?
-    uint8_t cellForWhichToReportCGI; ///< cell for which to report CGI
+    uint16_t cellForWhichToReportCGI; ///< cell for which to report CGI
   };
 
   /**
@@ -720,7 +720,7 @@ public:
   {
     uint16_t alpha; ///< alpha value
   };
-
+  
   /// PrachConfigSCell structure
   struct PrachConfigSCell
   {
@@ -744,10 +744,10 @@ public:
   };
 
   /// UlConfiguration structure
-  struct UlConfiguration
-  {
+  struct UlConfiguration 
+  { 
     FreqInfo ulFreqInfo; ///< UL frequency info
-    UlPowerControlCommonSCell ulPowerControlCommonSCell; ///< 3GPP TS 36.331 v.11.10 R11 pag.223
+    UlPowerControlCommonSCell ulPowerControlCommonSCell; ///< 3GPP TS 36.331 v.11.10 R11 pag.223 
     SoundingRsUlConfigCommon soundingRsUlConfigCommon; ///< sounding RS UL config common
     PrachConfigSCell prachConfigSCell; ///< PRACH config SCell
     //PushConfigCommon pushConfigCommon; //NOT IMPLEMENTED!
@@ -1705,3 +1705,7 @@ MemberLteEnbRrcSapProvider<C>::RecvMeasurementReport (uint16_t rnti, Measurement
 
 
 #endif // LTE_RRC_SAP_H
+
+
+
+

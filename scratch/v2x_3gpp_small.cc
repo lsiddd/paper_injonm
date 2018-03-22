@@ -71,15 +71,15 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 5;
-const int carros = 0;
-const int trens = 0;
+const int pedestres = 1;
+const int carros = 1;
+const int trens = 1;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 3;
-const uint16_t enb_HPN = 1; // 7;
-const uint16_t low_power = 10; // 56;
+uint16_t n_cbr = 0;
+const uint16_t enb_HPN = 7; // 7;
+const uint16_t low_power = 0; // 56;
 const uint16_t hot_spot = 0; // 14;
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
@@ -490,7 +490,6 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
         evalvidId++;
 
         double stop = simTime;
-        uint16_t port = 2000;
         uint16_t m_port = 2000 * evalvidId + 2000; // Para alcançar o nó ZERO quando i = 0
 
         // Servidor de vídeo
@@ -510,8 +509,6 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
         apps.Stop(Seconds(stop));
 
         Ptr<Ipv4> ipv4 = ueNodes.Get(i)->GetObject<Ipv4>();
-        Ipv4InterfaceAddress iaddr = ipv4->GetAddress(1, 0);
-        Ipv4Address addri = iaddr.GetLocal();
     }
 }
 
@@ -542,7 +539,7 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
     int seedValue = 1;
-    double interPacketInterval = 0.000000001;
+    double interPacketInterval = 1;
 
     std::string handoverAlg = "ahp";
 
@@ -558,13 +555,6 @@ int main(int argc, char* argv[])
 
     RngSeedManager::SetSeed(seedValue); //valor de seed para geração de números aleatórios
 
-    // asssertions
-    //NS_ASSERT_MSG(node_ue < 51, "exceeded number of nodes.");
-    NS_ASSERT_MSG(enb_HPN + low_power + hot_spot <= 77, "Too many towers.");
-    if (luca) {
-        //NS_ASSERT_MSG(enb_HPN == 3, "this scenario should only have 3 HPNs");
-        //NS_ASSERT_MSG(low_power == 8, "this scenario should only have 8 LPNs");
-    }
 
     // Logs
 
@@ -572,8 +562,6 @@ int main(int argc, char* argv[])
     LogComponentEnable("v2x_3gpp", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_INFO);
     LogComponentEnable("AhpHandoverAlgorithm", LOG_LEVEL_DEBUG);
-    LogComponentEnable("MultiHandoverAlgorithm", LOG_LEVEL_INFO);
-    LogComponentEnable("MultiHandoverAlgorithm", LOG_LEVEL_DEBUG);
     LogComponentEnable("EvalvidClient", LOG_LEVEL_INFO);
 
     //-------------Parâmetros da simulação
@@ -583,9 +571,9 @@ int main(int argc, char* argv[])
     /*----------------------------------------------------------------------*/
 
     //*********** CONFIGURAÇÃO LTE ***************//
-    // Configuração padrão de Downlink e Uplink
-    Config::SetDefault("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue(6));
-    Config::SetDefault("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue(6));
+    // Bandwidth of Dl and Ul in Resource Blocks
+    Config::SetDefault("ns3::LteEnbNetDevice::DlBandwidth", UintegerValue(25));
+    Config::SetDefault("ns3::LteEnbNetDevice::UlBandwidth", UintegerValue(25));
 
     // Modo de transmissão (SISO [0], MIMO [1])
     Config::SetDefault("ns3::LteEnbRrc::DefaultTransmissionMode",
@@ -633,10 +621,6 @@ int main(int argc, char* argv[])
             UintegerValue(30));
         lteHelper->SetHandoverAlgorithmAttribute("NeighbourCellOffset",
             UintegerValue(2));
-    }
-
-    else if (handoverAlg == "multi") {
-        lteHelper->SetHandoverAlgorithmType("ns3::MultiHandoverAlgorithm");
     }
 
     ConfigStore inputConfig;
@@ -776,21 +760,21 @@ int main(int argc, char* argv[])
         Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
         ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
             1);
-        Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
+        // Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
     }
     for (uint32_t u = 0; u < carros_nc.GetN(); ++u) {
         Ptr<Node> ueNode = carros_nc.Get(u);
         Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
         ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
             1);
-        Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
+        // Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
     }
     for (uint32_t u = 0; u < trens_nc.GetN(); ++u) {
         Ptr<Node> ueNode = trens_nc.Get(u);
         Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting(ueNode->GetObject<Ipv4>());
         ueStaticRouting->SetDefaultRoute(epcHelper->GetUeDefaultGatewayAddress(),
             1);
-        Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
+        // Simulator::Schedule(Seconds(0.0), &showPosition, ueNode, 1.0);
     }
 
     /*-------------------------CONFIGURAÇÃO DE CBR-------------------------*/
@@ -820,7 +804,7 @@ int main(int argc, char* argv[])
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
         client.SetAttribute("MaxPackets", UintegerValue(1000000));
-        client.SetAttribute("PacketSize", UintegerValue(2000));
+        client.SetAttribute("PacketSize", UintegerValue(1024));
 
         clientApps.Add(client.Install(remoteHost));
 
@@ -830,7 +814,7 @@ int main(int argc, char* argv[])
     /*-----------------POTENCIA DE TRASMISSAO-----------------*/
     Ptr<LteEnbPhy> enb0Phy;
 
-    for (int i = 0; i < enbLteDevs.GetN(); i++) {
+    for (int i = 0; (unsigned)i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
             enb0Phy->SetTxPower(46);

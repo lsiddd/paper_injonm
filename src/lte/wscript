@@ -108,6 +108,7 @@ def build(bld):
         'model/a2-a4-rsrq-handover-algorithm.cc',
         'model/a3-rsrp-handover-algorithm.cc',
         'model/no-op-handover-algorithm.cc',
+        'model/ahp-handover-algorithm.cc',
         'model/lte-anr-sap.cc',
         'model/lte-anr.cc',
         'model/lte-ffr-algorithm.cc',
@@ -131,9 +132,7 @@ def build(bld):
         'model/component-carrier.cc',
         'helper/cc-helper.cc',
         'model/component-carrier-ue.cc',
-        'model/component-carrier-enb.cc',
-        'model/ahp-handover-algorithm.cc',
-        'model/multi-handover-algorithm.cc'
+        'model/component-carrier-enb.cc'
         ]
 
     module_test = bld.create_ns3_module_test_library('lte')
@@ -193,6 +192,8 @@ def build(bld):
         'test/lte-simple-spectrum-phy.cc',
         'test/lte-test-carrier-aggregation.cc',
         'test/lte-test-aggregation-throughput-scale.cc',
+        'test/lte-test-ipv6-routing.cc',
+        'test/lte-test-carrier-aggregation-configuration.cc'
         ]
 
     headers = bld(features='ns3header')
@@ -299,6 +300,7 @@ def build(bld):
         'model/a2-a4-rsrq-handover-algorithm.h',
         'model/a3-rsrp-handover-algorithm.h',
         'model/no-op-handover-algorithm.h',
+        'model/ahp-handover-algorithm.h',
         'model/lte-anr-sap.h',
         'model/lte-anr.h',
         'model/lte-ffr-algorithm.h',

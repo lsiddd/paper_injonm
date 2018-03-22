@@ -176,7 +176,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
           return;*/
         static double tm = 0;
         MeasurementRow_t::iterator it2;
-        double threshold = AhpHandoverAlgorithm::m_threshold;
 
         /*------------ASSOCIATE RNTI WITH CELLID------------*/
         //retrieve cell id from files
@@ -189,9 +188,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         int i = 0;
 
-        int n_p = 3; //número de parâmetros
         int n_c = it1->second.size() + 1; //número de células
-        int counter = 0;
 
 
         //características das células
@@ -199,7 +196,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         //        double soma_rsrq;
         double soma[n_c];
         double soma_res = 0;
-        double res[n_c];
 
         double qosAtual = 0;
         double qoeAtual = 0;

@@ -59,17 +59,17 @@ a_ssim_ahp_std = []
 
 for j in range(1, 31):
 	#------------------------------PATH WHERE THE RUSULT FILES ARE------------------------------#
-	c_ahp_path = f'/home/lucas/evalvid/final/lucasTestes/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
-	c_a2a4_path = f'/home/lucas/evalvid/final/lucasTestes/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
-	c_a3_path = f'/home/lucas/evalvid/final/lucasTestes/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
+	c_ahp_path = f'/home/lucas/AHPbk/evalvid/final/lucasTestes/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
+	c_a2a4_path = f'/home/lucas/AHPbk/evalvid/final/lucasTestes/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
+	c_a3_path = f'/home/lucas/AHPbk/evalvid/final/lucasTestes/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
 
-	h_ahp_path = f'/home/lucas/evalvid/h30_/lucasTestes/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
-	h_a2a4_path = f'/home/lucas/evalvid/h30_/lucasTestes/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
-	h_a3_path = f'/home/lucas/evalvid/h30_/lucasTestes/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
+	h_ahp_path = f'/home/lucas/AHPbk/evalvid/h30_/lucasTestes/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
+	h_a2a4_path = f'/home/lucas/AHPbk/evalvid/h30_/lucasTestes/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
+	h_a3_path = f'/home/lucas/AHPbk/evalvid/h30_/lucasTestes/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
 
-	a_ahp_path = f'/home/lucas/akiyo (1)/lucasTestes/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
-	a_a2a4_path = f'/home/lucas/akiyo (1)/lucasTestes/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
-	a_a3_path = f'/home/lucas/akiyo (1)/lucasTestes/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
+	a_ahp_path = f'/home/lucas/AHPbk/akiyo (1)/lucasTestes/ahp/ahp/simul' + str(j) + f'/*{mType.lower()}*'
+	a_a2a4_path = f'/home/lucas/AHPbk/akiyo (1)/lucasTestes/a2a4/a2a4/simul' + str(j) + f'/*{mType.lower()}*'
+	a_a3_path = f'/home/lucas/AHPbk/akiyo (1)/lucasTestes/a3/a3/simul' + str(j) + f'/*{mType.lower()}*'
 
 
 	#---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
@@ -184,7 +184,7 @@ if (chart_type == 'bar'):
 	N = 11
 	means = (	np.float(np.mean(c_ssim_ahp)/4),
 				np.float(np.mean(h_ssim_ahp)/4),
-				np.float(np.mean(a_ssim_ahp) / 6),
+				np.float(np.mean(a_ssim_ahp)/ 6),
 				0,
 				np.float(np.mean(c_ssim_a2a4)/4),
 				np.float(np.mean(h_ssim_a2a4)/4),
@@ -209,7 +209,7 @@ if (chart_type == 'bar'):
 				)
 
 	ind = np.arange(N)  # the x locations for the groups
-	width = 1.0       # the width of the bars
+	width = 0.99       # the width of the bars
 
 	fig, ax = plt.subplots()
 
@@ -226,17 +226,18 @@ if (chart_type == 'bar'):
 
 
 	# add some text for labels, title and axes ticks
-	ax.set_ylabel(mType)
+	ax.set_ylabel(mType, fontsize=15)
 	if (mType == "SSIM"):
 		ax.set_ylim(0,1)
 	else:
-		ax.set_ylim(0, 2.5)
+		ax.set_ylim(0, 4)
 	#ax.set_title(f'{mType} - {Video}', y=1.09)
 	ax.set_xticks([1, 5, 9])
-	ax.set_xticklabels(('AHP', 'A2A4', 'A3'))
+	ax.set_xticklabels(('SER', 'RSSI - Based', 'PBGT'), fontsize=15)
 
 	ax.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='center',
-       ncol=3, borderaxespad=0.)
+       ncol=3, borderaxespad=0., fontsize=14)
+	ax.tick_params(axis='both', labelsize=15)
 	#ax.legend(rects1[0], 'Men')
 
 

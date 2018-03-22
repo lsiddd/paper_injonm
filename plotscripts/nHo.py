@@ -33,9 +33,9 @@ nHo_a3_std = []
 nHo_ahp_std = []
 
 #------------------------------PATH WHERE THE RUSULT FILES ARE------------------------------#
-ahp_path = f'/home/lucas/akiyo/lucasTestes/ahp/run*'
-a2a4_path = f'/home/lucas/akiyo/lucasTestes/a2a4/run*'
-a3_path = f'/home/lucas/akiyo/lucasTestes/a3/run*'
+ahp_path = f'/home/lucas/AHPbk/akiyo/lucasTestes/ahp/run*'
+a2a4_path = f'/home/lucas/AHPbk/akiyo/lucasTestes/a2a4/run*'
+a3_path = f'/home/lucas/AHPbk/akiyo/lucasTestes/a3/run*'
 
 
 #---------------------FEED THE LISTS WITH INDIVIDUAL SSIM VAULES---------------------#
@@ -95,26 +95,27 @@ if (chart_type == 'bar'):
 	rects1 = ax.bar(ind, means, width, color=('blue', '#ed4728', '#8dc63f'), yerr=std, error_kw=dict(ecolor='black', lw=2, capsize=3, capthick=3))
 
 	#-----------SETTING INDIVIDUAL COLORS AND PATTERS FOR EACH BAR-----------#
-	labels =('AHP', 'A2A4', 'A3')
+	labels =('SER', 'RSSI - Based', 'PBGT')
 	patterns = ('-', '\\', 'o')
 	#colors = ('#ff8d8d', '#ff4242', '#992727')
 	for bar, pattern, label in zip(rects1, patterns, labels):
 		#bar.set_color(color)
 		bar.set_label(label)
 		bar.set_hatch(pattern)
-	ax.set_ylabel("Número de HO")
+	ax.set_ylabel("Número de HO", fontsize=15)
 	ax.set_xticks(ind)
-	ax.set_xticklabels(('AHP', 'A2A4', 'A3'))
+	ax.set_xticklabels(('SER', 'RSSI - Based', 'PBGT'), fontsize=15)
 
-	#ax.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
-    #   ncol=3, mode="expand", borderaxespad=0.)
-	#ax.legend(rects1[0], 'Men')
-
+	ax.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+       ncol=3, mode="expand", borderaxespad=0.)
+	ax.tick_params(axis='both', labelsize=15)
 
 	def autolabel(rects):
 		for rect in rects:
 			height = rect.get_height()
 
+	ax.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='center',
+       ncol=3, borderaxespad=0., fontsize=14)
 	autolabel(rects1)
 
 	plt.savefig(f'n_de_handover.pdf')
