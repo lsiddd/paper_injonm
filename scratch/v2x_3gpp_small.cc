@@ -1,5 +1,5 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
-/* * Copyright (c) 2017
+/* * Copyright (c) 2018
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -109,6 +109,9 @@ int qoeMetricsIterator[enb_HPN + low_power];
 /*-----------------------VARIÁVEIS DO VÍDEO-----------------------*/
 // 1 PARA st_highway_cif
 // 2 PARA st_container_cif_h264_300_20
+// 3 PARA st_highway_600_cif
+// 4 PARA st_akiyo_cif_h264_300_18
+
 #define video 4
 
 #if video == 1
