@@ -184,7 +184,7 @@ if (chart_type == 'bar'):
 	N = 11
 	means = (	np.float(np.mean(c_ssim_ahp)/4),
 				np.float(np.mean(h_ssim_ahp)/4),
-				np.float(np.mean(a_ssim_ahp)/ 6),
+				np.float(np.mean(a_ssim_ahp)/ 4),
 				0,
 				np.float(np.mean(c_ssim_a2a4)/4),
 				np.float(np.mean(h_ssim_a2a4)/4),
