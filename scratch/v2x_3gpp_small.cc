@@ -452,7 +452,7 @@ void WriteMetrics()
 
                     ofstream qoeOutFile(qoeFileName.str(),
                         std::ofstream::out | std::ofstream::trunc);
-                    
+
                     cmd << "python2.7 ia.py " << ILoss << " " << PLoss << " " << BLoss
                         << " " << gop;
 
@@ -607,6 +607,9 @@ int main(int argc, char* argv[])
     if (handoverAlg == "ahp") {
         lteHelper->SetHandoverAlgorithmType("ns3::AhpHandoverAlgorithm");
     }
+
+    else if (handoverAlg == "qoe")
+        lteHelper->SetHandoverAlgorithmType("ns3::QoeHandoverAlgorithm");
 
     else if (handoverAlg == "noop")
         lteHelper->SetHandoverAlgorithmType("ns3::NoOpHandoverAlgorithm");
