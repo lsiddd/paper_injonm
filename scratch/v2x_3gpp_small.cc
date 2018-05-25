@@ -78,9 +78,12 @@ const int trens = 1;
 const int node_ue = pedestres + carros + trens;
 
 uint16_t n_cbr = 0;
-const uint16_t enb_HPN = 7; // 7;
-const uint16_t low_power = 0; // 56;
-const uint16_t hot_spot = 0; // 14;
+// 3 hpn para cenário wgrs
+// 1 hpn para cenário do journal
+// 7 hpn para cenário monte carlo
+const uint16_t enb_HPN = 7;
+//7 low power para cenários wgrs e 77 para monte carlo
+const uint16_t low_power = 7; //
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 100; //distância entre torres HPN (mínima)
@@ -92,7 +95,8 @@ int transmissionStart = 15;
 unsigned int handNumber = 0;
 
 //scenario
-bool luca = true;
+bool luca = false;
+bool journal = true;
 
 //coeficiente da média exponencial
 unsigned int exp_mean_window = 3;
@@ -256,6 +260,18 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
         //    HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
         return;
     }
+
+    if (journal){
+        int x_start = 0;
+        int y_start = 1800;
+        for (int i = 0; i < enb_HPN + low_power; ++i)
+            HpnPosition->Add(Vector(x_start + rand() % 3000, y_start + rand() % 3000, 10));
+
+        for (int i = 0; i <= low_power; ++i)
+            HpnPosition->Add(Vector(x_start + rand() % 3000, y_start + rand() % 3000, 10));
+        return;
+    }
+
     int x_start = 1000;
     int y_start = 1000;
 
@@ -689,7 +705,7 @@ int main(int argc, char* argv[])
 
     // eNODEb
     NodeContainer enbNodes;
-    enbNodes.Create(enb_HPN + low_power + hot_spot);
+    enbNodes.Create(enb_HPN + low_power);
 
     // Instala pilha de Internet em UE e EnodeB
     internet.Install(pedestres_nc);
@@ -823,12 +839,9 @@ int main(int argc, char* argv[])
     for (int i = 0; (unsigned)i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
-            enb0Phy->SetTxPower(46);
+            enb0Phy->SetTxPower(23);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(33);
-        }
-        else {
             enb0Phy->SetTxPower(15);
         }
     }
