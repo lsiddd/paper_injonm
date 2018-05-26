@@ -10,7 +10,7 @@ do
     mkdir $alg
     mkdir $alg/simul$i
     mv rd* sd* $alg/simul$i
-    rm -rf rnti qo* Dl* Ul*
+    rm -rf rnti qo*Torre* Dl* Ul*
     python ../../finish.pyo $alg $i
 done
 
