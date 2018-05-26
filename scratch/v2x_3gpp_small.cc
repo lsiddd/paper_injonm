@@ -71,9 +71,9 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 30;
-const int carros = 30;
-const int trens = 30;
+const int pedestres = 40;
+const int carros = 40;
+const int trens = 40;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -116,7 +116,7 @@ int qoeMetricsIterator[enb_HPN + low_power];
 // 3 PARA st_highway_600_cif
 // 4 PARA st_akiyo_cif_h264_300_18
 
-#define video 4
+#define video 1
 
 #if video == 1
   #define video_st "sourceTraces/st_highway_cif.st"
