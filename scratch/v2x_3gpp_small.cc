@@ -71,19 +71,19 @@ using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 40;
-const int carros = 40;
-const int trens = 40;
+const int pedestres = 100;
+const int carros = 100;
+const int trens = 100;
 
 const int node_ue = pedestres + carros + trens;
 
-uint16_t n_cbr = 0;
 // 3 hpn para cenário wgrs
 // 1 hpn para cenário do journal
 // 7 hpn para cenário monte carlo
-const uint16_t enb_HPN = 7;
+const uint16_t enb_HPN = 3;
+uint16_t n_cbr = enb_HPN;
 //7 low power para cenários wgrs e 77 para monte carlo
-const uint16_t low_power = 7; //
+const uint16_t low_power = 30; //
 int cell_ue[77][57]; // matriz de conexões
 int txpower = 15; //  Lte Ue Tx Power
 int distancia = 100; //distância entre torres HPN (mínima)
@@ -116,7 +116,7 @@ int qoeMetricsIterator[enb_HPN + low_power];
 // 3 PARA st_highway_600_cif
 // 4 PARA st_akiyo_cif_h264_300_18
 
-#define video 1
+#define video 2
 
 #if video == 1
   #define video_st "sourceTraces/st_highway_cif.st"
@@ -262,13 +262,11 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     }
 
     if (journal){
-        int x_start = 0;
-        int y_start = 1800;
         for (int i = 0; i < enb_HPN + low_power; ++i)
-            HpnPosition->Add(Vector(x_start + rand() % 3000, y_start + rand() % 3000, 10));
+            HpnPosition->Add(Vector(rand() % 10000,rand() % 3000, 10));
 
         for (int i = 0; i <= low_power; ++i)
-            HpnPosition->Add(Vector(x_start + rand() % 3000, y_start + rand() % 3000, 10));
+            HpnPosition->Add(Vector(rand() % 10000,rand() % 3000, 10));
         return;
     }
 
@@ -558,7 +556,7 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
     int seedValue = 1;
-    double interPacketInterval = 1;
+    double interPacketInterval = 0.00001;
 
     std::string handoverAlg = "ahp";
 
@@ -825,7 +823,7 @@ int main(int argc, char* argv[])
         UdpClientHelper client(addri, cbrPort);
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
-        client.SetAttribute("MaxPackets", UintegerValue(1000000));
+        client.SetAttribute("MaxPackets", UintegerValue(100000000000));
         client.SetAttribute("PacketSize", UintegerValue(1024));
 
         clientApps.Add(client.Install(remoteHost));
