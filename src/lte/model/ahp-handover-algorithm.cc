@@ -179,8 +179,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         /*------------ASSOCIATE RNTI WITH CELLID------------*/
         //retrieve cell id from files
-        std::stringstream rntiPath;
-        rntiPath << "rnti/" << rnti << ".txt";
+        /*std::stringstream rntiPath;
+        rntiPath << "rnti/" << rnti << ".txt";*/
 
                 /*-----------------DEFINE PARAMETERS-----------------*/
         uint16_t bestNeighbourCellId = servingCellId;
@@ -202,13 +202,13 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         //CURRENT QOE VALUE
 
         std::stringstream qoeRnti;
-        qoeRnti << "rnti/" << rnti << "-qoe.txt";
+        qoeRnti << "v2x_temp/" << servingCellId << "-qoe.txt";
         std::ifstream qoeRntiFile;
         qoeRntiFile.open(qoeRnti.str());
 
         //current qos value
         std::stringstream qosRnti;
-        qosRnti << "rnti/" << rnti << "-qos.txt";
+        qosRnti << "v2x_temp/" << servingCellId << "-qos.txt";
         std::ifstream qosRntiFile;
         qosRntiFile.open(qosRnti.str());
 

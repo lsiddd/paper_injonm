@@ -59,7 +59,6 @@
 #include <memory>
 #include <typeinfo>
 
-
 //we'll use that for cell allocation
 #include <math.h>
 #define PI 3.14159265
@@ -67,36 +66,36 @@
 #define SIMULATION_TIME_FORMAT(s) Seconds(s)
 
 using namespace ns3;
-using namespace std;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 100;
-const int carros = 100;
-const int trens = 100;
+const int pedestres = 40;
+const int carros = 40;
+const int trens = 40;
 
 const int node_ue = pedestres + carros + trens;
 
 // 3 hpn para cenário wgrs
 // 1 hpn para cenário do journal
 // 7 hpn para cenário monte carlo
-const uint16_t enb_HPN = 3;
-uint16_t n_cbr = enb_HPN;
+const uint16_t enb_HPN = 1;
+uint16_t n_cbr = 0;
 //7 low power para cenários wgrs e 77 para monte carlo
-const uint16_t low_power = 30; //
-int cell_ue[77][57]; // matriz de conexões
-int txpower = 15; //  Lte Ue Tx Power
+const uint16_t low_power = 10; //
+int cell_ue[enb_HPN + low_power][node_ue]; // matriz de conexões
+int hpnTxPower = 46;
+int lpnTxPower = 23;
 int distancia = 100; //distância entre torres HPN (mínima)
 
 double simTime = 50.0; // TEMPO_SIMULAÇÃO
-int transmissionStart = 15;
+int transmissionStart = 5;
 
 // número de handovers realizados
 unsigned int handNumber = 0;
 
 //scenario
-bool luca = false;
-bool journal = true;
+bool luca = true;
+bool journal = false;
 
 //coeficiente da média exponencial
 unsigned int exp_mean_window = 3;
@@ -167,11 +166,13 @@ void NotifyConnectionEstablishedUe(std::string context,
     std::stringstream strrnti;
     strrnti << rnti;
 
-    if (mkdir("./rnti", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0) {
+    if (mkdir("./v2x_temp", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0) {
     }
+    /*
     std::ofstream ofs("rnti/" + strrnti.str() + ".txt"); //, ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
+    */
 
     //feed connection matrix
     cell_ue[cellid - 1][imsi - 1] = rnti;
@@ -187,13 +188,13 @@ void NotifyHandoverStartUe(std::string context,
         << " " << context << " UE IMSI " << imsi
         << ": previously connected to CellId " << cellid << " with RNTI "
         << rnti << ", doing handover to CellId " << targetCellId);
-
+    /*
     std::stringstream strrnti;
     strrnti << rnti;
     std::ofstream ofs("rnti/" + strrnti.str() + ".txt", ios::out);
     ofs << imsi << "\t" << cellid << "\n";
     ofs.close();
-
+    */
     cell_ue[cellid - 1][imsi - 1] = 0;
 
     ++handNumber;
@@ -245,11 +246,8 @@ void NotifyHandoverEndOkEnb(std::string context,
         << rnti);
 }
 
-void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance, int seedValue)
+void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance)
 {
-
-    srand(seedValue);
-
     if (luca) {
         int x_start = 0;
         int y_start = 1800;
@@ -336,7 +334,7 @@ void WriteMetrics()
                 rdTrace << "rd_a01_" << u;
                 std::ifstream rdFile(rdTrace.str());
                 if (!rdFile) {
-                    std::cout << "NO FILE TO BE READ" << '\n';
+                    NS_LOG_DEBUG("NO FILE TO BE READ" << '\n');
                     return;
                 }
                 double rdTime;
@@ -366,7 +364,7 @@ void WriteMetrics()
                     //NS_LOG_INFO ("Recebidos " << nReceived << " pacotes.");
                     stringstream qosFilename;
                     double valorAtualQos = 0;
-                    qosFilename << "qosTorre" << i + 1;
+                    qosFilename << "./v2x_temp/qosTorre" << i + 1;
                     ifstream qosInFile(qosFilename.str());
                     while (qosInFile >> valorAtualQos) {
                     }
@@ -378,7 +376,7 @@ void WriteMetrics()
                     NS_LOG_DEBUG("NODE " << u << " QOS ESTIMADO " << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos);
 
                     std::stringstream rntiQosFileName;
-                    rntiQosFileName << "rnti/" << cell_ue[i][u] << "-qos.txt";
+                    rntiQosFileName << "v2x_temp/cell-" << i << "-qos.txt";
 
                     ofstream rntiQosFile;
                     rntiQosFile.open(rntiQosFileName.str());
@@ -458,21 +456,22 @@ void WriteMetrics()
                     std::stringstream qoeFileName;
                     std::string qoeResult;
 
-                    qoeFileName << "qoeTorre" << i + 1;
+                    qoeFileName << "./v2x_temp/qoeTorre" << i + 1;
                     double valorAtualQoe = 0;
                     ifstream qoeInFile(qoeFileName.str());
                     while (qoeInFile >> valorAtualQoe) {
                     }
-
+                    // ESTE ARQUIVO CONTÉM O VALOR DA ÚLTIMA MÉDIA CALCULADA
                     ofstream qoeOutFile(qoeFileName.str(),
                         std::ofstream::out | std::ofstream::trunc);
 
                     cmd << "python2.7 ia.py " << ILoss << " " << PLoss << " " << BLoss
                         << " " << gop;
 
-                    //CÁLCULO DA MÉDIA EXPONENCIAL
+                    //CÁLCULO DA MÉDIA EXPONENCIAL E ESCRITA NO ARQUIVO
                     qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
                     NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe);
+                    qoeOutFile.close();
 
                     //CÁLCULO POR MÉDIA SIMPLES
                     //qoeSum[i] += stod(exec(cmd.str().c_str()));
@@ -480,11 +479,12 @@ void WriteMetrics()
                     //qoeOutFile << qoeSum[i] / qoeMetricsIterator[i];
 
                     std::stringstream rntiQoeFileName;
-                    rntiQoeFileName << "rnti/" << cell_ue[i][u] << "-qoe.txt";
+                    rntiQoeFileName << "v2x_temp/cell-" << i << "-qoe.txt";
 
                     ofstream rntiQoeFile;
                     rntiQoeFile.open(rntiQoeFileName.str());
                     rntiQoeFile << stod(exec(cmd.str().c_str()));
+                    rntiQoeFile.close();
 
                     //NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeSum[i] / qoeMetricsIterator[i]);
                 }
@@ -535,10 +535,10 @@ void showPosition(Ptr<Node> node, double deltaTime)
     Ptr<MobilityModel> mobModel = node->GetObject<MobilityModel>();
     Vector3D pos = mobModel->GetPosition();
     Vector3D speed = mobModel->GetVelocity();
-    cout << "At " << Simulator::Now().GetSeconds() << " seconds, "
+    NS_LOG_INFO("At " << Simulator::Now().GetSeconds() << " seconds, "
          << " node " << nodeId
          << "):  Speed(" << speed.x << ", " << speed.y << ")  Position(" << pos.x << ", " << pos.y << ")"
-                                                                                                      "\n";
+                                                                                                      "\n");
 
     Simulator::Schedule(Seconds(deltaTime), &showPosition, node, deltaTime);
 }
@@ -556,21 +556,21 @@ int main(int argc, char* argv[])
     /*---------------------CRIAÇÃO DE OBJETOS ÚTEIS-----------------*/
 
     int seedValue = 1;
-    double interPacketInterval = 0.00001;
-
     std::string handoverAlg = "ahp";
-
-    VideoTraceParse(video_st);
-
-    // void WriteMetrics();
-
     /*--------------------- COMMAND LINE PARSING -------------------*/
     CommandLine cmm;
     cmm.AddValue("seedValue", "valor de seed para aleatoriedade", seedValue);
     cmm.AddValue("handoverAlg", "Handover algorith in use", handoverAlg);
     cmm.Parse(argc, argv);
-
     RngSeedManager::SetSeed(seedValue); //valor de seed para geração de números aleatórios
+    srand(seedValue);
+
+
+    double interPacketInterval = 0.00001;
+    VideoTraceParse(video_st);
+
+    // void WriteMetrics();
+
 
 
     // Logs
@@ -643,6 +643,11 @@ int main(int argc, char* argv[])
             UintegerValue(2));
     }
 
+    else{
+        NS_LOG_ERROR("ALGORITMO DE HANDOVER INVÁLIDO.");
+        exit(1);
+    }
+
     ConfigStore inputConfig;
     inputConfig.ConfigureDefaults();
 
@@ -713,7 +718,7 @@ int main(int argc, char* argv[])
 
     /*-----------------POSIÇÃO DAS TORRES----------------------------------*/
     Ptr<ListPositionAllocator> HpnPosition = CreateObject<ListPositionAllocator>();
-    ArrayPositionAllocator(HpnPosition, distancia, seedValue);
+    ArrayPositionAllocator(HpnPosition, distancia);
 
     MobilityHelper remoteHostMobility;
     remoteHostMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
@@ -798,8 +803,6 @@ int main(int argc, char* argv[])
     }
 
     /*-------------------------CONFIGURAÇÃO DE CBR-------------------------*/
-
-    srand(seedValue);
     uint16_t cbrPort = 3000;
     ApplicationContainer clientApps;
     ApplicationContainer serverApps;
@@ -820,11 +823,13 @@ int main(int argc, char* argv[])
         serverApps.Add(packetSinkHelper.Install(cbr_nodes.Get(u)));
         serverApps.Start(Seconds(transmissionStart));
 
+	int load = rand() % 512 + 1024;
         UdpClientHelper client(addri, cbrPort);
         client.SetAttribute("Interval",
             TimeValue(MilliSeconds(interPacketInterval)));
-        client.SetAttribute("MaxPackets", UintegerValue(100000000000));
-        client.SetAttribute("PacketSize", UintegerValue(1024));
+        client.SetAttribute("MaxPackets", UintegerValue(100000000));
+        client.SetAttribute("PacketSize", UintegerValue(load));
+	NS_LOG_INFO("Célula " << u + 1 << " com cbr de " << load << " bytes" << std::endl);
 
         clientApps.Add(client.Install(remoteHost));
 
@@ -837,10 +842,10 @@ int main(int argc, char* argv[])
     for (int i = 0; (unsigned)i < enbLteDevs.GetN(); i++) {
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
-            enb0Phy->SetTxPower(23);
+            enb0Phy->SetTxPower(hpnTxPower);
         }
         else if (i < low_power) {
-            enb0Phy->SetTxPower(15);
+            enb0Phy->SetTxPower(lpnTxPower);
         }
     }
 

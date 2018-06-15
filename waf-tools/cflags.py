@@ -19,7 +19,7 @@ class GccTraits(CompilerTraits):
 	def __init__(self):
 		super(GccTraits, self).__init__()
 		# cumulative list of warnings per level
-		self.warnings_flags = [['-Wall'], [''], ['-Wextra']]
+		self.warnings_flags = [['-Wall'], ['-lsqlite3'], ['-Wextra']]
 
 	def get_warnings_flags(self, level):
 		warnings = []
