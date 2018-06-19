@@ -204,13 +204,13 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         //CURRENT QOE VALUE
 
         std::stringstream qoeRnti;
-        qoeRnti << "v2x_temp/" << servingCellId << "-qoe.txt";
+        qoeRnti << "v2x_temp/qoeTorre" << servingCellId;
         std::ifstream qoeRntiFile;
         qoeRntiFile.open(qoeRnti.str());
 
         //current qos value
         std::stringstream qosRnti;
-        qosRnti << "v2x_temp/" << servingCellId << "-qos.txt";
+        qosRnti << "v2x_temp/qosTorre" << servingCellId ;
         std::ifstream qosRntiFile;
         qosRntiFile.open(qosRnti.str());
 
@@ -268,8 +268,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         std::string qoeResult;
         std::string qosResult;
 
-        qoeFileName << "qoeTorre" << servingCellId;
-        qosFileName << "qosTorre" << servingCellId;
+        qoeFileName << "./v2x_temp/qoeTorre" << servingCellId;
+        qosFileName << "./v2x_temp/qosTorre" << servingCellId;
 
         std::ifstream qosFile(qosFileName.str());
         std::ifstream qoeFile(qoeFileName.str());
@@ -285,7 +285,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         else
             cell[i][2] = 1;
         cell[i][3] = servingCellId;
-
         if (cell[i][1] == 5)
           return;
 

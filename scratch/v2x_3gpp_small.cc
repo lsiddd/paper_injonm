@@ -69,9 +69,9 @@ using namespace ns3;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 2;
-const int carros = 2;
-const int trens = 2;
+const int pedestres = 40;
+const int carros = 40;
+const int trens = 40;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -79,7 +79,7 @@ const int node_ue = pedestres + carros + trens;
 // 1 hpn para cenário do journal
 // 7 hpn para cenário monte carlo
 const uint16_t enb_HPN = 1;
-uint16_t n_cbr = 0;
+uint16_t n_cbr = enb_HPN;
 //7 low power para cenários wgrs e 77 para monte carlo
 const uint16_t low_power = 10; //
 int cell_ue[enb_HPN + low_power][node_ue]; // matriz de conexões
@@ -392,15 +392,6 @@ void WriteMetrics()
                     qosOutFile << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos;
                     NS_LOG_DEBUG("NODE " << u << " QOS ESTIMADO " << 2 * (((float)nReceived - 1) / 60 - valorAtualQos) / (exp_mean_window + 1) + valorAtualQos);
 
-                    std::stringstream rntiQosFileName;
-                    rntiQosFileName << "v2x_temp/cell-" << i << "-qos.txt";
-
-                    ofstream rntiQosFile;
-                    rntiQosFile.open(rntiQosFileName.str());
-                    int qosResult = ((float)nReceived - 1) / 60;
-                    if (qosResult < 0)
-                        rntiQosFile << qosResult;
-
                     //CALCULO DE QOS POR MÉDIA SIMPLES
                     //qosSum[i] += ((float)nReceived - 1) / 60;
                     //qosMetricsIterator[i]++;
@@ -495,13 +486,6 @@ void WriteMetrics()
                     //qoeMetricsIterator[i]++;
                     //qoeOutFile << qoeSum[i] / qoeMetricsIterator[i];
 
-                    std::stringstream rntiQoeFileName;
-                    rntiQoeFileName << "v2x_temp/cell-" << i << "-qoe.txt";
-
-                    ofstream rntiQoeFile;
-                    rntiQoeFile.open(rntiQoeFileName.str());
-                    rntiQoeFile << stod(exec(cmd.str().c_str()));
-                    rntiQoeFile.close();
 
                     //NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeSum[i] / qoeMetricsIterator[i]);
                 }
