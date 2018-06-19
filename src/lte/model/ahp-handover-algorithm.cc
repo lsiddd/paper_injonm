@@ -178,10 +178,12 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         MeasurementRow_t::iterator it2;
 
         /*------------ASSOCIATE RNTI WITH CELLID------------*/
-        //retrieve cell id from files
-        /*std::stringstream rntiPath;
-        rntiPath << "rnti/" << rnti << ".txt";*/
+        int imsi;
+        std::stringstream rntiFileName;
+        rntiFileName << "./v2x_temp/" << servingCellId << "/" << rnti;
+        std::ifstream rntiFile(rntiFileName.str());
 
+        while(rntiFile >> imsi){}
                 /*-----------------DEFINE PARAMETERS-----------------*/
         uint16_t bestNeighbourCellId = servingCellId;
         //        uint8_t bestcell = 0;

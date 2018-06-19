@@ -69,9 +69,9 @@ using namespace ns3;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 40;
-const int carros = 40;
-const int trens = 40;
+const int pedestres = 2;
+const int carros = 2;
+const int trens = 2;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -162,12 +162,19 @@ void NotifyConnectionEstablishedUe(std::string context,
         << " " << context << " UE IMSI " << imsi
         << ": connected to CellId " << cellid << " with RNTI " << rnti);
 
-    //feed connection files
-    std::stringstream strrnti;
-    strrnti << rnti;
-
     if (mkdir("./v2x_temp", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0) {
     }
+
+    std::stringstream temp_cell_dir;
+    std::stringstream ueId;
+    temp_cell_dir << "./v2x_temp/" <<  cellid;
+    ueId << temp_cell_dir.str() << "/" << rnti;
+    if (mkdir(temp_cell_dir.str().c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0) {
+    }
+    std::ofstream outfile(ueId.str().c_str());
+    outfile << imsi << std::endl;
+    outfile.close();
+
     /*
     std::ofstream ofs("rnti/" + strrnti.str() + ".txt"); //, ios::out);
     ofs << imsi << "\t" << cellid << "\n";
@@ -188,14 +195,12 @@ void NotifyHandoverStartUe(std::string context,
         << " " << context << " UE IMSI " << imsi
         << ": previously connected to CellId " << cellid << " with RNTI "
         << rnti << ", doing handover to CellId " << targetCellId);
-    /*
-    std::stringstream strrnti;
-    strrnti << rnti;
-    std::ofstream ofs("rnti/" + strrnti.str() + ".txt", ios::out);
-    ofs << imsi << "\t" << cellid << "\n";
-    ofs.close();
-    */
+
     cell_ue[cellid - 1][imsi - 1] = 0;
+
+    std::stringstream ueId;
+    ueId << "./v2x_temp/" <<  cellid << "/" << rnti;
+    remove(ueId.str().c_str());
 
     ++handNumber;
 }
@@ -209,6 +214,18 @@ void NotifyHandoverEndOkUe(std::string context,
         << " " << context << " UE IMSI " << imsi
         << ": successful handover to CellId " << cellid << " with RNTI "
         << rnti);
+
+
+    std::stringstream target_cell_dir;
+    std::stringstream newUeId;
+    target_cell_dir << "./v2x_temp/" <<  cellid;
+    newUeId << target_cell_dir.str() << "/" << rnti;
+    if (mkdir(target_cell_dir.str().c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0) {
+    }
+    std::ofstream outfile(newUeId.str().c_str());
+    outfile << imsi << std::endl;
+    outfile.close();
+
     cell_ue[cellid - 1][imsi - 1] = rnti;
 }
 
@@ -864,6 +881,8 @@ int main(int argc, char* argv[])
     lteHelper->AttachToClosestEnb(cbrLteDevs, enbLteDevs);
     lteHelper->AddX2Interface(enbNodes);
 
+    lteHelper->HandoverRequest (Seconds (2), pedLteDevs.Get (0), enbLteDevs.Get (0), enbLteDevs.Get (1));
+
     NS_LOG_INFO("Create Applications.");
 
     // Início Transmissão de Vídeo
@@ -902,11 +921,11 @@ int main(int argc, char* argv[])
         MakeCallback(&NotifyHandoverEndOkUe));
 
     /*----------------PHY TRACES ------------------------------------*/
-    lteHelper->EnablePhyTraces();
+    /*lteHelper->EnablePhyTraces();
     lteHelper->EnableUlPhyTraces();
     lteHelper->EnableMacTraces();
     lteHelper->EnableRlcTraces();
-    lteHelper->EnablePdcpTraces();
+    lteHelper->EnablePdcpTraces();*/
 
     /*--------------------------- Simulation Run ---------------------------*/
     Simulator::Run(); // Executa

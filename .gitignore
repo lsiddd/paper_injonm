@@ -35,6 +35,8 @@ TAGS
 
 build-dir/
 build/
+v2x_temp/
+LTE*
 /.cproject
 /.project
 rd*
