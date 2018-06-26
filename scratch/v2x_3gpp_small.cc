@@ -69,25 +69,25 @@ using namespace ns3;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 
-const int pedestres = 40;
-const int carros = 40;
-const int trens = 40;
+const int pedestres = 70;
+const int carros = 70;
+const int trens = 70;
 
 const int node_ue = pedestres + carros + trens;
 
 // 3 hpn para cenário wgrs
 // 1 hpn para cenário do journal
 // 7 hpn para cenário monte carlo
-const uint16_t enb_HPN = 1;
+const uint16_t enb_HPN = 2;
 uint16_t n_cbr = enb_HPN;
 //7 low power para cenários wgrs e 77 para monte carlo
-const uint16_t low_power = 10; //
+const uint16_t low_power = 15; //
 int cell_ue[enb_HPN + low_power][node_ue]; // matriz de conexões
 int hpnTxPower = 46;
 int lpnTxPower = 23;
 int distancia = 100; //distância entre torres HPN (mínima)
 
-double simTime = 50.0; // TEMPO_SIMULAÇÃO
+double simTime = 60.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 5;
 
 // número de handovers realizados
@@ -503,8 +503,8 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
         std::stringstream sdTrace;
         std::stringstream rdTrace;
         std::stringstream rdWindow;
-        sdTrace << "sd_a01_" << evalvidId;
-        rdTrace << "rd_a01_" << evalvidId;
+        sdTrace << "v2x_temp/sd_a01_" << evalvidId;
+        rdTrace << "v2x_temp/rd_a01_" << evalvidId;
         evalvidId++;
 
         double stop = simTime;
@@ -747,9 +747,9 @@ int main(int argc, char* argv[])
     Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
 
     if(luca){*/
-      Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/lucaPedestre.tcl");
-      Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/lucaCarro.tcl");
-      Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/lucaTrem.tcl");
+      Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/NovolucaPedestre.tcl");
+      Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/NovolucaCar.tcl");
+      Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/NovolucaTrem.tcl");
     //}
     //mobility.Install(ueNodes.Begin(), ueNodes.End());
     mobil_ped.Install(pedestres_nc.Begin(), pedestres_nc.End());
@@ -865,7 +865,7 @@ int main(int argc, char* argv[])
     lteHelper->AttachToClosestEnb(cbrLteDevs, enbLteDevs);
     lteHelper->AddX2Interface(enbNodes);
 
-    lteHelper->HandoverRequest (Seconds (2), pedLteDevs.Get (0), enbLteDevs.Get (0), enbLteDevs.Get (1));
+    //lteHelper->HandoverRequest (Seconds (2), pedLteDevs.Get (0), enbLteDevs.Get (0), enbLteDevs.Get (1));
 
     NS_LOG_INFO("Create Applications.");
 
@@ -880,7 +880,7 @@ int main(int argc, char* argv[])
     requestStream(remoteHost, trens_nc, remoteHostAddr, simTime, transmissionStart + 20);*/
 
     /*----------------NETANIM-------------------------------*/
-    AnimationInterface anim("LTEnormal_v2x.xml");
+    AnimationInterface anim("v2x_temp/LTEnormal_v2x.xml");
     // Cor e Descrição para eNb
     for (uint32_t i = 0; i < enbNodes.GetN(); ++i) {
         anim.UpdateNodeDescription(enbNodes.Get(i), "eNb");

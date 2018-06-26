@@ -299,10 +299,16 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         }
 
         for (i = 0; i < n_c; ++i){
-          if (soma[i] > soma_res){
-              bestNeighbourCellId = cell[i][3];
-              soma_res = soma[i];
-          }
+          if (imsi <= 70)
+            if (soma[i] > soma_res){
+                bestNeighbourCellId = cell[i][3];
+                soma_res = soma[i];
+            }
+          else
+            if (soma[i] > soma_res && cell[i][0] - servingCellRsrq >= 1){
+                bestNeighbourCellId = cell[i][3];
+                soma_res = soma[i];
+            }
         }
         NS_LOG_INFO("\n\n\n------------------------------------------------------------------------");
         NS_LOG_INFO("Measured at: " << Simulator::Now().GetSeconds() << " Seconds.\n");
@@ -318,6 +324,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         NS_LOG_INFO("\n\nBest Neighbor Cell ID: " << bestNeighbourCellId);
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
+        
         if (bestNeighbourCellId != servingCellId) {
           if (Simulator::Now().GetSeconds() - tm < 0.05){
             NS_LOG_INFO("Last Handover: " << tm);
@@ -326,7 +333,6 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             return;
           }
           tm = Simulator::Now().GetSeconds();
-          NS_LOG_INFO(tm);
           //Simulator::Schedule(Seconds(rand() % 2), &m_handoverManagementSapUser->TriggerHandover, this, rnti, bestNeighbourCellId);
           m_handoverManagementSapUser->TriggerHandover(rnti, bestNeighbourCellId);
           NS_LOG_INFO("Triggering Handover -- RNTI: " << rnti << " -- cellId:" << bestNeighbourCellId << "\n\n\n");
