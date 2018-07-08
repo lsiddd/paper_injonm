@@ -78,10 +78,10 @@ const int node_ue = pedestres + carros + trens;
 // 3 hpn para cenário wgrs
 // 1 hpn para cenário do journal
 // 7 hpn para cenário monte carlo
-const uint16_t enb_HPN = 2;
+const uint16_t enb_HPN = 1;
 uint16_t n_cbr = enb_HPN;
 //7 low power para cenários wgrs e 77 para monte carlo
-const uint16_t low_power = 15; //
+const uint16_t low_power = 0; //
 int cell_ue[enb_HPN + low_power][node_ue]; // matriz de conexões
 int hpnTxPower = 46;
 int lpnTxPower = 23;
@@ -115,7 +115,7 @@ int qoeMetricsIterator[enb_HPN + low_power];
 // 3 PARA st_highway_600_cif
 // 4 PARA st_akiyo_cif_h264_300_18
 
-#define video 2
+#define video 5
 
 #if video == 1
   #define video_st "sourceTraces/st_highway_cif.st"
@@ -140,6 +140,18 @@ int qoeMetricsIterator[enb_HPN + low_power];
     #define numberOfFrames 300
     #define numberOfPackets 839
     #define gop 18
+
+#elif video == 5
+    #define video_st "sourceTraces/st_football_cif"
+    #define numberOfFrames 260
+    #define numberOfPackets 537
+    #define gop 28
+
+#elif video == 6
+    #define video_st "sourceTraces/st_mobile_cif_h264_300_18"
+    #define numberOfFrames 300
+    #define numberOfPackets 605
+    #define gop 28
 
 #endif
 
