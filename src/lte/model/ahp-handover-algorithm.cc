@@ -76,7 +76,7 @@ AhpHandoverAlgorithm::GetTypeId()
                                 "Minimum offset between the serving and the best neighbour "
                                 "cell to trigger the handover. Expressed in quantized "
                                 "range of [0..34] as per Section 9.1.7 of 3GPP TS 36.133.",
-                                UintegerValue(1),
+                                UintegerValue(0),
                                 MakeUintegerAccessor(&AhpHandoverAlgorithm::m_neighbourCellOffset),
                                 MakeUintegerChecker<uint8_t>())
                             .AddAttribute("Threshold",
@@ -186,6 +186,7 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         while(rntiFile >> imsi){}
                 /*-----------------DEFINE PARAMETERS-----------------*/
         uint16_t bestNeighbourCellId = servingCellId;
+        uint16_t bestNeighbourCellRsrq = 0;
         //        uint8_t bestcell = 0;
 
         int i = 0;
@@ -285,33 +286,41 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         else
             cell[i][2] = 1;
         cell[i][3] = servingCellId;
-        if (cell[i][1] == 5)
-          return;
+        //if (cell[i][1] == 5)
+        //  return;
 
         /*-----------------------RESULTADO NÃO NORMALIZADO-------------------*/
 
         /*for (int i = 0; i < n_c; ++i)
           for (int j = 0; j < n_p; ++j) soma[i] += cell[i][j]*eigenvector[j];*/
+        //if (imsi < 10)
+        //for (int i = 0; i < n_c; ++i){
+        //  soma[i] = cell[i][0] * 0.14;
+        //  soma[i] += cell[i][1] * 0.28;
+        //  soma[i] += cell[i][2] * 0.57;
+        //}
+        //else if (imsi < 10)
+        //for (int i = 0; i < n_c; ++i){
+        //  soma[i] = cell[i][0] * 0.5;
+        //  soma[i] += cell[i][1] * 0.25;
+        //  soma[i] += cell[i][2] * 0.25;
+        //}
+        //else
         for (int i = 0; i < n_c; ++i){
-          soma[i] = cell[i][0] * 0.14;
-          soma[i] += cell[i][1] * 0.28;
-          soma[i] += cell[i][2] * 0.57;
+          soma[i] = cell[i][0] * 0.4;
+          soma[i] += cell[i][1] * 0.2;
+          soma[i] += cell[i][2] * 0.4;
         }
 
         for (i = 0; i < n_c; ++i){
-          if (imsi <= 70)
-            if (soma[i] > soma_res){
-                bestNeighbourCellId = cell[i][3];
-                soma_res = soma[i];
-            }
-          else
-            if (soma[i] > soma_res && cell[i][0] - servingCellRsrq >= 1){
-                bestNeighbourCellId = cell[i][3];
-                soma_res = soma[i];
-            }
+          if (soma[i] > soma_res){
+              bestNeighbourCellRsrq = cell[i][0];
+              bestNeighbourCellId = cell[i][3];
+              soma_res = soma[i];
+          }
         }
         NS_LOG_INFO("\n\n\n------------------------------------------------------------------------");
-        NS_LOG_INFO("Measured at: " << Simulator::Now().GetSeconds() << " Seconds.\n");
+        NS_LOG_INFO("Measured at: " << Simulator::Now().GetSeconds() << " Seconds.\nIMSI:" << imsi << "\nRNTI: " << rnti << "\n");
         for (int i = 0; i < n_c; ++i){
           if(cell[i][3] == servingCellId)
               NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
@@ -325,8 +334,8 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
 
         /*-----------------------------EXECUÇÃO DO HANDOVER-----------------------------*/
         
-        if (bestNeighbourCellId != servingCellId) {
-          if (Simulator::Now().GetSeconds() - tm < 0.05){
+        if (bestNeighbourCellId != servingCellId && bestNeighbourCellRsrq > servingCellRsrq) {
+          if (Simulator::Now().GetSeconds() - tm < 0.5){
             NS_LOG_INFO("Last Handover: " << tm);
             NS_LOG_INFO("Delaying Handover");
             NS_LOG_INFO("------------------------------------------------------------------------\n\n\n\n");

@@ -15,7 +15,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Author: Lucas Pacheco <lucassidpacheco@gmail.com>
- * Author: Iago Lins de Medeiros <iagolmedeiros@gmail.com>
+ *         Iago Lins de Medeiros <iagolmedeiros@gmail.com>
  */
 
 #include "ns3/core-module.h"
@@ -68,24 +68,31 @@
 using namespace ns3;
 
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
+bool useCbr = false;
 
-const int pedestres = 70;
-const int carros = 70;
-const int trens = 70;
+const int pedestres = 20;
+const int carros = 20;
+const int trens = 20;
 
 const int node_ue = pedestres + carros + trens;
 
 // 3 hpn para cenário wgrs
 // 1 hpn para cenário do journal
 // 7 hpn para cenário monte carlo
-const uint16_t enb_HPN = 1;
-uint16_t n_cbr = enb_HPN;
 //7 low power para cenários wgrs e 77 para monte carlo
-const uint16_t low_power = 0; //
-int cell_ue[enb_HPN + low_power][node_ue]; // matriz de conexões
+const uint16_t enb_HPN = 1;
+const uint16_t low_power = 40; //
+const uint16_t hot_spot = 0;
+
+int cell_ue[enb_HPN + low_power + hot_spot][node_ue]; // matriz de conexões
+
+uint16_t n_cbr = useCbr?enb_HPN+low_power:0;
+
 int hpnTxPower = 46;
-int lpnTxPower = 23;
-int distancia = 100; //distância entre torres HPN (mínima)
+int lpnTxPower = 33;
+int hpTxPower  = 15;
+
+int distancia  = 1000; //distância entre torres HPN (mínima)
 
 double simTime = 60.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 5;
@@ -94,8 +101,8 @@ int transmissionStart = 5;
 unsigned int handNumber = 0;
 
 //scenario
-bool luca = true;
-bool journal = false;
+bool luca = false;
+bool journal = true;
 
 //coeficiente da média exponencial
 unsigned int exp_mean_window = 3;
@@ -103,10 +110,10 @@ double qosLastValue = 0;
 double qoeLastValue = 0;
 int evalvidId = 0;
 
-double qoeSum[enb_HPN + low_power];
-double qosSum[enb_HPN + low_power];
-int qosMetricsIterator[enb_HPN + low_power];
-int qoeMetricsIterator[enb_HPN + low_power];
+double qoeSum[enb_HPN + low_power + hot_spot];
+double qosSum[enb_HPN + low_power + hot_spot];
+int qosMetricsIterator[enb_HPN + low_power + hot_spot];
+int qoeMetricsIterator[enb_HPN + low_power + hot_spot];
 
 
 /*-----------------------VARIÁVEIS DO VÍDEO-----------------------*/
@@ -115,7 +122,7 @@ int qoeMetricsIterator[enb_HPN + low_power];
 // 3 PARA st_highway_600_cif
 // 4 PARA st_akiyo_cif_h264_300_18
 
-#define video 5
+#define video 3
 
 #if video == 1
   #define video_st "sourceTraces/st_highway_cif.st"
@@ -278,9 +285,9 @@ void NotifyHandoverEndOkEnb(std::string context,
 void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance)
 {
     if (luca) {
-        int x_start = 0;
-        int y_start = 1800;
-        for (int i = 0; i < enb_HPN + low_power; ++i)
+        int x_start = 700;
+        int y_start = 500;
+        for (int i = 0; i < enb_HPN + low_power + hot_spot; ++i)
             //HpnPosition->Add(Vector(x_start + rand() % 1000, y_start + rand() % 1000, 10));
             HpnPosition->Add(Vector(x_start + distance * i, y_start, 25));
         //for (int i = 0; i <= low_power; ++i)
@@ -289,11 +296,11 @@ void ArrayPositionAllocator(Ptr<ListPositionAllocator> HpnPosition, int distance
     }
 
     if (journal){
-        for (int i = 0; i < enb_HPN + low_power; ++i)
-            HpnPosition->Add(Vector(rand() % 10000,rand() % 3000, 10));
+        for (int i = 0; i < enb_HPN + low_power + hot_spot; ++i)
+            HpnPosition->Add(Vector(rand() % distance * 4,rand() % distance - 500, 10));
 
         for (int i = 0; i <= low_power; ++i)
-            HpnPosition->Add(Vector(rand() % 10000,rand() % 3000, 10));
+            HpnPosition->Add(Vector(rand() % distance,rand() % distance, 10));
         return;
     }
 
@@ -685,7 +692,7 @@ int main(int argc, char* argv[])
     // Cria link Internet
     PointToPointHelper p2ph;
     p2ph.SetDeviceAttribute("DataRate", DataRateValue(DataRate("100Gb/s")));
-    p2ph.SetDeviceAttribute("Mtu", UintegerValue(1500));
+    p2ph.SetDeviceAttribute("Mtu", UintegerValue(1400));
     p2ph.SetChannelAttribute("Delay", TimeValue(Seconds(0.010)));
     p2ph.EnablePcapAll("ahp-handover");
     NetDeviceContainer internetDevices = p2ph.Install(pgw, remoteHost);
@@ -721,7 +728,7 @@ int main(int argc, char* argv[])
 
     // eNODEb
     NodeContainer enbNodes;
-    enbNodes.Create(enb_HPN + low_power);
+    enbNodes.Create(enb_HPN + low_power + hot_spot);
 
     // Instala pilha de Internet em UE e EnodeB
     internet.Install(pedestres_nc);
@@ -743,31 +750,78 @@ int main(int argc, char* argv[])
     MobilityHelper mobilityEnb;
     mobilityEnb.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     mobilityEnb.SetPositionAllocator(HpnPosition);
-    mobilityEnb.Install(enbNodes);
+    //mobilityEnb.Install(enbNodes);
 
     MobilityHelper mobilityCbr;
     mobilityEnb.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     mobilityEnb.SetPositionAllocator(HpnPosition);
-    mobilityEnb.Install(cbr_nodes);
+    //mobilityEnb.Install(cbr_nodes);
 
     // LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
 
     /*---------------MONILIDADE DOS CARROS------------------------------*/
-
-    /*Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+/*
+    Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
     Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
     Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/novoMobilityGrid.tcl");
+*/
 
-    if(luca){*/
-      Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/NovolucaPedestre.tcl");
-      Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/NovolucaCar.tcl");
-      Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/NovolucaTrem.tcl");
-    //}
-    //mobility.Install(ueNodes.Begin(), ueNodes.End());
-    mobil_ped.Install(pedestres_nc.Begin(), pedestres_nc.End());
-    mobil_carro.Install(carros_nc.Begin(), carros_nc.End());
-    mobil_trem.Install(trens_nc.Begin(), trens_nc.End());
-    /*----------------------------------------------------------------------*/
+  Ns2MobilityHelper mobil_ped = Ns2MobilityHelper("mobil/lucaPedestre.tcl");
+  Ns2MobilityHelper mobil_carro = Ns2MobilityHelper("mobil/lucaCarro.tcl");
+  Ns2MobilityHelper mobil_trem = Ns2MobilityHelper("mobil/lucaTrem.tcl");
+  MobilityHelper ueMobility;  
+  MobilityHelper enbMobility;  
+  
+  // Set a constant velocity mobility model
+  ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
+  ueMobility.SetPositionAllocator ("ns3::RandomRectanglePositionAllocator",
+                                 "X", StringValue ("ns3::UniformRandomVariable[Min=0|Max=2000]"),
+                                 "Y", StringValue ("ns3::UniformRandomVariable[Min=0|Max=2000]"));
+  ueMobility.Install(pedestres_nc);
+  ueMobility.SetPositionAllocator ("ns3::RandomRectanglePositionAllocator",
+                                 "X", StringValue ("ns3::UniformRandomVariable[Min=0|Max=2000]"),
+                                 "Y", StringValue ("ns3::UniformRandomVariable[Min=0|Max=2000]"));
+  ueMobility.Install(carros_nc);
+  ueMobility.SetPositionAllocator ("ns3::RandomRectanglePositionAllocator",
+                                 "X", StringValue ("ns3::UniformRandomVariable[Min=0|Max=2000]"),
+                                 "Y", StringValue ("ns3::UniformRandomVariable[Min=0|Max=2000]"));
+  ueMobility.Install(trens_nc);
+  
+  enbMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
+  enbMobility.SetPositionAllocator ("ns3::RandomRectanglePositionAllocator",
+                                 "X", StringValue ("ns3::UniformRandomVariable[Min=0|Max=2000]"),
+                                 "Y", StringValue ("ns3::UniformRandomVariable[Min=0|Max=2000]"));
+  
+  enbMobility.Install(enbNodes);
+  enbMobility.Install(cbr_nodes);
+  
+  // setup a uniform random variable for the speed
+  Ptr<UniformRandomVariable> rvar = CreateObject<UniformRandomVariable>();
+  
+  // for each node set up its speed according to the random variable
+  for (NodeContainer::Iterator iter= pedestres_nc.Begin(); iter!=pedestres_nc.End(); ++iter){
+    Ptr<Node> tmp_node = (*iter);
+    // select the speed from (15,25) m/s
+    double speed = rvar->GetValue(( 2 * (rand() % 2) - 1) * rand() % 2, ( 2 * (rand() % 2) - 1) * rand() % 2);
+    tmp_node->GetObject<ConstantVelocityMobilityModel>()->SetVelocity(Vector(speed, speed, 0));
+  }
+  for (NodeContainer::Iterator iter= carros_nc.Begin(); iter!=carros_nc.End(); ++iter){
+    Ptr<Node> tmp_node = (*iter);
+    // select the speed from (15,25) m/s
+    double speed = rvar->GetValue(( 2 * (rand() % 2) - 1) * rand() % 20, ( 2 * (rand() % 2) - 1) * rand() % 20);
+    tmp_node->GetObject<ConstantVelocityMobilityModel>()->SetVelocity(Vector(speed, speed, 0));
+  }
+  for (NodeContainer::Iterator iter= trens_nc.Begin(); iter!=trens_nc.End(); ++iter){
+    Ptr<Node> tmp_node = (*iter);
+    // select the speed from (15,25) m/s
+    double speed = rvar->GetValue(( 2 * (rand() % 2) - 1) * rand() % 40, ( 2 * (rand() % 2) - 1) * rand() % 40);
+    tmp_node->GetObject<ConstantVelocityMobilityModel>()->SetVelocity(Vector(speed, speed, 0));
+  }
+  //mobility.Install(ueNodes.Begin(), ueNodes.End());
+  //mobil_ped.Install(pedestres_nc.Begin(), pedestres_nc.End());
+  //mobil_carro.Install(carros_nc.Begin(), carros_nc.End());
+  //mobil_trem.Install(trens_nc.Begin(), trens_nc.End());
+  /*----------------------------------------------------------------------*/
 
     //-------------Instala LTE Devices para cada grupo de nós
     NetDeviceContainer enbLteDevs;
@@ -856,9 +910,15 @@ int main(int argc, char* argv[])
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
             enb0Phy->SetTxPower(hpnTxPower);
+            NS_LOG_UNCOND("hpn");
         }
-        else if (i < low_power) {
+        else if (i < enb_HPN + low_power) {
             enb0Phy->SetTxPower(lpnTxPower);
+            NS_LOG_UNCOND("lpn");
+        }
+        else if (i < enb_HPN + low_power + hot_spot) {
+            enb0Phy->SetTxPower(lpnTxPower);
+            NS_LOG_UNCOND("hs");
         }
     }
 
@@ -898,6 +958,24 @@ int main(int argc, char* argv[])
         anim.UpdateNodeDescription(enbNodes.Get(i), "eNb");
         anim.UpdateNodeColor(enbNodes.Get(i), 0, 255, 0);
     }
+    for (uint32_t i = 0; i < pedestres_nc.GetN(); ++i) {
+        anim.UpdateNodeDescription(pedestres_nc.Get(i), "UE Pedestre");
+        anim.UpdateNodeColor(pedestres_nc.Get(i),  255, 0, 0);
+    }
+    for (uint32_t i = 0; i < trens_nc.GetN(); ++i) {
+        anim.UpdateNodeDescription(trens_nc.Get(i), "UE Trem");
+        anim.UpdateNodeColor(trens_nc.Get(i), 255, 0, 0);
+    }
+    for (uint32_t i = 0; i < carros_nc.GetN(); ++i) {
+        anim.UpdateNodeDescription(carros_nc.Get(i), "UE Carro");
+        anim.UpdateNodeColor(carros_nc.Get(i), 255, 0, 0);
+    }
+    for (uint32_t i = 0; i < cbr_nodes.GetN(); ++i) {
+        anim.UpdateNodeDescription(cbr_nodes.Get(i), "CBR");
+        anim.UpdateNodeColor(cbr_nodes.Get(i), 0, 255, 0);
+    }
+        anim.UpdateNodeDescription(remoteHost, "RH");
+        anim.UpdateNodeColor(remoteHost, 0, 255, 255);
 
     /*---------------------- Simulation Stopping Time ----------------------*/
     Simulator::Stop(SIMULATION_TIME_FORMAT(simTime));
