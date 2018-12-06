@@ -14,8 +14,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * Author: Lucas Pacheco <lucassidpacheco@gmail.com>
- *         Iago Lins de Medeiros <iagolmedeiros@gmail.com>
+ * Author: Lucas Pacheco  <lucassidpacheco@gmail.com>
+ *         Iago  Medeiros <iagolmedeiros@gmail.com>
  */
 
 #include "ns3/core-module.h"
@@ -70,9 +70,9 @@ using namespace ns3;
 double TxRate = 0; // TAXA DE RECEBIMENTO DE PACOTES
 bool useCbr = false;
 
-const int pedestres = 20;
-const int carros = 20;
-const int trens = 20;
+const int pedestres = 10;
+const int carros = 10;
+const int trens = 10;
 
 const int node_ue = pedestres + carros + trens;
 
@@ -80,8 +80,8 @@ const int node_ue = pedestres + carros + trens;
 // 1 hpn para cenário do journal
 // 7 hpn para cenário monte carlo
 //7 low power para cenários wgrs e 77 para monte carlo
-const uint16_t enb_HPN = 1;
-const uint16_t low_power = 40; //
+const uint16_t enb_HPN = 20;
+const uint16_t low_power = 0; //
 const uint16_t hot_spot = 0;
 
 int cell_ue[enb_HPN + low_power + hot_spot][node_ue]; // matriz de conexões
@@ -94,7 +94,7 @@ int hpTxPower  = 15;
 
 int distancia  = 1000; //distância entre torres HPN (mínima)
 
-double simTime = 60.0; // TEMPO_SIMULAÇÃO
+double simTime = 80.0; // TEMPO_SIMULAÇÃO
 int transmissionStart = 5;
 
 // número de handovers realizados
@@ -122,7 +122,7 @@ int qoeMetricsIterator[enb_HPN + low_power + hot_spot];
 // 3 PARA st_highway_600_cif
 // 4 PARA st_akiyo_cif_h264_300_18
 
-#define video 3
+#define video 5
 
 #if video == 1
   #define video_st "sourceTraces/st_highway_cif.st"
@@ -367,7 +367,7 @@ void WriteMetrics()
         for (int u = 0; u < node_ue; ++u)
             if (cell_ue[i][u]) {
                 std::stringstream rdTrace;
-                rdTrace << "rd_a01_" << u;
+                rdTrace << "v2x_temp/rd_a01_" << u;
                 std::ifstream rdFile(rdTrace.str());
                 if (!rdFile) {
                     NS_LOG_DEBUG("NO FILE TO BE READ" << '\n');
@@ -493,17 +493,17 @@ void WriteMetrics()
                         std::ofstream::out | std::ofstream::trunc);
 
                     cmd << "python2.7 ia.py " << ILoss << " " << PLoss << " " << BLoss
-                        << " " << gop;
+                        << " " << gop << " 2>/dev/null";
 
                     //CÁLCULO DA MÉDIA EXPONENCIAL E ESCRITA NO ARQUIVO
-                    qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
-                    NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe);
-                    qoeOutFile.close();
+                    // qoeOutFile << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe;
+                    // NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << 2 * (stod(exec(cmd.str().c_str())) - valorAtualQoe) / (exp_mean_window + 1) + valorAtualQoe);
+                    // qoeOutFile.close();
 
                     //CÁLCULO POR MÉDIA SIMPLES
-                    //qoeSum[i] += stod(exec(cmd.str().c_str()));
-                    //qoeMetricsIterator[i]++;
-                    //qoeOutFile << qoeSum[i] / qoeMetricsIterator[i];
+                    qoeSum[i] += stod(exec(cmd.str().c_str()));
+                    qoeMetricsIterator[i]++;
+                    qoeOutFile << qoeSum[i] / qoeMetricsIterator[i];
 
 
                     //NS_LOG_INFO("NODE " << u << " QOE ESTIMADO " << qoeSum[i] / qoeMetricsIterator[i]);
@@ -518,7 +518,8 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
 {
     for (uint32_t i = 0; i < ueNodes.GetN(); ++i) {
         string video_trans = video_st;
-
+        int startTime = rand() % 40 + 20;
+        NS_LOG_UNCOND("Node " << i << " requesting video at " << startTime << "\n");
         std::stringstream sdTrace;
         std::stringstream rdTrace;
         std::stringstream rdWindow;
@@ -535,14 +536,14 @@ void requestStream(Ptr<Node> remoteHost, NodeContainer ueNodes, Ipv4Address remo
         server.SetAttribute("SenderDumpFilename", StringValue(sdTrace.str()));
         server.SetAttribute("PacketPayload", UintegerValue(512));
         ApplicationContainer apps = server.Install(remoteHost);
-        apps.Start(Seconds(start));
+        apps.Start(Seconds(1));
         apps.Stop(Seconds(stop));
 
         // Clientes do vídeo
         EvalvidClientHelper client(remoteHostAddr, m_port);
         client.SetAttribute("ReceiverDumpFilename", StringValue(rdTrace.str()));
         apps = client.Install(ueNodes.Get(i));
-        apps.Start(Seconds(start + 1));
+        apps.Start(Seconds(startTime));
         apps.Stop(Seconds(stop));
 
         Ptr<Ipv4> ipv4 = ueNodes.Get(i)->GetObject<Ipv4>();
@@ -802,21 +803,22 @@ int main(int argc, char* argv[])
   for (NodeContainer::Iterator iter= pedestres_nc.Begin(); iter!=pedestres_nc.End(); ++iter){
     Ptr<Node> tmp_node = (*iter);
     // select the speed from (15,25) m/s
-    double speed = rvar->GetValue(( 2 * (rand() % 2) - 1) * rand() % 2, ( 2 * (rand() % 2) - 1) * rand() % 2);
+    double speed = rvar->GetValue(10, 0);
     tmp_node->GetObject<ConstantVelocityMobilityModel>()->SetVelocity(Vector(speed, speed, 0));
   }
   for (NodeContainer::Iterator iter= carros_nc.Begin(); iter!=carros_nc.End(); ++iter){
     Ptr<Node> tmp_node = (*iter);
     // select the speed from (15,25) m/s
-    double speed = rvar->GetValue(( 2 * (rand() % 2) - 1) * rand() % 20, ( 2 * (rand() % 2) - 1) * rand() % 20);
+    double speed = rvar->GetValue(20, 20);
     tmp_node->GetObject<ConstantVelocityMobilityModel>()->SetVelocity(Vector(speed, speed, 0));
   }
   for (NodeContainer::Iterator iter= trens_nc.Begin(); iter!=trens_nc.End(); ++iter){
     Ptr<Node> tmp_node = (*iter);
     // select the speed from (15,25) m/s
-    double speed = rvar->GetValue(( 2 * (rand() % 2) - 1) * rand() % 40, ( 2 * (rand() % 2) - 1) * rand() % 40);
+    double speed = rvar->GetValue(0, 40);
     tmp_node->GetObject<ConstantVelocityMobilityModel>()->SetVelocity(Vector(speed, speed, 0));
   }
+
   //mobility.Install(ueNodes.Begin(), ueNodes.End());
   //mobil_ped.Install(pedestres_nc.Begin(), pedestres_nc.End());
   //mobil_carro.Install(carros_nc.Begin(), carros_nc.End());
@@ -910,15 +912,12 @@ int main(int argc, char* argv[])
         enb0Phy = enbLteDevs.Get(i)->GetObject<LteEnbNetDevice>()->GetPhy();
         if (i < enb_HPN) {
             enb0Phy->SetTxPower(hpnTxPower);
-            NS_LOG_UNCOND("hpn");
         }
         else if (i < enb_HPN + low_power) {
             enb0Phy->SetTxPower(lpnTxPower);
-            NS_LOG_UNCOND("lpn");
         }
         else if (i < enb_HPN + low_power + hot_spot) {
             enb0Phy->SetTxPower(lpnTxPower);
-            NS_LOG_UNCOND("hs");
         }
     }
 

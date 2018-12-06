@@ -248,13 +248,13 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
             cell[i][0] = (uint16_t)it2->second->m_rsrq;
 
             if (qoeFile.fail() || qoeFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][1] = 5;
+                cell[i][1] = 0;
             else
                 while (qoeFile >> qoeResult)
                     cell[i][1] = stod(qoeResult);
 
             if (qosFile.fail() || qosFile.peek() == std::ifstream::traits_type::eof())
-                cell[i][2] = 1;
+                cell[i][2] = 0;
             else
                 while (qosFile >> qosResult)
                     cell[i][2] = stod(qosResult);
@@ -279,12 +279,12 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         if (qoeAtual)
             cell[i][1] = qoeAtual;
         else {
-            cell[i][1] = 5;
+            cell[i][1] = 0;
         }
         if(qosAtual)
             cell[i][2] = qosAtual;
         else
-            cell[i][2] = 1;
+            cell[i][2] = 0;
         cell[i][3] = servingCellId;
         //if (cell[i][1] == 5)
         //  return;
@@ -307,25 +307,26 @@ void AhpHandoverAlgorithm::EvaluateHandover(uint16_t rnti,
         //}
         //else
         for (int i = 0; i < n_c; ++i){
-          soma[i] = cell[i][0] * 0.4;
-          soma[i] += cell[i][1] * 0.2;
-          soma[i] += cell[i][2] * 0.4;
+          soma[i] = cell[i][0] * 0.14;
+          soma[i] += cell[i][1] * 0.28;
+          soma[i] += cell[i][2] * 0.57;
         }
 
         for (i = 0; i < n_c; ++i){
-          if (soma[i] > soma_res){
+          if (soma[i] > soma_res && cell[i][0] != 0){
               bestNeighbourCellRsrq = cell[i][0];
               bestNeighbourCellId = cell[i][3];
               soma_res = soma[i];
           }
         }
         NS_LOG_INFO("\n\n\n------------------------------------------------------------------------");
-        NS_LOG_INFO("Measured at: " << Simulator::Now().GetSeconds() << " Seconds.\nIMSI:" << imsi << "\nRNTI: " << rnti << "\n");
+        NS_LOG_INFO("Measured at: " << Simulator::Now().GetSeconds() << 
+			" Seconds.\nIMSI:" << imsi << "\nRNTI: " << rnti << "\n");
         for (int i = 0; i < n_c; ++i){
           if(cell[i][3] == servingCellId)
-              NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i] << " (serving)");
+              NS_LOG_INFO("Cell " << cell[i][3] <<" -- AHP Score:" << soma[i] << " (serving)");
           else
-              NS_LOG_INFO("Célula " << cell[i][3] <<" -- Soma Ahp:" << soma[i]);
+              NS_LOG_INFO("Cell " << cell[i][3] <<" -- AHP Score:" << soma[i]);
           NS_LOG_INFO("         -- RSRQ: " << cell[i][0]);
           NS_LOG_INFO("         -- MOSp: " << cell[i][1]);
           NS_LOG_INFO("         -- PDR: " << cell[i][2] << "\n");

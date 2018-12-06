@@ -1,4 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
+import warnings
+
+def fxn():
+    warnings.warn("deprecated", DeprecationWarning)
+
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
+    fxn()
+
 import sys
 import numpy as np
 #i = 0.6
